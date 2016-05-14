@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MindBit</string>
+
+    <string name="img_descricao">icone do app</string>
+    <string name="login_txt_criar_conta">Não é cadastrado ? Cadastre-se</string>
+    <string name="login_edt_login_dica">usuário</string>
+    <string name="login_edt_senha_dica">senha</string>
+    <string name="login_btn_entrar">Entrar</string>
+
+</resources>

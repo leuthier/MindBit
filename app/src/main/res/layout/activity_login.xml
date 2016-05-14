@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="br.com.mindbit.LoginActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:contentDescription="@string/img_descricao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:src="@drawable/logo"/>
+
+    <EditText
+        android:id="@+id/usuarioLogin"
+        android:hint="@string/login_edt_login_dica"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/usuarioSenha"
+        android:layout_alignStart="@+id/usuarioSenha"
+        android:layout_alignEnd="@+id/usuarioSenha" />
+
+    <EditText
+        android:id="@+id/usuarioSenha"
+        android:hint="@string/login_edt_senha_dica"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/bt_login"
+        android:text="@string/login_btn_entrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/usuarioSenha"
+        android:layout_alignStart="@+id/usuarioSenha"
+        android:layout_alignEnd="@+id/usuarioSenha"
+        android:onClick="logar"/>
+
+    <Button
+        android:id="@+id/txt_criar_conta"
+        android:text="@string/login_txt_criar_conta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/darker_gray"
+        android:background="@android:color/transparent"
+        android:tint="@null"
+        android:elegantTextHeight="false"
+        android:focusable="false"
+        android:layout_marginBottom="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="cadastrar"/>
+
+
+
+</RelativeLayout>
