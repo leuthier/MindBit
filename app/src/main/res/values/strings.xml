@@ -1,10 +1,19 @@
 <resources>
     <string name="app_name">MindBit</string>
+    <string name="img_description">icone do app</string>
 
-    <string name="img_descricao">icone do app</string>
-    <string name="login_txt_criar_conta">Não é cadastrado ? Cadastre-se</string>
-    <string name="login_edt_login_dica">usuário</string>
-    <string name="login_edt_senha_dica">senha</string>
-    <string name="login_btn_entrar">Entrar</string>
+    <!-- Toast -->
+    <string name="login_user_required">Login obrigatório!</string>
+    <string name="login_password_required">Senha obrigatória!</string>
+    <string name="login_user_has_space">Login inválido</string>
+    <string name="login_user_invalid">Seu login deve ter entre 4 e 15 caracteres!</string>
+    <string name="login_password_invalid">Sua senha deve ter entre 6 e 15 caracteres!</string>
+
+    <string name="login_edt_login_hint">usuário</string>
+    <string name="login_edt_password_hint">senha</string>
+
+    <!-- Button -->
+    <string name="login_btn_signIn">Entrar</string>
+    <string name="login_btn_signUp">Não é cadastrado ? Cadastre-se</string>
 
 </resources>

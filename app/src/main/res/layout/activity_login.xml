@@ -12,7 +12,7 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:contentDescription="@string/img_descricao"
+        android:contentDescription="@string/img_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -21,39 +21,41 @@
         android:src="@drawable/logo"/>
 
     <EditText
-        android:id="@+id/usuarioLogin"
-        android:hint="@string/login_edt_login_dica"
+        android:id="@+id/userLogin"
+        android:hint="@string/login_edt_login_hint"
         android:textColor="@android:color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/usuarioSenha"
-        android:layout_alignStart="@+id/usuarioSenha"
-        android:layout_alignEnd="@+id/usuarioSenha" />
+        android:layout_above="@+id/userPassword"
+        android:singleLine="true"
+        android:layout_alignStart="@+id/userPassword"
+        android:layout_alignEnd="@+id/userPassword" />
 
     <EditText
-        android:id="@+id/usuarioSenha"
-        android:hint="@string/login_edt_senha_dica"
+        android:id="@+id/userPassword"
+        android:hint="@string/login_edt_password_hint"
         android:textColor="@android:color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
+        android:singleLine="true"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/bt_login"
-        android:text="@string/login_btn_entrar"
+        android:id="@+id/bt_signIn"
+        android:text="@string/login_btn_signIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/usuarioSenha"
-        android:layout_alignStart="@+id/usuarioSenha"
-        android:layout_alignEnd="@+id/usuarioSenha"
-        android:onClick="logar"/>
+        android:layout_below="@+id/userPassword"
+        android:layout_alignStart="@+id/userPassword"
+        android:layout_alignEnd="@+id/userPassword"
+        android:onClick="signIn"/>
 
     <Button
-        android:id="@+id/txt_criar_conta"
-        android:text="@string/login_txt_criar_conta"
+        android:id="@+id/bt_signUp"
+        android:text="@string/login_btn_signUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -65,7 +67,7 @@
         android:layout_marginBottom="45dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="cadastrar"/>
+        android:onClick="signUp"/>
 
 
 
