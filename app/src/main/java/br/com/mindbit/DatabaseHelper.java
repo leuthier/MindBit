@@ -4,10 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Bruna on 14/05/2016.
- */
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String NOME_DB = "banco";
@@ -18,31 +14,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //TABELA PESSOA
-
     public static final String TABELA_PESSOA= "tabela_pessoa";
     public static final String PESSOA_ID = "_id_pessoa";
     public static final String PESSOA_NOME = "nome_pessoa";
     public static final String PESSOA_CPF = "cpf_pessoa";
+    public static final String PESSOA_EMAIL = "email_pessoa";
     public static final String PESSOA_FOTO = "foto_pessoa";
 
     //TABELA USUARIO
-
     public static final String TABELA_USUARIO = "tabela_usuario";
     public static final String USUARIO_ID = "_id_usuario";
     public static final String USUARIO_LOGIN = "login_usuario";
     public static final String USUARIO_SENHA = "senha_usuario";
     public static final String USUARIO_PESSOA_ID = "id_pessoa_usuario";
 
+    //TABELA EVENTO
+    public static final String TABELA_EVENTO = "tabela_evento";
+    public static final String EVENTO_ID = "_id_evento";
+    public static final String EVENTO_NOME = "nome_evento";
+    public static final String EVENTO_DESCRICAO = "descricao_evento";
+    public static final String EVENTO_HORA_INICIO = "hora_inicio_evento";
+    public static final String EVENTO_HORA_FIM = "hora_fim_evento";
+    public static final String EVENTO_DATA_INICIO = "data_inicio_evento";
+    public static final String EVENTO_DATA_FIM = "data_fim_evento";
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(ScriptTableSQL.getTabelaPessoa());
-
         db.execSQL(ScriptTableSQL.getTabelaUsuario());
+        //db.execSQL(ScriptTableSQL.getTabelaEvento());
 
-        ScriptPopularTableSQL.inserirUsuariosDB(db);
-
-        ScriptPopularTableSQL.inserirPessoasDB(db);
+        ScriptPopularTableSQL.inserirUsuarios(db);
+        ScriptPopularTableSQL.inserirPessoas(db);
+        //ScriptPopularTableSQL.inserirEventos(db);
 
     }
 
@@ -50,6 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists " + TABELA_USUARIO);
         db.execSQL("drop table if exists " + TABELA_PESSOA);
+        //db.execSQL("drop table if exists" + TABELA_EVENTO);
         onCreate(db);
     }
 

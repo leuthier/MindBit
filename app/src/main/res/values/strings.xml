@@ -8,6 +8,9 @@
     <string name="login_user_has_space">Login inválido</string>
     <string name="login_user_invalid">Seu login deve ter mais de 4 caracteres!</string>
     <string name="login_password_invalid">Sua senha deve ter mais de 4 caracteres!</string>
+    <string name="login_sucess">Login efetuado com sucesso!</string>
+    <string name="login_error">Login e/ou senha incorretos!</string>
+
 
     <string name="login_edt_login_hint">usuário</string>
     <string name="login_edt_password_hint">senha</string>
