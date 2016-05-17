@@ -1,9 +1,11 @@
-package br.com.mindbit;
+package br.com.mindbit.infra.gui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CalendarView;
 import android.widget.Toast;
+
+import br.com.mindbit.R;
 
 public class CalendarActivity extends AppCompatActivity {
     CalendarView calendar;

@@ -1,4 +1,4 @@
-package br.com.mindbit;
+package br.com.mindbit.controleacesso.persistencia;
 
 /**
  * Created by Bruna on 14/05/2016.

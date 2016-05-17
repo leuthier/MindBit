@@ -1,4 +1,4 @@
-package br.com.mindbit;
+package br.com.mindbit.controleacesso.gui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,7 +11,11 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import br.com.mindbit.infra.gui.CalendarActivity;
+import br.com.mindbit.R;
+import br.com.mindbit.controleacesso.negocio.UsuarioNegocio;
+import br.com.mindbit.infra.gui.GuiUtil;
 
 
 public class LoginActivity extends Activity implements View.OnClickListener {

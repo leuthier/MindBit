@@ -1,7 +1,7 @@
-package br.com.mindbit;
+package br.com.mindbit.controleacesso.negocio;
 
-import br.com.mindbit.dominio.Pessoa;
-import br.com.mindbit.dominio.Usuario;
+import br.com.mindbit.controleacesso.dominio.Pessoa;
+import br.com.mindbit.controleacesso.dominio.Usuario;
 
 public class SessaoUsuario {
 

@@ -1,5 +1,7 @@
-package br.com.mindbit.dominio;
+package br.com.mindbit.controleacesso.dominio;
 import android.net.Uri;
+
+import br.com.mindbit.controleacesso.dominio.Usuario;
 
 public class Pessoa {
     private int id;

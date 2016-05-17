@@ -1,4 +1,4 @@
-package br.com.mindbit;
+package br.com.mindbit.controleacesso.persistencia;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -1,4 +1,4 @@
-package br.com.mindbit;
+package br.com.mindbit.controleacesso.persistencia;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,8 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
-import br.com.mindbit.dominio.Pessoa;
-import br.com.mindbit.dominio.Usuario;
+import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
+import br.com.mindbit.controleacesso.dominio.Pessoa;
+import br.com.mindbit.controleacesso.dominio.Usuario;
 
 public class UsuarioDao {
 

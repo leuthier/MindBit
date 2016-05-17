@@ -1,4 +1,4 @@
-package br.com.mindbit.dominio;
+package br.com.mindbit.controleacesso.dominio;
 
 public class Usuario {
 

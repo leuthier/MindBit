@@ -1,12 +1,13 @@
-package br.com.mindbit;
+package br.com.mindbit.infra.gui;
 
 import android.app.Activity;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import br.com.mindbit.R;
 
 //extends AppCompatActivity
 public class GuiUtil {
@@ -15,7 +16,7 @@ public class GuiUtil {
         Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
     }
 
-    public static final Uri IMAGEM_PADRAO = Uri.parse("android.resource://br.com.mindbit/"+R.drawable.ic_person);
+    public static final Uri IMAGEM_PADRAO = Uri.parse("android.resource://br.com.mindbit/"+ R.drawable.ic_person);
 
     private static GuiUtil instanciaGuiUtil = new GuiUtil();
     private GuiUtil(){}
