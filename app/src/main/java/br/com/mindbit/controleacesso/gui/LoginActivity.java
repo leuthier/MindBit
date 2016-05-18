@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import br.com.mindbit.controleacesso.dominio.Usuario;
 import br.com.mindbit.infra.gui.CalendarActivity;
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.negocio.UsuarioNegocio;
@@ -34,7 +35,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         context = this;
-
+        usuarioNegocio = UsuarioNegocio.getInstanciaUsuarioNegocio(context);
         icone = (ImageView) findViewById(R.id.imageView);
 
         btnEnter = (Button) findViewById(R.id.bt_signIn);
@@ -44,16 +45,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         edtUser = (EditText) findViewById(R.id.userLogin);
         edtPassword = (EditText) findViewById(R.id.userPassword);
-
-//        btnEnter.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                user = edtUser.getText().toString().trim();
-//                password = edtPassword.getText().toString().trim();
-//
-//                logar(user, password);
-//            }
-//        });
 
         initViews();
 
@@ -142,9 +133,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         int id = v.getId();
         switch (id){
             case R.id.bt_signIn:
-                if (validateFields()) {
-                    logar(v);
-                }
+                logar(v);
                 break;
             case R.id.bt_signUp:
                 startSignUpActivity();
@@ -153,14 +142,18 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
     private void logar(View view){
-        String user = edtUser.getText().toString().trim();
-        String password = edtPassword.getText().toString().trim();
+        if (validateFields()){
 
-        GuiUtil.exibirMsg(this, "User: " + user + "  Password: " + password);
-        //usuarioNegocio.logar(user, password);
-        startCalendarActivity();
-        //GuiUtil.exibirMsg(this, this.getString(R.string.login_sucess));
-        //GuiUtil.exibirMsg(this, "Bem-vindo "+user+"!");
+            String user = edtUser.getText().toString().trim();
+            String password = edtPassword.getText().toString().trim();
+
+            boolean logado = usuarioNegocio.logar(user, password);
+
+            if (logado) {
+                GuiUtil.exibirMsg(this, context.getString(R.string.login_sucess));
+                startCalendarActivity();
+            }
+        }
         return;
     }
 
@@ -170,7 +163,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
     public void startSignUpActivity() {
-        GuiUtil.exibirMsg(this, "Ir para tela cadastro");
+        GuiUtil.exibirMsg(this, "Próxima entrega :)");
     }
 
     public static Context getContext(){

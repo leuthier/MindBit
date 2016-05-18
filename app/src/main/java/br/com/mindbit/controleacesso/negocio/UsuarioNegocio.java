@@ -3,6 +3,7 @@ package br.com.mindbit.controleacesso.negocio;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 
 import br.com.mindbit.controleacesso.dominio.Pessoa;
@@ -17,25 +18,35 @@ public class UsuarioNegocio {
     private Resources resources;
     private Context context;
     private static UsuarioNegocio instanciaUsuarioNegocio = new UsuarioNegocio();
-    private Activity loginActivity = (LoginActivity) context;
+    private Activity loginActivity;
     private UsuarioNegocio(){
+
     }
     public static UsuarioNegocio getInstanciaUsuarioNegocio(Context context){
         usuarioDao = UsuarioDao.getInstancia(context);
+        instanciaUsuarioNegocio.setLoginActivity(context);
+        instanciaUsuarioNegocio.setContext(context);
         return instanciaUsuarioNegocio;
     }
 
-    private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
+    private void setLoginActivity(Context context){
+        loginActivity = (LoginActivity) context;
+    }
+    private void setContext(Context context){
+        this.context = context;
+    }
 
-    public void logar(String login, String senha){
+    public boolean logar(String login, String senha) {
         Usuario usuario = usuarioDao.buscarUsuarioLogin(login);
-
-        if (usuario == null || !usuario.getLogin().equals(senha)){
+        boolean ok = (usuario != null && usuario.getSenha().equals(senha));
+        if (!ok){
             GuiUtil.exibirMsg(loginActivity, context.getString(R.string.login_error));
+        } else {
+            SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
+            sessaoUsuario.setUsuarioLogado(usuario);
+            sessaoUsuario.setPessoaLogada(pesquisarPorId(usuario.getId()));
         }
-        SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
-        sessaoUsuario.setUsuarioLogado(usuario);
-        sessaoUsuario.setPessoaLogada(pesquisarPorId(usuario.getId()));
+        return ok;
     }
 
     public Pessoa pesquisarPorId(int id){
