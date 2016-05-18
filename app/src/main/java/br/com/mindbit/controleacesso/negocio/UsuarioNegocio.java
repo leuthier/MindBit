@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 
+import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.gui.LoginActivity;
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.dominio.Usuario;
@@ -27,14 +28,20 @@ public class UsuarioNegocio {
     private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
 
     public void logar(String login, String senha){
-        Usuario usuario = usuarioDao.buscarLogin(login);
+        Usuario usuario = usuarioDao.buscarUsuarioLogin(login);
 
         if (usuario == null || !usuario.getLogin().equals(senha)){
             GuiUtil.exibirMsg(loginActivity, context.getString(R.string.login_error));
         }
         SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
         sessaoUsuario.setUsuarioLogado(usuario);
-        //sessaoUsuario.setPessoaLogada(pesquisarPorId(usuario.getId()));
+        sessaoUsuario.setPessoaLogada(pesquisarPorId(usuario.getId()));
+    }
+
+    public Pessoa pesquisarPorId(int id){
+        Pessoa pessoa = null;
+        pessoa = usuarioDao.buscarPessoaId(id);
+        return pessoa;
     }
 
 }

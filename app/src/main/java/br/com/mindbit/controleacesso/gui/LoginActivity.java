@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import br.com.mindbit.infra.gui.CalendarActivity;
 import br.com.mindbit.R;
@@ -19,36 +20,40 @@ import br.com.mindbit.infra.gui.GuiUtil;
 
 
 public class LoginActivity extends Activity implements View.OnClickListener {
+    private ImageView icone;
     private EditText edtUser;
     private EditText edtPassword;
+    private Button btnEnter;
+    private Button btnCadastrar;
     private Resources resources;
     private static Context context;
     private UsuarioNegocio usuarioNegocio;
-    private String user;
-    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        context = this;
 
-        Button btnEnter = (Button) findViewById(R.id.bt_signIn);
+        icone = (ImageView) findViewById(R.id.imageView);
+
+        btnEnter = (Button) findViewById(R.id.bt_signIn);
         btnEnter.setOnClickListener(this);
-
-        Button btnCadastrar = (Button) findViewById(R.id.bt_signUp);
+        btnCadastrar = (Button) findViewById(R.id.bt_signUp);
         btnCadastrar.setOnClickListener(this);
 
         edtUser = (EditText) findViewById(R.id.userLogin);
         edtPassword = (EditText) findViewById(R.id.userPassword);
 
-        btnEnter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String user = edtUser.getText().toString().trim();
-                String password = edtPassword.getText().toString().trim();
-                logar(user, password);
-            }
-        });
+//        btnEnter.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                user = edtUser.getText().toString().trim();
+//                password = edtPassword.getText().toString().trim();
+//
+//                logar(user, password);
+//            }
+//        });
 
         initViews();
 
@@ -71,10 +76,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             }
         };
 
-
+        edtUser = (EditText) findViewById(R.id.userLogin);
         edtUser.addTextChangedListener(textWatcher);
 
-
+        edtPassword = (EditText) findViewById(R.id.userPassword);
         edtPassword.addTextChangedListener(textWatcher);
 
     }
@@ -85,7 +90,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             }
         }
 
-    private boolean validateFields(String user, String pass){
+    private boolean validateFields(){
+        String user = edtUser.getText().toString().trim();
+        String pass = edtPassword.getText().toString().trim();
         return (!isEmptyFields(user, pass) && hasSizeValid(user, pass) && !noHasSpaceLogin(user));
     }
 
@@ -103,11 +110,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
     private boolean hasSizeValid(String user, String pass) {
-        if (!(user.length() > 3)) {
+        if (!(user.length() > 4)) {
             edtUser.requestFocus();
             edtUser.setError(resources.getString(R.string.login_user_invalid));
             return false;
-        } else if (!(pass.length() > 5)) {
+        } else if (!(pass.length() > 4)) {
             edtPassword.requestFocus();
             edtPassword.setError(resources.getString(R.string.login_password_invalid));
             return false;
@@ -135,7 +142,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         int id = v.getId();
         switch (id){
             case R.id.bt_signIn:
-                logar(user,password);
+                if (validateFields()) {
+                    logar(v);
+                }
                 break;
             case R.id.bt_signUp:
                 startSignUpActivity();
@@ -143,14 +152,15 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    private void logar(String user, String password){
-        if(!validateFields(user, password)) {
-            //GuiUtil.exibirMsg(this, this.getString(R.string.login_error));
-            return;
-        }
-            usuarioNegocio.logar(user, password);
-            startCalendarActivity();
-            GuiUtil.exibirMsg(this, this.getString(R.string.login_sucess));
+    private void logar(View view){
+        String user = edtUser.getText().toString().trim();
+        String password = edtPassword.getText().toString().trim();
+
+        GuiUtil.exibirMsg(this, "User: " + user + "  Password: " + password);
+        //usuarioNegocio.logar(user, password);
+        startCalendarActivity();
+        //GuiUtil.exibirMsg(this, this.getString(R.string.login_sucess));
+        //GuiUtil.exibirMsg(this, "Bem-vindo "+user+"!");
         return;
     }
 
@@ -160,7 +170,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
     public void startSignUpActivity() {
-        GuiUtil.exibirMsg(this, "CHAMAR TELA CADASTRO!!! \\o/");
+        GuiUtil.exibirMsg(this, "Ir para tela cadastro");
     }
 
     public static Context getContext(){

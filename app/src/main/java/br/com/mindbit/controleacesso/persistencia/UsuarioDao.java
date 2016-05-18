@@ -54,7 +54,6 @@ public class UsuarioDao {
         pessoa.setCpf(cursor.getString(2));
         pessoa.setEmail(cursor.getString(3));
         pessoa.setFoto(Uri.parse(cursor.getString(4)));
-
         return pessoa;
     }
 
@@ -63,11 +62,10 @@ public class UsuarioDao {
         usuario.setId(cursor.getInt(0));
         usuario.setLogin(cursor.getString(1));
         usuario.setSenha(cursor.getString(2));
-
         return usuario;
     }
 
-    public Usuario buscarLogin(String login){
+    public Usuario buscarUsuarioLogin(String login){
         SQLiteDatabase db;
         db = databaseHelper.getReadableDatabase();
 
@@ -80,8 +78,21 @@ public class UsuarioDao {
         }
         db.close();
         cursor.close();
-
         return usuario;
+    }
+
+    public Pessoa buscarPessoaId(int id){
+        Pessoa pessoa = null;
+        db = databaseHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+databaseHelper.TABELA_PESSOA+" WHERE "+
+                        databaseHelper.PESSOA_ID+" =?", new String[]{String.valueOf(id)});
+        if (cursor.moveToFirst()){
+            pessoa = criarPessoa(cursor);
+        }
+        db.close();
+        cursor.close();
+
+        return pessoa;
     }
 
 }
