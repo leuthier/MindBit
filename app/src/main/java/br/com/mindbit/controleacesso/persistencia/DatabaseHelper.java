@@ -45,9 +45,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(ScriptTableSQL.getTabelaUsuario());
         //db.execSQL(ScriptTableSQL.getTabelaEvento());
 
-        ScriptPopularTableSQL.inserirUsuarios(db);
-        ScriptPopularTableSQL.inserirPessoas(db);
-        //ScriptPopularTableSQL.inserirEventos(db);
+        PopularTabela.inserirUsuarios(db);
+        PopularTabela.inserirPessoas(db);
+        //PopularTabela.inserirEventos(db);
 
     }
 

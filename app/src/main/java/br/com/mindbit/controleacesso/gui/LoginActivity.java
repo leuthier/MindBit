@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import br.com.mindbit.controleacesso.dominio.Usuario;
+import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 import br.com.mindbit.infra.gui.CalendarActivity;
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.negocio.UsuarioNegocio;
@@ -150,7 +151,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             boolean logado = usuarioNegocio.logar(user, password);
 
             if (logado) {
-                GuiUtil.exibirMsg(this, context.getString(R.string.login_sucess));
+                GuiUtil.exibirNome(this);
                 startCalendarActivity();
             }
         }
