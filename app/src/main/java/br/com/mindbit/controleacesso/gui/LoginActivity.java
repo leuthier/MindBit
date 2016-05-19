@@ -14,11 +14,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import br.com.mindbit.controleacesso.dominio.Usuario;
-import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
-import br.com.mindbit.infra.gui.CalendarActivity;
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.negocio.UsuarioNegocio;
 import br.com.mindbit.infra.gui.GuiUtil;
+import br.com.mindbit.infra.gui.MindbitException;
 
 
 public class LoginActivity extends Activity implements View.OnClickListener {
@@ -144,15 +143,16 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     private void logar(View view){
         if (validateFields()){
+            try {
+                String user = edtUser.getText().toString().trim();
+                String password = edtPassword.getText().toString().trim();
 
-            String user = edtUser.getText().toString().trim();
-            String password = edtPassword.getText().toString().trim();
-
-            boolean logado = usuarioNegocio.logar(user, password);
-
-            if (logado) {
+                Usuario usuario = usuarioNegocio.logar(user, password);
                 GuiUtil.exibirNome(this);
                 startCalendarActivity();
+            }catch (MindbitException e){
+                GuiUtil.exibirMsg(LoginActivity.this, e.getMessage());
+
             }
         }
         return;

@@ -1,52 +1,45 @@
 package br.com.mindbit.controleacesso.negocio;
 
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
 
-import br.com.mindbit.controleacesso.dominio.Pessoa;
-import br.com.mindbit.controleacesso.gui.LoginActivity;
 import br.com.mindbit.R;
+import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.dominio.Usuario;
 import br.com.mindbit.controleacesso.persistencia.UsuarioDao;
-import br.com.mindbit.infra.gui.GuiUtil;
+import br.com.mindbit.infra.gui.MindbitException;
 
 public class UsuarioNegocio {
     private static UsuarioDao usuarioDao;
-    private Resources resources;
-    private Context context;
     private static UsuarioNegocio instanciaUsuarioNegocio = new UsuarioNegocio();
-    private Activity loginActivity;
     private UsuarioNegocio(){
 
     }
     public static UsuarioNegocio getInstanciaUsuarioNegocio(Context context){
         usuarioDao = UsuarioDao.getInstancia(context);
-        instanciaUsuarioNegocio.setLoginActivity(context);
-        instanciaUsuarioNegocio.setContext(context);
         return instanciaUsuarioNegocio;
     }
 
-    private void setLoginActivity(Context context){
-        loginActivity = (LoginActivity) context;
-    }
-    private void setContext(Context context){
-        this.context = context;
-    }
 
-    public boolean logar(String login, String senha) {
-        Usuario usuario = usuarioDao.buscarUsuarioLogin(login);
-        boolean ok = (usuario != null && usuario.getSenha().equals(senha));
-        if (!ok){
-            GuiUtil.exibirMsg(loginActivity, context.getString(R.string.login_error));
-        } else {
+
+    public Usuario logar(String login, String senha) throws MindbitException{
+        Usuario usuario = usuarioDao.buscarUsuario(login, senha);
+        StringBuilder builder = new StringBuilder();
+        if(usuario != null && usuario.getSenha().equals(senha)) {
             SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
             sessaoUsuario.setUsuarioLogado(usuario);
             sessaoUsuario.setPessoaLogada(pesquisarPorId(usuario.getId()));
         }
-        return ok;
+        else{
+            builder.append("Login e/ou Senha inválido!");
+            }
+        if (builder.length()>0){
+            throw new MindbitException(builder.toString());
+        }
+            //exceção aqui
+           // GuiUtil.exibirMsg(loginActivity, context.getString(R.string.login_error));
+
+        return usuario;
     }
 
     public Pessoa pesquisarPorId(int id){

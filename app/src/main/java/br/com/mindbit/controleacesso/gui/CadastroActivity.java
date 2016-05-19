@@ -9,7 +9,7 @@ import br.com.mindbit.R;
 /**
  * Created by Ariana on 16/05/2016.
  */
-public class SingUpActivity extends Activity {
+public class CadastroActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

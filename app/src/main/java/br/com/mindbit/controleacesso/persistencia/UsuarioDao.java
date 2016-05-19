@@ -65,14 +65,14 @@ public class UsuarioDao {
         return usuario;
     }
 
-    public Usuario buscarUsuarioLogin(String login){
+    public Usuario buscarUsuario(String login, String senha){
         SQLiteDatabase db;
         db = databaseHelper.getReadableDatabase();
 
         Usuario usuario = null;
 
         Cursor cursor = db.rawQuery("SELECT * FROM "+DatabaseHelper.TABELA_USUARIO+
-                " WHERE "+DatabaseHelper.USUARIO_LOGIN+" =?", new String[]{login});
+                " WHERE "+DatabaseHelper.USUARIO_LOGIN+" =? AND "+DatabaseHelper.USUARIO_SENHA+" =?", new String[]{login, senha});
         if (cursor.moveToFirst()){
             usuario = criarUsuario(cursor);
         }

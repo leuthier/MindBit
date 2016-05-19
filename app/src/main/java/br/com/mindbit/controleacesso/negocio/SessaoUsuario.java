@@ -30,4 +30,9 @@ public class SessaoUsuario {
             return usuarioLogado;
         }
 
+        public void invalidarSessao(Usuario usuario){
+            this.setUsuarioLogado(null);
+            this.setPessoaLogada(null);
+
+        }
 }

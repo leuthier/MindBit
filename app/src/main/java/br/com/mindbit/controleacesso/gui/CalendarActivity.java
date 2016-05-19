@@ -1,4 +1,4 @@
-package br.com.mindbit.infra.gui;
+package br.com.mindbit.controleacesso.gui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.widget.CalendarView;
 import android.widget.Toast;
 
 import br.com.mindbit.R;
+import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 
 public class CalendarActivity extends AppCompatActivity {
     CalendarView calendar;
@@ -14,6 +15,7 @@ public class CalendarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+        SessaoUsuario sessao = SessaoUsuario.getInstancia();
 
         calendar = (CalendarView) findViewById(R.id.calendarView);
 
