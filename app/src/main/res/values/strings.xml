@@ -10,6 +10,7 @@
     <string name="login_password_invalid">Sua senha deve ter mais de 4 caracteres!</string>
     <string name="login_sucess">Bem-vindo,</string>
     <string name="login_error">Login e/ou Senha incorretos!</string>
+    <string name="password_not_mach">Senhas diferentes</string>
 
 
     <string name="login_edt_login_hint">usuário</string>
@@ -18,5 +19,7 @@
     <!-- Button -->
     <string name="login_btn_signIn">Entrar</string>
     <string name="login_btn_signUp">Não é cadastrado ? Cadastre-se</string>
+    <string name="login_btn_signUpReturn">Já possui cadastro?</string>
+
 
 </resources>
