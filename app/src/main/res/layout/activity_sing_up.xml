@@ -2,18 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    tools:context=".controleacesso.gui.CadastroActivity"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp">
 
 
     <TextView
         android:id="@+id/nome_cadastro"
-        android:text="Nome"
+        android:text="Nome:"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -30,7 +26,7 @@
 
     <TextView
         android:id="@+id/email_cadastro"
-        android:text="Email"
+        android:text="Email:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -47,7 +43,7 @@
 
     <TextView
         android:id="@+id/cpf_cadastro"
-        android:text="Cpf"
+        android:text="CPF:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -64,7 +60,7 @@
 
     <TextView
         android:id="@+id/senha_cadastro"
-        android:text="Senha"
+        android:text="Senha:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -72,41 +68,41 @@
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/TFsenha1"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/TFsenha1"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
+        android:layout_below="@+id/senha_cadastro"
         android:layout_alignEnd="@+id/TFcpf" />
 
     <TextView
+        android:id="@+id/textView"
+        android:text="Confirmar senha:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Confirmar senha"
-        android:id="@+id/textView"
         android:layout_below="@+id/TFsenha1"
         android:layout_alignParentStart="true" />
 
     <EditText
+        android:id="@+id/TFsenha2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/TFsenha2"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/TFcpf" />
 
     <Button
+        android:id="@+id/bt_tirarfoto"
+        android:text="Foto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Foto"
-        android:id="@+id/bt_tirarfoto"
         android:layout_below="@+id/TFsenha2"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="" />
 
     <Button
         android:id="@+id/bt_cadastrar"

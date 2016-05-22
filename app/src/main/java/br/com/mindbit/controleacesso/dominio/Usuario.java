@@ -6,13 +6,11 @@ public class Usuario {
     private int id;
     private String senha;
 
-    public Usuario(String login, String senha) {
-        this.login = login;
-        this.senha = senha;
+    public Usuario() {
+        this.login = null;
+        this.senha = null;
     }
 
-    public Usuario(){
-    }
 
     public String getLogin(){
         return login;

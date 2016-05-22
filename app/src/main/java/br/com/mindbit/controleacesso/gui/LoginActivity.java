@@ -63,7 +63,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable s) {
-                callClearErrors(s);
             }
         };
 
@@ -74,12 +73,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         edtPassword.addTextChangedListener(textWatcher);
 
     }
-
-        private void callClearErrors(Editable s){
-            if (!s.toString().isEmpty()) {
-                clearErrorFields(edtUser);
-            }
-        }
 
     private boolean validateFields(){
         String user = edtUser.getText().toString().trim();
@@ -122,11 +115,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }return false;
     }
 
-    private void clearErrorFields(EditText... editTexts) {
-        for (EditText editText : editTexts) {
-            editText.setError(null);
-        }
-    }
 
     @Override
     public void onClick(View v) {
@@ -144,18 +132,17 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private void logar(View view){
         if (validateFields()){
             try {
-                String user = edtUser.getText().toString().trim();
-                String password = edtPassword.getText().toString().trim();
+                String user = edtUser.getText().toString();
+                String password = edtPassword.getText().toString();
 
                 Usuario usuario = usuarioNegocio.logar(user, password);
-                GuiUtil.exibirNome(this);
+                GuiUtil.exibirSaudacao(this);
                 startCalendarActivity();
             }catch (MindbitException e){
                 GuiUtil.exibirMsg(LoginActivity.this, e.getMessage());
 
             }
         }
-        return;
     }
 
     public void startCalendarActivity() {

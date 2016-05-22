@@ -11,13 +11,12 @@ public class Pessoa {
     private String email;
     private Uri foto;
 
-    public Pessoa(){}
-
-    public Pessoa(Usuario usuario, String nome, String cpf, String email, Uri foto) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.foto = foto;
+    public Pessoa() {
+        this.nome = null;
+        this.cpf = null;
+        this.email = null;
+        this.foto = null;
+        this.usuario=null;
     }
 
     public int getId(){

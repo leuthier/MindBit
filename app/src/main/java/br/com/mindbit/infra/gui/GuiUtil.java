@@ -18,7 +18,7 @@ public class GuiUtil {
         Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
     }
 
-    public static void exibirNome(Activity activity){
+    public static void exibirSaudacao(Activity activity){
         Context context;
         context = LoginActivity.getContext();
         Toast.makeText(activity, context.getString(R.string.login_sucess)+" "+

@@ -6,6 +6,7 @@ import android.content.Context;
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.dominio.Usuario;
+import br.com.mindbit.controleacesso.gui.LoginActivity;
 import br.com.mindbit.controleacesso.persistencia.UsuarioDao;
 import br.com.mindbit.infra.gui.MindbitException;
 
@@ -24,20 +25,18 @@ public class UsuarioNegocio {
 
     public Usuario logar(String login, String senha) throws MindbitException{
         Usuario usuario = usuarioDao.buscarUsuario(login, senha);
-        StringBuilder builder = new StringBuilder();
-        if(usuario != null && usuario.getSenha().equals(senha)) {
-            SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
-            sessaoUsuario.setUsuarioLogado(usuario);
-            sessaoUsuario.setPessoaLogada(pesquisarPorId(usuario.getId()));
+        String loginInvalido = "";
+
+        if (usuario==null){
+            loginInvalido = LoginActivity.getContext().getString(R.string.login_error);
         }
-        else{
-            builder.append("Login e/ou Senha inválido!");
-            }
-        if (builder.length()>0){
-            throw new MindbitException(builder.toString());
+        if (loginInvalido.length()>0){
+            throw new MindbitException(loginInvalido);
         }
-            //exceção aqui
-           // GuiUtil.exibirMsg(loginActivity, context.getString(R.string.login_error));
+
+        SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
+        sessaoUsuario.setUsuarioLogado(usuario);
+        sessaoUsuario.setPessoaLogada(pesquisarPorId(usuario.getId()));
 
         return usuario;
     }
