@@ -13,13 +13,20 @@
     <string name="password_not_mach">Senhas diferentes</string>
 
 
-    <string name="login_edt_login_hint">usuário</string>
-    <string name="login_edt_password_hint">senha</string>
+    <string name="login_edt_login_hint">Nome de usuário</string>
+    <string name="login_edt_password_hint">Senha</string>
+
+    <string name="cadastro_edt_name">Nome</string>
+    <string name="cadastro_edt_username">Nome de usuário</string>
+    <string name="cadastro_edt_password">Senha</string>
+    <string name="cadastro_edt_password2">Confirmar senha</string>
+    <string name="cadastro_edt_email">Email</string>
 
     <!-- Button -->
     <string name="login_btn_signIn">Entrar</string>
     <string name="login_btn_signUp">Não é cadastrado ? Cadastre-se</string>
     <string name="login_btn_signUpReturn">Já possui cadastro?</string>
+    <string name="cadastro_btn">Cadastrar</string>
 
 
 </resources>

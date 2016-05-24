@@ -21,26 +21,26 @@ public class CadastroActivity extends Activity {
     }
 
     public void onSingUpCLick(View v){
-        if(v.getId()==R.id.bt_cadastrar)
+        if(v.getId()==R.id.btn_signup)
         {
-            EditText nome = (EditText)findViewById(R.id.TFnome);
-            EditText email = (EditText)findViewById(R.id.TFemail);
-            EditText cpf = (EditText)findViewById(R.id.TFcpf);
-            EditText senha1 = (EditText)findViewById(R.id.TFsenha1);
-            EditText senha2 = (EditText)findViewById(R.id.TFsenha2);
+            EditText nome = (EditText)findViewById(R.id.input_name);
+            EditText email = (EditText)findViewById(R.id.input_email);
+            //EditText cpf = (EditText)findViewById(R.id.in);
+            EditText senha = (EditText)findViewById(R.id.input_password);
+            //EditText senha2 = (EditText)findViewById(R.id.input_password2);
 
             String nomestr = nome.getText().toString();
             String emailstr = email.getText().toString();
-            String cpfstr = cpf.getText().toString();
-            String senha1str = senha1.getText().toString();
-            String senha2str = senha2.getText().toString();
+            //String cpfstr = cpf.getText().toString();
+            String senha1str = senha.getText().toString();
+            //String senha2str = senha2.getText().toString();
 
-            if(!senha1str.equals(senha2str))
-            {
+            //if(!senha1str.equals(senha2str))
+            //{
                 //pipocar mensagem
                 //GuiUtil.exibirMsg(CadastroActivity.this , R.string.password_not_mach);
                 GuiUtil.exibirMsg(CadastroActivity.this, "Senhas diferentes");
-            }
+            //}
 
         }
     }

@@ -25,5 +25,6 @@ public class CalendarActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_LONG);
             }
         });
+
     }
 }

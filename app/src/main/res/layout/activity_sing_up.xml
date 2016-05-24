@@ -1,130 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="10dp">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
 
-
-    <TextView
-        android:id="@+id/nome_cadastro"
-        android:text="Nome:"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
-    <EditText
-        android:id="@+id/TFnome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nome_cadastro"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        <ImageView android:src="@drawable/ic_person"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal" />
 
-    <TextView
-        android:id="@+id/email_cadastro"
-        android:text="Email:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_below="@+id/TFnome"
-        android:layout_alignEnd="@+id/nome_cadastro" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="@string/cadastro_edt_name"/>
+        </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/TFemail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/email_cadastro"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="@string/cadastro_edt_username"/>
+        </android.support.design.widget.TextInputLayout>
 
-    <TextView
-        android:id="@+id/cpf_cadastro"
-        android:text="CPF:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_below="@+id/TFemail"
-        android:layout_alignParentStart="true" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="@string/cadastro_edt_email"/>
+        </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/TFcpf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cpf_cadastro"
-        android:layout_alignStart="@+id/email_cadastro"
-        android:layout_alignParentEnd="true" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="@string/cadastro_edt_password"/>
+        </android.support.design.widget.TextInputLayout>
 
-    <TextView
-        android:id="@+id/senha_cadastro"
-        android:text="Senha:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_below="@+id/TFcpf"
-        android:layout_alignParentStart="true" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_password2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="@string/cadastro_edt_password2"/>
+        </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/TFsenha1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_below="@+id/senha_cadastro"
-        android:layout_alignEnd="@+id/TFcpf" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_signup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="@string/cadastro_btn"
+            android:layout_marginTop="35dp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:text="Confirmar senha:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_below="@+id/TFsenha1"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:id="@+id/TFsenha2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/TFcpf" />
-
-    <Button
-        android:id="@+id/bt_tirarfoto"
-        android:text="Foto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TFsenha2"
-        android:layout_centerHorizontal="true"
-        android:onClick="" />
-
-    <Button
-        android:id="@+id/bt_cadastrar"
-        android:text="Cadastrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bt_tirarfoto"
-        android:layout_centerHorizontal="true"
-        android:onClick="onSignUpClick" />
-
-    <Button
-        android:id="@+id/bt_returnLogin"
-        android:text="@string/login_btn_signUpReturn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:background="@android:color/transparent"
-        android:tint="@null"
-        android:elegantTextHeight="false"
-        android:focusable="false"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:onClick="returnLogin" />
-
-</RelativeLayout>
+    </LinearLayout>
+</ScrollView>
