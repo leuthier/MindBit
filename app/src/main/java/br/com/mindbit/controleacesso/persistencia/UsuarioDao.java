@@ -32,7 +32,6 @@ public class UsuarioDao {
         ContentValues values = new ContentValues();
 
         values.put(DatabaseHelper.PESSOA_NOME, pessoa.getNome());
-        values.put(DatabaseHelper.PESSOA_CPF, pessoa.getCpf());
         values.put(DatabaseHelper.PESSOA_EMAIL, pessoa.getEmail());
         values.put(DatabaseHelper.PESSOA_FOTO, pessoa.getFoto().toString());
 
@@ -51,7 +50,6 @@ public class UsuarioDao {
         Pessoa pessoa = new Pessoa();
         pessoa.setId(cursor.getInt(0));
         pessoa.setNome(cursor.getString(1));
-        pessoa.setCpf(cursor.getString(2));
         pessoa.setEmail(cursor.getString(3));
         pessoa.setFoto(Uri.parse(cursor.getString(4)));
         return pessoa;

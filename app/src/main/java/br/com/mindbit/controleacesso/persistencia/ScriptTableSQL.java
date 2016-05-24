@@ -10,7 +10,6 @@ public class ScriptTableSQL {
         pessoaBuilder.append("CREATE TABLE  tabela_pessoa  (  ");
         pessoaBuilder.append("_id_pessoa   integer primary key autoincrement,   ");
         pessoaBuilder.append("nome_pessoa  text not null,  ");
-        pessoaBuilder.append("cpf_pessoa   text not null unique,   ");
         pessoaBuilder.append("email_pessoa text not null unique,   ");
         pessoaBuilder.append("foto_pessoa text not null);");
         return pessoaBuilder.toString();

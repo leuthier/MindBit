@@ -9,11 +9,11 @@ public class PopularTabela {
     public static void inserirPessoas(SQLiteDatabase db) {
 
         String[] pessoas =
-                {"INSERT INTO tabela_pessoa (_id_pessoa,nome_pessoa,cpf_pessoa,email_pessoa,foto_pessoa) VALUES (1,'bruna','12348652197','bruna@hotmail.com','"+ GuiUtil.IMAGEM_PADRAO+"');",
-                "INSERT INTO tabela_pessoa (_id_pessoa,nome_pessoa,cpf_pessoa,email_pessoa,foto_pessoa) VALUES (2,'victor','15976532415','victor@ufrpe.br','"+GuiUtil.IMAGEM_PADRAO+"');",
-                "INSERT INTO tabela_pessoa (_id_pessoa,nome_pessoa,cpf_pessoa,email_pessoa,foto_pessoa) VALUES (3,'tiago','10255790863','tiago@hotmail.com','"+ GuiUtil.IMAGEM_PADRAO+"');",
-                "INSERT INTO tabela_pessoa (_id_pessoa,nome_pessoa,cpf_pessoa,email_pessoa,foto_pessoa) VALUES (4,'ariana','12348123197','ariana@hotmail.com','"+ GuiUtil.IMAGEM_PADRAO+"');",
-                "INSERT INTO tabela_pessoa (_id_pessoa,nome_pessoa,cpf_pessoa,email_pessoa,foto_pessoa) VALUES (5,'gabriel','09088677345','gabriel@hotmail.com','"+ GuiUtil.IMAGEM_PADRAO+"');"};
+                {"INSERT INTO tabela_pessoa (_id_pessoa,nome_pessoa,email_pessoa,foto_pessoa) VALUES (1,'bruna','bruna@hotmail.com','"+ GuiUtil.IMAGEM_PADRAO+"');",
+                "INSERT INTO tabela_pessoa (_id_pessoa,nome_pessoa,email_pessoa,foto_pessoa) VALUES (2,'victor','victor@ufrpe.br','"+GuiUtil.IMAGEM_PADRAO+"');",
+                "INSERT INTO tabela_pessoa (_id_pessoa,nome_pessoa,email_pessoa,foto_pessoa) VALUES (3,'tiago','tiago@hotmail.com','"+ GuiUtil.IMAGEM_PADRAO+"');",
+                "INSERT INTO tabela_pessoa (_id_pessoa,nome_pessoa,email_pessoa,foto_pessoa) VALUES (4,'ariana','ariana@hotmail.com','"+ GuiUtil.IMAGEM_PADRAO+"');",
+                "INSERT INTO tabela_pessoa (_id_pessoa,nome_pessoa,email_pessoa,foto_pessoa) VALUES (5,'gabriel','gabriel@hotmail.com','"+ GuiUtil.IMAGEM_PADRAO+"');"};
 
         for (String pessoa : pessoas) {
             db.execSQL(pessoa);

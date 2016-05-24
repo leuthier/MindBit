@@ -17,7 +17,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABELA_PESSOA= "tabela_pessoa";
     public static final String PESSOA_ID = "_id_pessoa";
     public static final String PESSOA_NOME = "nome_pessoa";
-    public static final String PESSOA_CPF = "cpf_pessoa";
     public static final String PESSOA_EMAIL = "email_pessoa";
     public static final String PESSOA_FOTO = "foto_pessoa";
 

@@ -7,13 +7,11 @@ public class Pessoa {
     private int id;
     private Usuario usuario;
     private String nome;
-    private String cpf;
     private String email;
     private Uri foto;
 
     public Pessoa() {
         this.nome = null;
-        this.cpf = null;
         this.email = null;
         this.foto = null;
         this.usuario=null;
@@ -33,19 +31,8 @@ public class Pessoa {
         this.usuario = usuario;
     }
 
-    public String getNome(){
-        return this.nome;
-    }
-    public void setNome(String nome){
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-    public void setCpf(String cpf){
-        this.cpf = cpf;
-    }
+    public String getNome(){return this.nome;}
+    public void setNome(String nome){ this.nome = nome; }
 
     public String getEmail(){
         return this.email;
