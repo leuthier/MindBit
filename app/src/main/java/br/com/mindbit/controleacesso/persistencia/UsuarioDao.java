@@ -93,4 +93,21 @@ public class UsuarioDao {
         return pessoa;
     }
 
+    public Usuario buscarUsuarioLogin(String login){
+        SQLiteDatabase db;
+        Usuario usuario = null;
+
+        db = databaseHelper.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseHelper.TABELA_USUARIO +
+                " WHERE " + DatabaseHelper.USUARIO_LOGIN + " =?", new String[]{login});
+        if (cursor.moveToFirst()){
+            usuario = criarUsuario(cursor);
+        }
+        db.close();
+        cursor.close();
+        return usuario;
+
+    }
+
 }

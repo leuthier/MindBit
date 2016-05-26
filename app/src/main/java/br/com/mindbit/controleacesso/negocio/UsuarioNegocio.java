@@ -47,4 +47,14 @@ public class UsuarioNegocio {
         return pessoa;
     }
 
+    public void validarCadastro(Pessoa pessoa, String confirmarSenha) throws MindbitException {
+
+        Usuario verUsuarioBD = usuarioDao.buscarUsuarioLogin(pessoa.getUsuario().getLogin());
+        //Pessoa verPessoaBD = usuarioDao.retornaPessoaEmail
+
+        StringBuilder builder = new StringBuilder();
+
+    }
+
+
 }

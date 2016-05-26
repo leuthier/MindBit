@@ -3,11 +3,15 @@
     <string name="img_description">icone do app</string>
 
     <!-- Toast -->
+    <string name="signUp_name_required">Nome obrigatório!</string>
+    <string name="signUP_email_required">Email obrigatório!</string>
+    <string name="signUP_password_confirm_required">Confirme a senha!</string>
     <string name="login_user_required">Login obrigatório!</string>
     <string name="login_password_required">Senha obrigatória!</string>
     <string name="login_user_has_space">Login inválido</string>
     <string name="login_user_invalid">Seu login deve ter mais de 4 caracteres!</string>
     <string name="login_password_invalid">Sua senha deve ter mais de 4 caracteres!</string>
+    <string name="signUp_email_invalid">Seu email deve ter mais de 4 caracteres!</string>
     <string name="login_sucess">Bem-vind@,</string>
     <string name="login_error">Login e/ou Senha incorretos!</string>
     <string name="password_not_mach">Senhas diferentes</string>

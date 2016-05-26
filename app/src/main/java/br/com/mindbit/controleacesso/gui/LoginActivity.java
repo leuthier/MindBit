@@ -156,8 +156,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         startActivity(i);
     }
 
-    public static Context getContext(){
-        return context;
-    }
+    public static Context getContext(){ return context; }
 
 }

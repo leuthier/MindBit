@@ -7,9 +7,7 @@ public class SessaoUsuario {
 
         private static SessaoUsuario instanciaSessaoUsuario = new SessaoUsuario();
         private SessaoUsuario(){}
-        public static SessaoUsuario getInstancia() {
-            return instanciaSessaoUsuario;
-        }
+        public static SessaoUsuario getInstancia() { return instanciaSessaoUsuario; }
 
         private Usuario usuarioLogado;
         private Pessoa pessoaLogada = null;
