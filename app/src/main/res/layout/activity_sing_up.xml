@@ -19,14 +19,14 @@
             android:paddingLeft="24dp"
             android:paddingRight="24dp">
 
-            <View
-                android:id="@+id/header"
+            <ImageView
+                android:id="@+id/userPicture"
                 android:layout_marginTop="50dp"
                 android:layout_width="fill_parent"
                 android:layout_height="200dp"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/user"
-
+                android:onClick="takePicture"
                 />
 
             <android.support.design.widget.FloatingActionButton
@@ -42,7 +42,7 @@
                 android:id="@+id/body"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignEnd="@id/header"
+                android:layout_alignEnd="@id/userPicture"
                 />
 
             <android.support.design.widget.TextInputLayout

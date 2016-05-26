@@ -4,14 +4,23 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import java.io.File;
+import java.util.Date;
 
 import br.com.mindbit.controleacesso.dominio.Usuario;
 import br.com.mindbit.R;
@@ -21,11 +30,16 @@ import br.com.mindbit.infra.gui.MindbitException;
 
 
 public class LoginActivity extends Activity implements View.OnClickListener {
-    private ImageView icone;
+    private ImageView imgPhoto;
+    private File caminhoFoto;
+    public static final int TIRA_FOTO = 1;
+
     private EditText edtUser;
     private EditText edtPassword;
+
     private Button btnEnter;
     private Button btnCadastrar;
+
     private Resources resources;
     private static Context context;
     private UsuarioNegocio usuarioNegocio;
@@ -36,7 +50,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
         context = this;
         usuarioNegocio = UsuarioNegocio.getInstanciaUsuarioNegocio(context);
-        icone = (ImageView) findViewById(R.id.imageView);
+        imgPhoto = (ImageView) findViewById(R.id.imageView);
 
         btnEnter = (Button) findViewById(R.id.bt_signIn);
         btnEnter.setOnClickListener(this);
@@ -157,5 +171,50 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
     public static Context getContext(){ return context; }
+
+    public void takePicture(View v){
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            String nomeFoto = DateFormat.format("yyyy-MM-dd_hhmmss.png", new Date()).toString();
+
+            caminhoFoto = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), nomeFoto);
+
+            Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(caminhoFoto));
+            startActivityForResult(i, TIRA_FOTO);
+        }else{
+            caminhoFoto = null;
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK && requestCode == TIRA_FOTO){
+            atualizarFoto();
+        }
+    }
+
+    private void atualizarFoto() {
+        if(caminhoFoto != null){
+            int targetwidth = imgPhoto.getWidth();
+            int targetHeight = imgPhoto.getHeight();
+            //obter largura e altura da foto
+            BitmapFactory.Options bmOption = new BitmapFactory.Options();
+
+            bmOption.inJustDecodeBounds = false;
+            BitmapFactory.decodeFile(caminhoFoto.getAbsolutePath(), bmOption);
+            int photoW = bmOption.outWidth;
+            int photoH = bmOption.outHeight;
+
+            //redimensionamento
+            int scaleFactor = Math.min(photoW/ targetwidth, photoH/ targetHeight);
+            bmOption.inSampleSize = scaleFactor;
+
+            Bitmap bmp = BitmapFactory.decodeFile(caminhoFoto.getAbsolutePath(), bmOption);
+
+            imgPhoto.setImageBitmap(bmp);
+        }
+    }
 
 }
