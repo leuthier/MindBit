@@ -2,16 +2,26 @@ package br.com.mindbit.controleacesso.gui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.util.Date;
 
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
@@ -24,13 +34,15 @@ import br.com.mindbit.infra.gui.MindbitException;
  * Created by Ariana on 16/05/2016.
  */
 public class CadastroActivity extends Activity {
+    private ImageView imgPhoto;
+    private File caminhoFoto;
+    public static final int TIRA_FOTO = 1;
 
     private EditText editPessoaNome;
     private EditText editUsuarioLogin;
     private EditText editPessoaEmail;
     private EditText editUsuarioSenha;
     private EditText editUsuarioSenhaConfirmar;
-    private ImageView imageView;
     private Resources resources;
 
     private Button btnCadastrar;
@@ -54,9 +66,9 @@ public class CadastroActivity extends Activity {
         editPessoaEmail = (EditText) findViewById(R.id.input_email);
         editUsuarioSenha = (EditText) findViewById(R.id.input_password);
         editUsuarioSenhaConfirmar = (EditText) findViewById(R.id.input_password2);
-        //imageView = (ImageView) findViewById(R.id.imageView);
+        imgPhoto = (ImageView) findViewById(R.id.userPicture);
 
-        //imageView.setImageURI(GuiUtil.FOTO_PADRAO);
+        //imgPhoto.setImageURI(GuiUtil.FOTO_PADRAO);
 
         initViews();
 
@@ -235,6 +247,49 @@ public class CadastroActivity extends Activity {
         }
     }
 
+    public void takePicture(View v){
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            String nomeFoto = DateFormat.format("yyyy-MM-dd_hhmmss.png", new Date()).toString();
 
+            caminhoFoto = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), nomeFoto);
+
+            Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(caminhoFoto));
+            startActivityForResult(i, TIRA_FOTO);
+        }else{
+            caminhoFoto = null;
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK && requestCode == TIRA_FOTO){
+            atualizarFoto();
+        }
+    }
+
+    private void atualizarFoto() {
+        if(caminhoFoto != null){
+            int targetwidth = imgPhoto.getWidth();
+            int targetHeight = imgPhoto.getHeight();
+            //obter largura e altura da foto
+            BitmapFactory.Options bmOption = new BitmapFactory.Options();
+
+            bmOption.inJustDecodeBounds = false;
+            BitmapFactory.decodeFile(caminhoFoto.getAbsolutePath(), bmOption);
+            int photoW = bmOption.outWidth;
+            int photoH = bmOption.outHeight;
+
+            //redimensionamento
+            int scaleFactor = Math.min(photoW/ targetwidth, photoH/ targetHeight);
+            bmOption.inSampleSize = scaleFactor;
+
+            Bitmap bmp = BitmapFactory.decodeFile(caminhoFoto.getAbsolutePath(), bmOption);
+
+            imgPhoto.setImageBitmap(bmp);
+        }
+    }
 
 }

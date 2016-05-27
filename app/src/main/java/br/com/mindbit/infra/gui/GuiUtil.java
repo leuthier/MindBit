@@ -27,7 +27,7 @@ public class GuiUtil {
 
 
 
-    public static final Uri IMAGEM_PADRAO = Uri.parse("android.resource://br.com.mindbit/"+ R.drawable.ic_person);
+    public static final Uri IMAGEM_PADRAO = Uri.parse("android.resource://br.com.mindbit/"+ R.drawable.user);
 
     private static GuiUtil instanciaGuiUtil = new GuiUtil();
     private GuiUtil(){}
