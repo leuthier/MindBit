@@ -165,7 +165,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
     public void startSignUpActivity() {
-        GuiUtil.exibirMsg(this, "Próxima entrega :..) é agora");
         Intent i = new Intent(LoginActivity.this,CadastroActivity.class);
         startActivity(i);
     }

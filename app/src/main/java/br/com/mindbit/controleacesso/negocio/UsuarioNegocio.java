@@ -47,13 +47,16 @@ public class UsuarioNegocio {
         return pessoa;
     }
 
-    public void validarCadastro(Pessoa pessoa, String confirmarSenha) throws MindbitException {
-
-        Usuario verUsuarioBD = usuarioDao.buscarUsuarioLogin(pessoa.getUsuario().getLogin());
-        //Pessoa verPessoaBD = usuarioDao.retornaPessoaEmail
-
-        StringBuilder builder = new StringBuilder();
-
+    public void validarCadastro(Pessoa pessoa, String user, String email) throws MindbitException {
+        Usuario usuario = usuarioDao.buscarUsuarioLogin(user);
+        if (usuario != null){
+            throw new MindbitException("Nome de usuário indisponível");
+        }
+        pessoa = usuarioDao.buscaPessoaPorEmail(email);
+        if (pessoa != null){
+            throw new MindbitException("Email já cadastrado");
+        }
+        usuarioDao.cadastrarPessoa(pessoa);
     }
 
 

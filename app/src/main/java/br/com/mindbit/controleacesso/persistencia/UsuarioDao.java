@@ -9,6 +9,7 @@ import android.net.Uri;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.dominio.Usuario;
+import br.com.mindbit.infra.gui.MindbitException;
 
 public class UsuarioDao {
 
@@ -27,7 +28,7 @@ public class UsuarioDao {
     private SQLiteDatabase db;
     private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
 
-    public void cadastrarUsuario(Pessoa pessoa){
+    public void cadastrarPessoa(Pessoa pessoa){
         db = databaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -110,4 +111,16 @@ public class UsuarioDao {
 
     }
 
+    public Pessoa buscaPessoaPorEmail(String email) throws MindbitException {
+        Pessoa pessoa = null;
+        db = databaseHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseHelper.TABELA_PESSOA +
+                " WHERE " + DatabaseHelper.PESSOA_EMAIL + " = ? ", new String[]{email});
+        if (cursor.moveToFirst()) {
+            pessoa = criarPessoa(cursor);
+        }
+        db.close();
+        cursor.close();
+        return pessoa;
+    }
 }

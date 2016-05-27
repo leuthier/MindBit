@@ -14,7 +14,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import br.com.mindbit.R;
+import br.com.mindbit.controleacesso.dominio.Pessoa;
+import br.com.mindbit.controleacesso.dominio.Usuario;
 import br.com.mindbit.controleacesso.negocio.UsuarioNegocio;
+import br.com.mindbit.infra.gui.GuiUtil;
+import br.com.mindbit.infra.gui.MindbitException;
 
 /**
  * Created by Ariana on 16/05/2016.
@@ -68,7 +72,7 @@ public class CadastroActivity extends Activity {
                 String login = editUsuarioLogin.getText().toString().trim();
                 String senha = editUsuarioSenha.getText().toString().trim();
                 String senhaConfirmar = editUsuarioSenhaConfirmar.getText().toString().trim();
-                Toast.makeText(CadastroActivity.this, "cadastrar", Toast.LENGTH_LONG).show();
+
                 cadastrar(v);
                 //ImageView iv = (ImageView) findViewById(R.id.imageView);
 
@@ -128,7 +132,7 @@ public class CadastroActivity extends Activity {
         String pass = editUsuarioSenha.getText().toString().trim();
         String pass2 = editUsuarioSenhaConfirmar.getText().toString().trim();
         return (!isEmptyFieldsCadastro(nome, user, email, pass, pass2)
-                && hasSizeValidCadastro(user, email, pass, pass2) && !noHasSpaceCadastro(user, email));
+                && hasSizeValidCadastro(user, email, pass, pass2) && !noHasSpaceCadastro(user, email) && isValidEmail(email));
     }
 
     private boolean isEmptyFieldsCadastro(String nome, String user, String email, String pass, String pass2) {
@@ -173,6 +177,10 @@ public class CadastroActivity extends Activity {
             editUsuarioSenhaConfirmar.requestFocus();
             editUsuarioSenhaConfirmar.setError(resources.getString(R.string.login_password_invalid));
             return false;
+        } else if (!(pass.equals(pass2))){
+            editUsuarioSenhaConfirmar.requestFocus();
+            editUsuarioSenhaConfirmar.setError(resources.getString(R.string.password_not_mach));
+            return false;
         }
         return true;
     }
@@ -191,21 +199,39 @@ public class CadastroActivity extends Activity {
         }return false;
     }
 
+    private boolean isValidEmail(CharSequence email) {
+        if (!(android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())){
+            editPessoaEmail.requestFocus();
+            editPessoaEmail.setError(resources.getString(R.string.signUp_email_not_ok));
+            return false;
+        }
+        return true;
+    }
+
     private  void cadastrar(View view){
 
         if(validateFieldsCadastro()){
-            Toast.makeText(CadastroActivity.this, "Verificação dos campos", Toast.LENGTH_LONG).show();
-            /*try {
-                String user = editUsuarioLogin.getText().toString();
-                String password = edtPassword.getText().toString();
+            Toast.makeText(CadastroActivity.this, "Verificação dos campos OK", Toast.LENGTH_LONG).show();
+            try {
+                String nome = editPessoaNome.getText().toString().trim();
+                String login = editUsuarioLogin.getText().toString().trim();
+                String email = editPessoaEmail.getText().toString().trim();
+                String senha = editUsuarioSenha.getText().toString().trim();
 
-                Usuario usuario = usuarioNegocio.logar(user, password);
-                GuiUtil.exibirSaudacao(this);
-                startCalendarActivity();
+                Usuario usuario = new Usuario();
+                usuario.setLogin(login);
+                usuario.setSenha(senha);
+                Pessoa pessoa = new Pessoa();
+                pessoa.setNome(nome);
+                pessoa.setEmail(email);
+                pessoa.setUsuario(usuario);
+
+                usuarioNegocio.validarCadastro(pessoa, login, email);
+
             }catch (MindbitException e){
-                GuiUtil.exibirMsg(LoginActivity.this, e.getMessage());
+                GuiUtil.exibirMsg(CadastroActivity.this, e.getMessage());
 
-            }*/
+            }
         }
     }
 
