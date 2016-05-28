@@ -31,4 +31,9 @@
     <string name="login_btn_signUp">Não é cadastrado ? Cadastre-se</string>
     <string name="cadastro_btn">Cadastrar</string>
 
+    <!-- Text -->
+    <string name="contagem_regressiva">Próximos eventos:\n\napresentação MPOO 03/06</string>
+    <string name="contagem_nula">não há eventos futuros \n\nDescanse ;)</string>
+
+
 </resources>
