@@ -37,6 +37,7 @@ public class CadastroActivity extends Activity {
     private ImageView imgPhoto;
     private File caminhoFoto;
     public static final int TIRA_FOTO = 1;
+    Uri FOTO = FOTO_PADRAO;
 
     private EditText editPessoaNome;
     private EditText editUsuarioLogin;
@@ -236,9 +237,10 @@ public class CadastroActivity extends Activity {
                 Pessoa pessoa = new Pessoa();
                 pessoa.setNome(nome);
                 pessoa.setEmail(email);
+                pessoa.setFoto(FOTO);
                 pessoa.setUsuario(usuario);
 
-                usuarioNegocio.validarCadastro(pessoa, login, email);
+                usuarioNegocio.validarCadastro(pessoa);
 
             }catch (MindbitException e){
                 GuiUtil.exibirMsg(CadastroActivity.this, e.getMessage());
@@ -261,12 +263,16 @@ public class CadastroActivity extends Activity {
         }
     }
 
+    public static final Uri FOTO_PADRAO = Uri.parse("android.resource://br.com.mindbit/"+R.drawable.ic_person);
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK && requestCode == TIRA_FOTO){
             atualizarFoto();
+        }else{
+            imgPhoto.setImageURI(FOTO_PADRAO);
+            FOTO = FOTO_PADRAO;
         }
     }
 

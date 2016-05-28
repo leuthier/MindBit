@@ -14,8 +14,9 @@ public class UsuarioNegocio {
     private static UsuarioDao usuarioDao;
     private static UsuarioNegocio instanciaUsuarioNegocio = new UsuarioNegocio();
     private UsuarioNegocio(){
-
     }
+    private Pessoa pessoaEncontrada;
+
     public static UsuarioNegocio getInstanciaUsuarioNegocio(Context context){
         usuarioDao = UsuarioDao.getInstancia(context);
         return instanciaUsuarioNegocio;
@@ -47,13 +48,13 @@ public class UsuarioNegocio {
         return pessoa;
     }
 
-    public void validarCadastro(Pessoa pessoa, String user, String email) throws MindbitException {
-        Usuario usuario = usuarioDao.buscarUsuarioLogin(user);
+    public void validarCadastro(Pessoa pessoa) throws MindbitException {
+        Usuario usuario = usuarioDao.buscarUsuarioLogin(pessoa.getUsuario().getLogin());
         if (usuario != null){
             throw new MindbitException("Nome de usuário indisponível");
         }
-        pessoa = usuarioDao.buscaPessoaPorEmail(email);
-        if (pessoa != null){
+        pessoaEncontrada = usuarioDao.buscaPessoaPorEmail(pessoa.getEmail());
+        if (pessoaEncontrada != null){
             throw new MindbitException("Email já cadastrado");
         }
         usuarioDao.cadastrarPessoa(pessoa);
