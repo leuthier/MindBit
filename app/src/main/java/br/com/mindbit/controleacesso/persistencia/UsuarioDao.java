@@ -51,8 +51,8 @@ public class UsuarioDao {
         Pessoa pessoa = new Pessoa();
         pessoa.setId(cursor.getInt(0));
         pessoa.setNome(cursor.getString(1));
-        pessoa.setEmail(cursor.getString(3));
-        pessoa.setFoto(Uri.parse(cursor.getString(4)));
+        pessoa.setEmail(cursor.getString(2));
+        pessoa.setFoto(Uri.parse(cursor.getString(3)));
         return pessoa;
     }
 

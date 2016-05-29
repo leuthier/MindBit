@@ -2,21 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action"
-        android:icon="@drawable/logo"
-        android:title="@string/app_name"/>
-    <item
-        android:id="@+id/action_text"
-        android:icon="@drawable/logo"
-        android:title="@string/app_name"/>
-    <item
-        android:id="@+id/action_email"
-        android:icon="@drawable/logo"
-        android:title="@string/app_name"/>
+        android:id="@+id/adicionarNota"
+        android:icon="@drawable/ic_nota"
+        android:title="@string/nota"/>
 
     <item
-        android:id="@+id/action_bar"
-        android:icon="@drawable/logo"
-        android:title="@string/app_name"/>
+        android:id="@+id/adicionarAmigo"
+        android:icon="@drawable/ic_person"
+        android:title="@string/amigo"/>
+
+    <item
+        android:id="@+id/adicionarEvento"
+        android:icon="@drawable/ic_evento"
+        android:title="@string/evento"/>
+
+    <item
+        android:id="@+id/adicionarDisciplina"
+        android:icon="@drawable/ic_disciplina"
+        android:title="@string/disciplina"/>
 
 </menu>

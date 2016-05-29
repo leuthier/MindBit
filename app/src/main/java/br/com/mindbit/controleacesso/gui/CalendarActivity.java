@@ -28,7 +28,7 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton FAB = (FloatingActionButton) findViewById(R.id.fab);
+     //   FloatingActionButton FAB = (FloatingActionButton) findViewById(R.id.fab);
 
 
     }

@@ -241,6 +241,7 @@ public class CadastroActivity extends Activity {
                 pessoa.setUsuario(usuario);
 
                 usuarioNegocio.validarCadastro(pessoa);
+                startCalendarActivity();
 
             }catch (MindbitException e){
                 GuiUtil.exibirMsg(CadastroActivity.this, e.getMessage());
@@ -298,4 +299,8 @@ public class CadastroActivity extends Activity {
         }
     }
 
+    public void startCalendarActivity() {
+        startActivity(new Intent(this, CalendarActivity.class));
+        finish();
+    }
 }
