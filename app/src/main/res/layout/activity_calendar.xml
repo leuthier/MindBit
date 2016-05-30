@@ -8,14 +8,14 @@
     android:layout_gravity="center_horizontal"
     android:weightSum="1">
 
-
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="273dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"/>
-
+        android:layout_marginRight="24dp"
+        android:layout_above="@+id/textView"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/textView"
@@ -24,9 +24,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/contagem_regressiva"
         android:hint="@string/contagem_nula"
-
-        android:layout_below="@+id/calendarView"
-        android:layout_alignStart="@+id/calendarView" />
+        android:layout_alignStart="@+id/calendarView"
+        android:layout_above="@+id/view"
+        android:layout_alignEnd="@+id/calendarView" />
 
 
     <io.github.yavski.fabspeeddial.FabSpeedDial
@@ -38,7 +38,9 @@
         app:miniFabDrawableTint="?attr/colorPrimaryDark"
         app:miniFabTitleTextColor="?attr/colorPrimaryDark"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:id="@+id/view" />
 
 
 </RelativeLayout>
+
