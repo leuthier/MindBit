@@ -14,8 +14,7 @@
         android:layout_height="273dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:layout_above="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="23dp"/>
 
     <TextView
         android:id="@+id/textView"
@@ -24,9 +23,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/contagem_regressiva"
         android:hint="@string/contagem_nula"
-        android:layout_alignStart="@+id/calendarView"
-        android:layout_above="@+id/view"
-        android:layout_alignEnd="@+id/calendarView" />
+        android:layout_marginLeft="24dp"
+        android:layout_below="@+id/calendarView"
+        android:layout_alignStart="@+id/calendarView" />
 
 
     <io.github.yavski.fabspeeddial.FabSpeedDial
@@ -43,4 +42,3 @@
 
 
 </RelativeLayout>
-

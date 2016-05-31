@@ -224,7 +224,7 @@ public class CadastroActivity extends Activity {
     private  void cadastrar(View view){
 
         if(validateFieldsCadastro()){
-            Toast.makeText(CadastroActivity.this, "Verificação dos campos OK", Toast.LENGTH_LONG).show();
+
             try {
                 String nome = editPessoaNome.getText().toString().trim();
                 String login = editUsuarioLogin.getText().toString().trim();
@@ -241,7 +241,7 @@ public class CadastroActivity extends Activity {
                 pessoa.setUsuario(usuario);
 
                 usuarioNegocio.validarCadastro(pessoa);
-                startCalendarActivity();
+                startLoginActivity();
 
             }catch (MindbitException e){
                 GuiUtil.exibirMsg(CadastroActivity.this, e.getMessage());
@@ -299,8 +299,8 @@ public class CadastroActivity extends Activity {
         }
     }
 
-    public void startCalendarActivity() {
-        startActivity(new Intent(this, CalendarActivity.class));
+    public void startLoginActivity() {
+        startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
 }
