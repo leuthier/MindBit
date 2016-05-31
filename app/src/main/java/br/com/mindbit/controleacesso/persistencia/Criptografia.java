@@ -1,109 +1,71 @@
 package br.com.mindbit.controleacesso.persistencia;
 
-import android.util.Base64;
+import java.util.HashMap;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+public class Criptografia{
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
+    private char[] alfa = new char[52];
+    private char[] nume = new char[10];
 
-/**
- * Classe responsável pela criptografia de Strings para serem utilizados no QR-Code.
- */
-public abstract class Criptografia {
-    private static final String ALGORITIMO = "AES";
-    private static final String MODO = "ECB";
-    private static final String PREENCHIMENTO = "PKCS5Padding";
-    public static final String STRING_KEY = "QABG0eSxEO2hzNldjfBHaQ==";
-    private static SecretKey secretKey = null;
-    private static Cipher cipher = null;
+    private String letras = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
+    private String numeros = "0123456789";
 
-    /**
-     * Seta o cifrador a partir do algoritmo, modo e padding.
-     *
-     * @throws NoSuchAlgorithmException Caso o argumento algoritmo seja inválido.
-     * @throws NoSuchPaddingException Caso o argumento Padding seja inválido.
-     */
-    private static void setupCipher() throws NoSuchAlgorithmException, NoSuchPaddingException {
-        cipher = Cipher.getInstance(ALGORITIMO + '/' + MODO + '/' + PREENCHIMENTO);
+    private HashMap<Character, String> valores = new HashMap<Character, String>();
+    private String senha = "senha";
+
+    private static Criptografia criptografia = new Criptografia();
+
+    public static Criptografia getInstancia(String senha) {
+        criptografia.setSenhaOriginal(senha);
+        return criptografia;
     }
 
-    /**
-     * Decodifica a chave privada a partir do formato <code>String</code> para array de bytes para
-     * ser usado na criptografia.
-     */
-    private static void setPrivateKeyFromString() {
-        byte[] byteKey = Base64.decode(STRING_KEY, Base64.DEFAULT);
-        secretKey = new SecretKeySpec(byteKey, 0, byteKey.length, ALGORITIMO);
+    public String getSenhaCriptografada() {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < senha.length(); i++) {
+            sb.append(valores.get(senha.charAt(i)));
+        }
+        return sb.toString();
     }
 
-    /**
-     * Verifica se os atributos <code>secretKey</code> e <code>cipher</code> se encontram
-     * inicializados e os inicializa caso necessário.
-     */
-    private static void checkKeyAndCipherInitialization() {
-        try {
-            if (secretKey == null) {
-                setPrivateKeyFromString();
+    private void setSenhaOriginal(String senha) {
+        this.senha = senha;
+
+        for (int i = 0; i < 52; i++) {
+            if ((i % 2) == 0) { // minúsculas
+                valores.put(alfa[i], String.format("%02X", logica((senha.length() * i) % 2014)));
             }
-            if (cipher == null) {
-                setupCipher();
+            else if ((i % 2) != 0) { // maiúsculas
+                valores.put(alfa[i], String.format("%02x", logica((senha.length() * i) % 2013)));
             }
         }
-        catch(NoSuchAlgorithmException | NoSuchPaddingException except) {
-            except.printStackTrace();
+        for (int i = 0; i < 10; i++) {
+            if ((i % 2) == 0) { // pares
+                valores.put(nume[i], String.format("%02X", logica((senha.length() * i) % 2012)));
+            }
+            else if ((i % 2) != 0) { // ímpares
+                valores.put(nume[i], String.format("%02x", logica((senha.length() * i) % 2011)));
+            }
         }
     }
 
-    /**
-     * Criptografa um <code>String</code>(não é utilizado na aplicação).
-     *
-     * @param id - String original a ser criptografado.
-     * @return - Formatação em String do conteúdo criptografado.
-     *
-     * @throws UnsupportedEncodingException
-     * @throws InvalidKeyException
-     * @throws IllegalBlockSizeException
-     * @throws BadPaddingException
-     */
-    public static String encryptString(String id) throws UnsupportedEncodingException,
-            InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    // Método com a lógica pra gerar os valores
+    private long logica(long n) {
+        long cubo = n * n * n;
 
-        checkKeyAndCipherInitialization();
+        long x = cubo + 157;
+        long y = (cubo * n) * (21 * 2007);
 
-        byte[] plainText = id.getBytes("UTF8");
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-        byte[] cipherText = cipher.doFinal(plainText);
-
-        return Base64.encodeToString(cipherText, Base64.DEFAULT);
+        return 2 + x + y;
     }
 
-    /**
-     * Descriptografa o <code>String</code> fornecido.
-     *
-     * @param stringCipher - Codificação em UTF-8 do string criptografado.
-     * @return - Resultado descriptografado do string de entrada.
-     *
-     * @throws InvalidKeyException
-     * @throws IllegalBlockSizeException
-     * @throws BadPaddingException
-     * @throws UnsupportedEncodingException
-     */
-    public static String decryptString(String stringCipher) throws InvalidKeyException,
-            IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
-
-        checkKeyAndCipherInitialization();
-
-        cipher.init(Cipher.DECRYPT_MODE, secretKey);
-        byte[] byteCipher = Base64.decode(stringCipher, Base64.DEFAULT);
-        byte[] newPlainText = cipher.doFinal(byteCipher);
-
-        return new String(newPlainText, "UTF8");
+    private Criptografia() {
+        for (int i = 0; i < 52; i++) {
+            alfa[i] = letras.charAt(i);
+        }
+        for (int i = 0; i < 10; i ++) {
+            nume[i] = numeros.charAt(i);
+        }
     }
 }
