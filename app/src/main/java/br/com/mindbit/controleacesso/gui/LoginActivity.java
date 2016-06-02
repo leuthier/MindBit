@@ -32,18 +32,14 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     private Resources resources;
     private static Context context;
-    private Usuario usuario;
     private UsuarioNegocio usuarioNegocio;
-    private Criptografia criptografia;
-    private String senhaCriptografada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         context = this;
-        usuarioNegocio = UsuarioNegocio.getInstancia(context);
-        criptografia = Criptografia.getInstancia();
+        usuarioNegocio = UsuarioNegocio.getInstanciaUsuarioNegocio(context);
         icone = (ImageView) findViewById(R.id.imageView);
 
         btnEnter = (Button) findViewById(R.id.bt_signIn);
@@ -140,13 +136,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private void logar(View view){
         if (validateFields()){
             try {
-                String login = edtUser.getText().toString();
-                String senha = edtPassword.getText().toString();
+                String user = edtUser.getText().toString();
+                String password = edtPassword.getText().toString();
 
-                criptografia.receberSenhaOriginal(senha);
-                senhaCriptografada = criptografia.getSenhaCriptografada();
-
-                usuario = usuarioNegocio.logar(login, senhaCriptografada);
+                Usuario usuario = usuarioNegocio.logar(user, Criptografia.getInstancia(password).getSenhaCriptografada());
                 GuiUtil.exibirSaudacao(this);
                 startNavigationActivity();
             }catch (MindbitException e){
@@ -154,6 +147,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
             }
         }
+    }
+
+    public void startCalendarActivity() {
+        startActivity(new Intent(this, CalendarActivity.class));
+        finish();
     }
 
     public void startSignUpActivity() {

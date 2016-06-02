@@ -17,10 +17,12 @@ public class UsuarioNegocio {
     }
     private Pessoa pessoaEncontrada;
 
-    public static UsuarioNegocio getInstancia(Context context){
+    public static UsuarioNegocio getInstanciaUsuarioNegocio(Context context){
         usuarioDao = UsuarioDao.getInstancia(context);
         return instanciaUsuarioNegocio;
     }
+
+
 
     public Usuario logar(String login, String senha) throws MindbitException{
         Usuario usuario = usuarioDao.buscarUsuario(login, senha);
