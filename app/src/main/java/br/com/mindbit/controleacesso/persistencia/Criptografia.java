@@ -11,13 +11,15 @@ public class Criptografia{
     private String numeros = "0123456789";
 
     private HashMap<Character, String> valores = new HashMap<Character, String>();
-    private String senha = "senha";
+    private String senha; // senha = "senha";
 
     private static Criptografia criptografia = new Criptografia();
 
-    public static Criptografia getInstancia(String senha) {
-        criptografia.setSenhaOriginal(senha);
+    public static Criptografia getInstancia() {
         return criptografia;
+    }
+    public void receberSenhaOriginal(String senha){
+        criptografia.setSenhaOriginal(senha);
     }
 
     public String getSenhaCriptografada() {
@@ -33,24 +35,23 @@ public class Criptografia{
         this.senha = senha;
 
         for (int i = 0; i < 52; i++) {
-            if ((i % 2) == 0) { // minúsculas
+            if ((i % 2) == 0) {
                 valores.put(alfa[i], String.format("%02X", logica((senha.length() * i) % 2014)));
             }
-            else if ((i % 2) != 0) { // maiúsculas
+            else if ((i % 2) != 0) {
                 valores.put(alfa[i], String.format("%02x", logica((senha.length() * i) % 2013)));
             }
         }
         for (int i = 0; i < 10; i++) {
-            if ((i % 2) == 0) { // pares
+            if ((i % 2) == 0) {
                 valores.put(nume[i], String.format("%02X", logica((senha.length() * i) % 2012)));
             }
-            else if ((i % 2) != 0) { // ímpares
+            else if ((i % 2) != 0) {
                 valores.put(nume[i], String.format("%02x", logica((senha.length() * i) % 2011)));
             }
         }
     }
 
-    // Método com a lógica pra gerar os valores
     private long logica(long n) {
         long cubo = n * n * n;
 

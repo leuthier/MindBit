@@ -39,7 +39,6 @@ public class UsuarioDao {
         long foreing_key_id_pessoa = db.insert(DatabaseHelper.TABELA_PESSOA, null, values);
 
         values = new ContentValues();
-        //values.put(DatabaseHelper.USUARIO_ID, pessoa.getUsuario().getId());
         values.put(DatabaseHelper.USUARIO_LOGIN, pessoa.getUsuario().getLogin());
         values.put(DatabaseHelper.USUARIO_PESSOA_ID, foreing_key_id_pessoa);
         values.put(DatabaseHelper.USUARIO_SENHA, pessoa.getUsuario().getSenha());

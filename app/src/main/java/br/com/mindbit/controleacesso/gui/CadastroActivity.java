@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.util.Date;
@@ -31,11 +30,8 @@ import br.com.mindbit.controleacesso.persistencia.Criptografia;
 import br.com.mindbit.infra.gui.GuiUtil;
 import br.com.mindbit.infra.gui.MindbitException;
 
-/**
- * Created by Ariana on 16/05/2016.
- */
 public class CadastroActivity extends Activity {
-    private ImageView imgPhoto;
+    private ImageView imgFoto;
     private File caminhoFoto;
     public static final int TIRA_FOTO = 1;
     Uri FOTO = FOTO_PADRAO;
@@ -44,16 +40,20 @@ public class CadastroActivity extends Activity {
     private EditText editUsuarioLogin;
     private EditText editPessoaEmail;
     private EditText editUsuarioSenha;
-    private EditText editUsuarioSenhaConfirmar;
+    private EditText editUsuarioSenhaConfirma;
     private Resources resources;
+
+    private String nome;
+    private String login;
+    private String email;
+    private String senha;
+    private String senhaConfirma;
 
     private Button btnCadastrar;
     private UsuarioNegocio usuarioNegocio;
+    private Criptografia criptografia;
+    private String senhaCriptografada;
     private static Context contexto;
-
-    /*public static final int IMAGEM_INTERNA = 12;
-    public static final int TIRAR_FOTO = 1;
-    Uri FOTO = GuiUtil.FOTO_PADRAO;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,38 +61,17 @@ public class CadastroActivity extends Activity {
         setContentView(R.layout.activity_sing_up);
 
         contexto = this;
-        usuarioNegocio = UsuarioNegocio.getInstanciaUsuarioNegocio(contexto);
+        usuarioNegocio = UsuarioNegocio.getInstancia(contexto);
+        criptografia = Criptografia.getInstancia();
 
-        editPessoaNome = (EditText) findViewById(R.id.input_name);
-        editUsuarioLogin = (EditText) findViewById(R.id.input_username);
-        editPessoaEmail = (EditText) findViewById(R.id.input_email);
-        editUsuarioSenha = (EditText) findViewById(R.id.input_password);
-        editUsuarioSenhaConfirmar = (EditText) findViewById(R.id.input_password2);
-        imgPhoto = (ImageView) findViewById(R.id.userPicture);
-
-        //imgPhoto.setImageURI(GuiUtil.FOTO_PADRAO);
-
+        imgFoto = (ImageView) findViewById(R.id.userPicture);
         initViews();
 
         btnCadastrar = (Button) findViewById(R.id.btn_signup);
-
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String nome = editPessoaNome.getText().toString().trim();
-
-                String email = editPessoaEmail.getText().toString().trim();
-                String login = editUsuarioLogin.getText().toString().trim();
-                String senha = editUsuarioSenha.getText().toString().trim();
-                String senhaConfirmar = editUsuarioSenhaConfirmar.getText().toString().trim();
-
-                cadastrar(v);
-                //ImageView iv = (ImageView) findViewById(R.id.imageView);
-
-                //Usuario usuario = new Usuario(login,senha);
-                //Pessoa pessoa = new Pessoa(usuario,nome,formatarCpf(cpf),dataNascimento,FOTO);
-                //cadastrar(pessoa, senhaConfirmar);
+                cadastrar();
             }
         });
 
@@ -113,48 +92,51 @@ public class CadastroActivity extends Activity {
             }
         };
 
-        editPessoaNome = (EditText) findViewById(R.id.input_name);
+        editPessoaNome = (EditText) findViewById(R.id.input_nome);
         editPessoaNome.addTextChangedListener(textWatcher);
 
-        editUsuarioLogin = (EditText) findViewById(R.id.input_username);
+        editUsuarioLogin = (EditText) findViewById(R.id.input_login);
         editUsuarioLogin.addTextChangedListener(textWatcher);
 
         editPessoaEmail = (EditText) findViewById(R.id.input_email);
         editPessoaEmail.addTextChangedListener(textWatcher);
 
-        editUsuarioSenha = (EditText) findViewById(R.id.input_password);
+        editUsuarioSenha = (EditText) findViewById(R.id.input_senha);
         editUsuarioSenha.addTextChangedListener(textWatcher);
 
-        editUsuarioSenhaConfirmar = (EditText) findViewById(R.id.input_password2);
-        editUsuarioSenhaConfirmar.addTextChangedListener(textWatcher);
+        editUsuarioSenhaConfirma = (EditText) findViewById(R.id.input_senha_confirma);
+        editUsuarioSenhaConfirma.addTextChangedListener(textWatcher);
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        //atribuindo aqui pois no oncreate o app ainda nao tem contexto.
+
         if (usuarioNegocio == null) {
-            usuarioNegocio = UsuarioNegocio.getInstanciaUsuarioNegocio(contexto);
+            usuarioNegocio = UsuarioNegocio.getInstancia(contexto);
         }
     }
 
     private boolean validateFieldsCadastro(){
-        String nome = editPessoaNome.getText().toString().trim();
-        String user = editUsuarioLogin.getText().toString().trim();
-        String email = editPessoaEmail.getText().toString().trim();
-        String pass = editUsuarioSenha.getText().toString().trim();
-        String pass2 = editUsuarioSenhaConfirmar.getText().toString().trim();
-        return (!isEmptyFieldsCadastro(nome, user, email, pass, pass2)
-                && hasSizeValidCadastro(user, email, pass, pass2) && !noHasSpaceCadastro(user, email) && isValidEmail(email));
+        nome = editPessoaNome.getText().toString().trim();
+        login = editUsuarioLogin.getText().toString().trim();
+        email = editPessoaEmail.getText().toString().trim();
+        senha = editUsuarioSenha.getText().toString().trim();
+        senhaConfirma = editUsuarioSenhaConfirma.getText().toString().trim();
+
+        return (!isEmptyFieldsCadastro(nome, login, email, senha, senhaConfirma)
+                && hasSizeValidCadastro(login, email, senha, senhaConfirma) &&
+                !noHasSpaceCadastro(login, email, senha) &&
+                isValidEmail(email));
     }
 
-    private boolean isEmptyFieldsCadastro(String nome, String user, String email, String pass, String pass2) {
+    private boolean isEmptyFieldsCadastro(String nome, String login, String email, String senha, String senhaConfirma) {
         if (TextUtils.isEmpty(nome)) {
             editPessoaNome.requestFocus();
             editPessoaNome.setError(resources.getString(R.string.signUp_name_required));
             return true;
-        } else if (TextUtils.isEmpty(user)) {
+        } else if (TextUtils.isEmpty(login)) {
             editUsuarioLogin.requestFocus();
             editUsuarioLogin.setError(resources.getString(R.string.login_user_required));
             return true;
@@ -162,13 +144,13 @@ public class CadastroActivity extends Activity {
             editPessoaEmail.requestFocus();
             editPessoaEmail.setError(resources.getString(R.string.signUP_email_required));
             return true;
-        } else if (TextUtils.isEmpty(pass)) {
+        } else if (TextUtils.isEmpty(senha)) {
             editUsuarioSenha.requestFocus();
             editUsuarioSenha.setError(resources.getString(R.string.login_password_required));
             return true;
-        } else if (TextUtils.isEmpty(pass2)) {
-            editUsuarioSenhaConfirmar.requestFocus();
-            editUsuarioSenhaConfirmar.setError(resources.getString(R.string.signUP_password_confirm_required));
+        } else if (TextUtils.isEmpty(senhaConfirma)) {
+            editUsuarioSenhaConfirma.requestFocus();
+            editUsuarioSenhaConfirma.setError(resources.getString(R.string.signUP_password_confirm_required));
             return true;
         }
         return false;
@@ -188,27 +170,33 @@ public class CadastroActivity extends Activity {
             editUsuarioSenha.setError(resources.getString(R.string.login_password_invalid));
             return false;
         }  else if (!(pass2.length() > 4)) {
-            editUsuarioSenhaConfirmar.requestFocus();
-            editUsuarioSenhaConfirmar.setError(resources.getString(R.string.login_password_invalid));
+            editUsuarioSenhaConfirma.requestFocus();
+            editUsuarioSenhaConfirma.setError(resources.getString(R.string.login_password_invalid));
             return false;
         } else if (!(pass.equals(pass2))){
-            editUsuarioSenhaConfirmar.requestFocus();
-            editUsuarioSenhaConfirmar.setError(resources.getString(R.string.password_not_mach));
+            editUsuarioSenhaConfirma.requestFocus();
+            editUsuarioSenhaConfirma.setError(resources.getString(R.string.password_not_mach));
             return false;
         }
         return true;
     }
 
-    private boolean noHasSpaceCadastro(String user, String email) {
-        int idxuser = user.indexOf(" ");
-        int idxemail = email.indexOf(" ");
-        if (idxuser != -1){
+    private boolean noHasSpaceCadastro(String login, String email, String senha) {
+        int idxLogin = login.indexOf(" ");
+        int idxEmail = email.indexOf(" ");
+        int idxSenha = senha.indexOf(" ");
+
+        if (idxLogin != -1){
             editUsuarioLogin.requestFocus();
             editUsuarioLogin.setError(resources.getString(R.string.login_user_has_space));
             return true;
-        } else if (idxemail != -1){
+        } else if (idxEmail != -1){
             editPessoaEmail.requestFocus();
             editPessoaEmail.setError(resources.getString(R.string.login_user_has_space));
+            return true;
+        }else if (idxSenha != -1){
+            editUsuarioSenha.requestFocus();
+            editUsuarioSenha.setError(resources.getString(R.string.signUp_password_invalid));
             return true;
         }return false;
     }
@@ -222,8 +210,7 @@ public class CadastroActivity extends Activity {
         return true;
     }
 
-    private  void cadastrar(View view){
-
+    private  void cadastrar(){
         if(validateFieldsCadastro()){
 
             try {
@@ -234,7 +221,10 @@ public class CadastroActivity extends Activity {
 
                 Usuario usuario = new Usuario();
                 usuario.setLogin(login);
-                usuario.setSenha(Criptografia.getInstancia(senha).getSenhaCriptografada());
+                criptografia.receberSenhaOriginal(senha);
+                senhaCriptografada = criptografia.getSenhaCriptografada();
+                usuario.setSenha(senhaCriptografada);
+
                 Pessoa pessoa = new Pessoa();
                 pessoa.setNome(nome);
                 pessoa.setEmail(email);
@@ -242,6 +232,7 @@ public class CadastroActivity extends Activity {
                 pessoa.setUsuario(usuario);
 
                 usuarioNegocio.validarCadastro(pessoa);
+                GuiUtil.exibirMsg(this, getString(R.string.cadastro_sucesso));
                 startLoginActivity();
 
             }catch (MindbitException e){
@@ -251,7 +242,7 @@ public class CadastroActivity extends Activity {
         }
     }
 
-    public void takePicture(View v){
+    public void tirarFoto(View v){
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             String nomeFoto = DateFormat.format("yyyy-MM-dd_hhmmss.png", new Date()).toString();
 
@@ -265,24 +256,23 @@ public class CadastroActivity extends Activity {
         }
     }
 
-    public static final Uri FOTO_PADRAO = Uri.parse("android.resource://br.com.mindbit/"+R.drawable.ic_person);
+    public static final Uri FOTO_PADRAO = Uri.parse("android.resource://br.com.mindbit/"+R.drawable.user);
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK && requestCode == TIRA_FOTO){
-            atualizarFoto();
+            ajustarFoto();
         }else{
-            imgPhoto.setImageURI(FOTO_PADRAO);
             FOTO = FOTO_PADRAO;
         }
     }
 
-    private void atualizarFoto() {
+    private void ajustarFoto() {
         if(caminhoFoto != null){
-            int targetwidth = imgPhoto.getWidth();
-            int targetHeight = imgPhoto.getHeight();
-            //obter largura e altura da foto
+            int targetwidth = imgFoto.getWidth();
+            int targetHeight = imgFoto.getHeight();
+
             BitmapFactory.Options bmOption = new BitmapFactory.Options();
 
             bmOption.inJustDecodeBounds = false;
@@ -290,13 +280,12 @@ public class CadastroActivity extends Activity {
             int photoW = bmOption.outWidth;
             int photoH = bmOption.outHeight;
 
-            //redimensionamento
             int scaleFactor = Math.min(photoW/ targetwidth, photoH/ targetHeight);
             bmOption.inSampleSize = scaleFactor;
 
             Bitmap bmp = BitmapFactory.decodeFile(caminhoFoto.getAbsolutePath(), bmOption);
 
-            imgPhoto.setImageBitmap(bmp);
+            imgFoto.setImageBitmap(bmp);
         }
     }
 
