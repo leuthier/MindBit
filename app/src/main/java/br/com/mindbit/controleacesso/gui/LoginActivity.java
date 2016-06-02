@@ -159,7 +159,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
     public void startNavigationActivity() {
-        startActivity(new Intent(this, NavigationActivity.class));
+        startActivity(new Intent(this, PerfilActivity.class));
         finish();
     }
 

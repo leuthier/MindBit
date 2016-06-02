@@ -1,5 +1,8 @@
 package br.com.mindbit.controleacesso.negocio;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.dominio.Usuario;
 
@@ -28,9 +31,4 @@ public class SessaoUsuario {
             return usuarioLogado;
         }
 
-        public void invalidarSessao(Usuario usuario){
-            this.setUsuarioLogado(null);
-            this.setPessoaLogada(null);
-
-        }
-}
+    }

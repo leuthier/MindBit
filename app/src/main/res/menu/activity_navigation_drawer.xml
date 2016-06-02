@@ -8,12 +8,12 @@
             android:title="Disciplinas" />
         <item
             android:id="@+id/nav_amigos"
-            android:icon="@drawable/ic_person"
+            android:icon="@drawable/ic_amigos"
             android:title="Amigos" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_config"
+            android:icon="@drawable/ic_configuracoes"
+            android:title="Configurações" />
     </group>
 
     <item android:title="Comunicação">
@@ -23,9 +23,9 @@
                 android:icon="@drawable/ic_menu_share"
                 android:title="Compartilhar" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_sobre"
+                android:icon="@drawable/ic_sobre"
+                android:title="Sobre" />
         </menu>
     </item>
 
