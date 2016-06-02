@@ -27,6 +27,7 @@ import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.dominio.Usuario;
 import br.com.mindbit.controleacesso.negocio.UsuarioNegocio;
+import br.com.mindbit.controleacesso.persistencia.Criptografia;
 import br.com.mindbit.infra.gui.GuiUtil;
 import br.com.mindbit.infra.gui.MindbitException;
 
@@ -233,7 +234,7 @@ public class CadastroActivity extends Activity {
 
                 Usuario usuario = new Usuario();
                 usuario.setLogin(login);
-                usuario.setSenha(senha);
+                usuario.setSenha(Criptografia.getInstancia(senha).getSenhaCriptografada());
                 Pessoa pessoa = new Pessoa();
                 pessoa.setNome(nome);
                 pessoa.setEmail(email);

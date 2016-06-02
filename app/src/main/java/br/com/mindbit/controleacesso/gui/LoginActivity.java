@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import br.com.mindbit.controleacesso.dominio.Usuario;
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.negocio.UsuarioNegocio;
+import br.com.mindbit.controleacesso.persistencia.Criptografia;
 import br.com.mindbit.infra.gui.GuiUtil;
 import br.com.mindbit.infra.gui.MindbitException;
 
@@ -138,7 +139,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 String user = edtUser.getText().toString();
                 String password = edtPassword.getText().toString();
 
-                Usuario usuario = usuarioNegocio.logar(user, password);
+                Usuario usuario = usuarioNegocio.logar(user, Criptografia.getInstancia(password).getSenhaCriptografada());
                 GuiUtil.exibirSaudacao(this);
                 startNavigationActivity();
             }catch (MindbitException e){
