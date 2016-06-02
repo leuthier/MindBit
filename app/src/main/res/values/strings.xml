@@ -2,19 +2,21 @@
     <string name="app_name">MindBit</string>
     <string name="img_description">icone do app</string>
 
-    <!-- Toast -->
+    <!-- Toast & Notificações -->
     <string name="signUp_name_required">Nome obrigatório!</string>
     <string name="signUP_email_required">Email obrigatório!</string>
     <string name="signUP_password_confirm_required">Confirme a senha!</string>
+    <string name="signUp_email_invalid">Seu email deve ter mais de 4 caracteres!</string>
+    <string name="signUp_email_not_ok">Email inválido!</string>
+    <string name="signUp_password_invalid">Senha inválida</string>
+
     <string name="login_user_required">Login obrigatório!</string>
-    <string name="login_password_required">Senha obrigatória!</string>
     <string name="login_user_has_space">Login inválido</string>
     <string name="login_user_invalid">Seu login deve ter mais de 4 caracteres!</string>
     <string name="login_password_invalid">Sua senha deve ter mais de 4 caracteres!</string>
-    <string name="signUp_email_invalid">Seu email deve ter mais de 4 caracteres!</string>
-    <string name="signUp_email_not_ok">Email inválido!</string>
     <string name="login_sucess">Bem-vind@,</string>
     <string name="login_error">Login e/ou Senha incorretos!</string>
+    <string name="login_password_required">Senha obrigatória!</string>
     <string name="password_not_mach">Senhas diferentes</string>
 
     <string name="login_edt_login_hint">Nome de usuário</string>
@@ -25,6 +27,7 @@
     <string name="cadastro_edt_password">Senha</string>
     <string name="cadastro_edt_password2">Confirmar senha</string>
     <string name="cadastro_edt_email">Email</string>
+    <string name="cadastro_sucesso">Usuário cadastrado com sucesso</string>
 
     <!-- Button -->
     <string name="login_btn_signIn">Entrar</string>
