@@ -9,7 +9,7 @@ public class Pessoa {
     private String nome;
     private String email;
     private Uri foto;
-
+//teste commit bernardo
     public Pessoa() {
         this.nome = null;
         this.email = null;
