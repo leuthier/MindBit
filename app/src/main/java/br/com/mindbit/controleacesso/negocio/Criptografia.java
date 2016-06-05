@@ -1,4 +1,4 @@
-package br.com.mindbit.controleacesso.persistencia;
+package br.com.mindbit.controleacesso.negocio;
 
 import java.util.HashMap;
 
@@ -11,7 +11,7 @@ public class Criptografia{
     private String numeros = "0123456789";
 
     private HashMap<Character, String> valores = new HashMap<Character, String>();
-    private String senha; // senha = "senha";
+    private String senha;
 
     private static Criptografia criptografia = new Criptografia();
 

@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import br.com.mindbit.controleacesso.dominio.Usuario;
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.negocio.UsuarioNegocio;
-import br.com.mindbit.controleacesso.persistencia.Criptografia;
+import br.com.mindbit.controleacesso.negocio.Criptografia;
 import br.com.mindbit.infra.gui.GuiUtil;
 import br.com.mindbit.infra.gui.MindbitException;
 

@@ -26,7 +26,7 @@ import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.dominio.Usuario;
 import br.com.mindbit.controleacesso.negocio.UsuarioNegocio;
-import br.com.mindbit.controleacesso.persistencia.Criptografia;
+import br.com.mindbit.controleacesso.negocio.Criptografia;
 import br.com.mindbit.infra.gui.GuiUtil;
 import br.com.mindbit.infra.gui.MindbitException;
 
@@ -182,11 +182,11 @@ public class CadastroActivity extends Activity {
     }
 
     private boolean noHasSpaceCadastro(String login, String email, String senha) {
-        int idxLogin = login.indexOf(" ");
+       // int idxLogin = login.indexOf(" ");
         int idxEmail = email.indexOf(" ");
         int idxSenha = senha.indexOf(" ");
 
-        if (idxLogin != -1){
+        if (login.indexOf(" ") != -1){
             editUsuarioLogin.requestFocus();
             editUsuarioLogin.setError(resources.getString(R.string.login_user_has_space));
             return true;
@@ -214,11 +214,6 @@ public class CadastroActivity extends Activity {
         if(validateFieldsCadastro()){
 
             try {
-                String nome = editPessoaNome.getText().toString().trim();
-                String login = editUsuarioLogin.getText().toString().trim();
-                String email = editPessoaEmail.getText().toString().trim();
-                String senha = editUsuarioSenha.getText().toString().trim();
-
                 Usuario usuario = new Usuario();
                 usuario.setLogin(login);
                 criptografia.receberSenhaOriginal(senha);
