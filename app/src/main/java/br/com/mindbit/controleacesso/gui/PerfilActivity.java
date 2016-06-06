@@ -9,34 +9,48 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import br.com.mindbit.R;
+import br.com.mindbit.controleacesso.dominio.Pessoa;
+import br.com.mindbit.controleacesso.dominio.Usuario;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 
 public class PerfilActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
+    Pessoa pessoaLogada = sessaoUsuario.getPessoaLogada();
+    Usuario usuario = pessoaLogada.getUsuario();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        TextView email = (TextView) findViewById(R.id.textView);
-
-        SessaoUsuario instanciaSessao = SessaoUsuario.getInstancia();
-        email.setText(instanciaSessao.getPessoaLogada().getEmail());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View view = navigationView.getHeaderView(0);
+
+        TextView nome = (TextView) view.findViewById(R.id.txtNomePerfil);
+        TextView email = (TextView) view.findViewById(R.id.txtEmailPerfil);
+        ImageView fotoPerfil = (ImageView) view.findViewById(R.id.fotoPerfil);
+
+        fotoPerfil.setImageURI(pessoaLogada.getFoto());
+        nome.setText(pessoaLogada.getNome());
+        email.setText(pessoaLogada.getEmail());
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -61,10 +75,15 @@ public class PerfilActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_logout) {
+            deslogar(pessoaLogada.getUsuario());
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void deslogar(Usuario usuario){
+        sessaoUsuario.invalidarSessao(usuario);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

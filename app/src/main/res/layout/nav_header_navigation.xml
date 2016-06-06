@@ -11,24 +11,31 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@mipmap/ic_android" />
+    <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/fotoPerfil"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_android"
+            app:border_color="#fffefe"
+            android:layout_marginLeft="24dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="24dp"/>
 
     <TextView
+        android:id="@+id/txtNomePerfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Username"
+        android:text="@string/navigation_user_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtEmailPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="username@host.com" />
+        android:text="@string/navigation_user_email" />
 
 </LinearLayout>

@@ -20,11 +20,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".controleacesso.gui.CadastroActivity" />
-        <activity android:name=".controleacesso.gui.CalendarActivity" />
         <activity
             android:name=".controleacesso.gui.PerfilActivity"
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".controleacesso.gui.CalendarActivity" />
     </application>
 
 </manifest>

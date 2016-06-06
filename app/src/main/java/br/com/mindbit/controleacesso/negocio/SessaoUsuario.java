@@ -9,7 +9,7 @@ public class SessaoUsuario {
         private SessaoUsuario(){}
         public static SessaoUsuario getInstancia() { return instanciaSessaoUsuario; }
 
-        private Usuario usuarioLogado;
+        private Usuario usuarioLogado = null;
         private Pessoa pessoaLogada = null;
 
         public Pessoa getPessoaLogada() {
@@ -18,6 +18,7 @@ public class SessaoUsuario {
 
         public void setPessoaLogada(Pessoa pessoa) {
             this.pessoaLogada = pessoa;
+            //this.usuarioLogado = pessoa.getUsuario();
         }
 
         public void setUsuarioLogado(Usuario usuario) {
@@ -31,6 +32,5 @@ public class SessaoUsuario {
         public void invalidarSessao(Usuario usuario){
             this.setUsuarioLogado(null);
             this.setPessoaLogada(null);
-
         }
 }

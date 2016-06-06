@@ -44,7 +44,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         context = this;
         usuarioNegocio = UsuarioNegocio.getInstancia(context);
         criptografia = Criptografia.getInstancia();
-        icone = (ImageView) findViewById(R.id.imageView);
+        icone = (ImageView) findViewById(R.id.fotoPerfil);
 
         btnEnter = (Button) findViewById(R.id.bt_signIn);
         btnEnter.setOnClickListener(this);
