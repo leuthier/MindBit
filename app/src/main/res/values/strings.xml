@@ -50,6 +50,14 @@
     <string name="navigation_user_name">Username</string>
     <string name="navigation_user_email">username@host.com</string>
     <string name="action_logout">Logout</string>
+    <string name="title_activity_search_evento">SearchEventoActivity</string>
+    <string name="nav_drawer_pesquisar_eventos">Pesquisar Eventos</string>
+    <string name="nav_drawer_config">Configurações</string>
+    <string name="nav_drawer_amigos">Amigos</string>
+    <string name="nav_drawer_disciplinas">Disciplinas</string>
+    <string name="nav_drawer_comunicacao">Comunicação</string>
+    <string name="nav_drawer_compartilhar">Compartilhar</string>
+    <string name="nav_drawer_sobre">Sobre</string>
 
 
 </resources>

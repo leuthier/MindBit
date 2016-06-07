@@ -5,27 +5,31 @@
         <item
             android:id="@+id/nav_disciplina"
             android:icon="@drawable/ic_disciplina"
-            android:title="Disciplinas" />
+            android:title="@string/nav_drawer_disciplinas" />
         <item
             android:id="@+id/nav_amigos"
             android:icon="@drawable/ic_amigos"
-            android:title="Amigos" />
+            android:title="@string/nav_drawer_amigos" />
         <item
             android:id="@+id/nav_config"
             android:icon="@drawable/ic_config"
-            android:title="Configurações" />
+            android:title="@string/nav_drawer_config" />
+        <item
+            android:id="@+id/nav_pesquisar_eventos"
+            android:icon="@drawable/ic_evento"
+            android:title="@string/nav_drawer_pesquisar_eventos"/>
     </group>
 
-    <item android:title="Comunicação">
+    <item android:title="@string/nav_drawer_comunicacao">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Compartilhar" />
+                android:title="@string/nav_drawer_compartilhar" />
             <item
                 android:id="@+id/nav_sobre"
                 android:icon="@drawable/ic_sobre"
-                android:title="Sobre" />
+                android:title="@string/nav_drawer_sobre" />
         </menu>
     </item>
 

@@ -100,6 +100,10 @@ public class PerfilActivity extends AppCompatActivity
 
         if (id == R.id.nav_disciplina) {
 
+        } else if(id == R.id.nav_pesquisar_eventos) {
+            Intent i = new Intent(this,PesquisarEventoActivity.class);
+            startActivity(i);
+
         } else if (id == R.id.nav_amigos) {
 
         } else if (id == R.id.nav_config) {
