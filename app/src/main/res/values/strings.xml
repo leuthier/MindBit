@@ -50,6 +50,7 @@
     <string name="navigation_user_name">Username</string>
     <string name="navigation_user_email">username@host.com</string>
     <string name="action_logout">Logout</string>
+    <string name="title_activity_search_evento">SearchEventoActivity</string>
 
 
 </resources>
