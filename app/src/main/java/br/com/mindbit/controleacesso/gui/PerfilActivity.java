@@ -1,5 +1,6 @@
 package br.com.mindbit.controleacesso.gui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,9 +22,8 @@ import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 public class PerfilActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
-    Pessoa pessoaLogada = sessaoUsuario.getPessoaLogada();
-    Usuario usuario = pessoaLogada.getUsuario();
+    private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
+    private Pessoa pessoaLogada = sessaoUsuario.getPessoaLogada();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +84,12 @@ public class PerfilActivity extends AppCompatActivity
 
     public void deslogar(Usuario usuario){
         sessaoUsuario.invalidarSessao(usuario);
+        startLoginActivity();
+    }
+
+    public void startLoginActivity() {
+        Intent i = new Intent(PerfilActivity.this, LoginActivity.class);
+        startActivity(i);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

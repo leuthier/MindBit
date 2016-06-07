@@ -2,8 +2,17 @@ package br.com.mindbit.infra.gui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Random;
 
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.gui.LoginActivity;
@@ -23,7 +32,12 @@ public class GuiUtil {
         Toast.makeText(activity, context.getString(R.string.login_sucess)+" "+nomePessoaLogada+"!", Toast.LENGTH_LONG).show();
     }
 
-
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
 
     public static final Uri IMAGEM_PADRAO = Uri.parse("android.resource://br.com.mindbit/"+ R.drawable.user);
 

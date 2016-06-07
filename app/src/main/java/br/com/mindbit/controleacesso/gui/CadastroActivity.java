@@ -34,7 +34,7 @@ public class CadastroActivity extends Activity {
     private ImageView imgFoto;
     private File caminhoFoto;
     public static final int TIRA_FOTO = 1;
-    Uri FOTO = FOTO_PADRAO;
+    Uri foto = FOTO_PADRAO;
 
     private EditText editPessoaNome;
     private EditText editUsuarioLogin;
@@ -223,7 +223,7 @@ public class CadastroActivity extends Activity {
                 Pessoa pessoa = new Pessoa();
                 pessoa.setNome(nome);
                 pessoa.setEmail(email);
-                pessoa.setFoto(FOTO);
+                pessoa.setFoto(foto);
                 pessoa.setUsuario(usuario);
 
                 usuarioNegocio.validarCadastro(pessoa);
@@ -256,14 +256,14 @@ public class CadastroActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK && requestCode == TIRA_FOTO){
-            ajustarFoto();
+        if(resultCode == RESULT_OK && requestCode == TIRA_FOTO && ajustarFoto() != null){
+            foto = GuiUtil.getInstancia().getImageUri(CadastroActivity.contexto , ajustarFoto());
         }else{
-            FOTO = FOTO_PADRAO;
+            foto = FOTO_PADRAO;
         }
     }
 
-    private void ajustarFoto() {
+    private Bitmap ajustarFoto() {
         if(caminhoFoto != null){
             int targetwidth = imgFoto.getWidth();
             int targetHeight = imgFoto.getHeight();
@@ -275,13 +275,14 @@ public class CadastroActivity extends Activity {
             int photoW = bmOption.outWidth;
             int photoH = bmOption.outHeight;
 
-            int scaleFactor = Math.min(photoW/ targetwidth, photoH/ targetHeight);
+            int scaleFactor = Math.min(photoW / targetwidth, photoH / targetHeight);
             bmOption.inSampleSize = scaleFactor;
 
             Bitmap bmp = BitmapFactory.decodeFile(caminhoFoto.getAbsolutePath(), bmOption);
 
             imgFoto.setImageBitmap(bmp);
-        }
+            return bmp;
+        } return null;
     }
 
     public void startLoginActivity() {

@@ -27,7 +27,6 @@
         android:layout_below="@+id/calendarView"
         android:layout_alignStart="@+id/calendarView" />
 
-
     <io.github.yavski.fabspeeddial.FabSpeedDial
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +37,7 @@
         app:miniFabTitleTextColor="?attr/colorPrimaryDark"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/view" />
+        android:id="@+id/actionButton"/>
 
 
 </RelativeLayout>
