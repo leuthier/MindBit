@@ -59,5 +59,11 @@
     <string name="nav_drawer_compartilhar">Compartilhar</string>
     <string name="nav_drawer_sobre">Sobre</string>
 
-
+    <string name="evento_nome">Nome</string>
+    <string name="evento_descricao">Descrição</string>
+    <string name="evento_data_inicio">Data Início</string>
+    <string name="evento_data_fim">Data Fim</string>
+    <string name="evento_hora_inicio">Hora Início</string>
+    <string name="evento_hora_fim">Hora Fim</string>
+    <string name="nav_drawer_add_evento">Adicionar Evento</string>
 </resources>

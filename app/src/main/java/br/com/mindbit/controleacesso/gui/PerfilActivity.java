@@ -104,6 +104,10 @@ public class PerfilActivity extends AppCompatActivity
             Intent i = new Intent(this,PesquisarEventoActivity.class);
             startActivity(i);
 
+        } else if (id == R.id.nav_add_evento) {
+            Intent i = new Intent(this,AddEventoActivity.class);
+            startActivity(i);
+
         } else if (id == R.id.nav_amigos) {
 
         } else if (id == R.id.nav_config) {
