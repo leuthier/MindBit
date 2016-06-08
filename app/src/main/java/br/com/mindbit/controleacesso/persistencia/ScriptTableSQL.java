@@ -32,13 +32,15 @@ public class ScriptTableSQL {
         StringBuilder eventoBuilder = new StringBuilder();
         eventoBuilder.append("CREATE TABLE  tabela_evento ( ");
         eventoBuilder.append("_id_evento   integer primary key autoincrement,   ");
-        eventoBuilder.append("login_usuario  text not null unique,  ");
-        eventoBuilder.append("senha_usuario  text not null, ");
+        eventoBuilder.append("nome_evento  text not null ,  ");
+        eventoBuilder.append("descricao_evento  text not null, ");
+        eventoBuilder.append("hora_inicio_evento  text not null, ");
+        eventoBuilder.append("hora_fim_evento  text not null, ");
+        eventoBuilder.append("data_inicio_evento  text not null, ");
+        eventoBuilder.append("data_fim_evento  text not null, ");
         //tá certo?
         eventoBuilder.append("nivel_prioridade_enum text not null");
-
-        eventoBuilder.append("id_pessoa_usuario   integer,  ");
-        eventoBuilder.append("foreign key ( id_pessoa_usuario ) references  tabela_pessoa ( _id_pessoa ) );");
+        eventoBuilder.append("foreign key ( id_pessoa_criadora ) references  tabela_pessoa ( _id_pessoa ) );");
         return eventoBuilder.toString();
     }
 

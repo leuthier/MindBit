@@ -34,10 +34,12 @@ public class PopularTabela {
     }
 
     public static void inserirEventos(SQLiteDatabase db){
-        //tá faltando os parâmetros a partir de hora_inicio_evento
         String[] eventos =
                 {"INSERT INTO `tabela_evento` (_id_evento,nome_evento,descricao_evento,hora_inicio_evento,hora_fim_evento,data_inicio_evento," +
-                        "data_fim_evento,nivel_prioridade_enum) VALUES (1,'evento1','descricao1');"};
+                        "data_fim_evento,nivel_prioridade_enum,'pessoa_criadora_id') VALUES (1,'evento1','descricao1','02:00:00','03:00:00','07-06-2016','08-06-2016','VERDE',1);"};
+        for (String evento : eventos){
+            db.execSQL(evento);
+        }
     }
 }
 

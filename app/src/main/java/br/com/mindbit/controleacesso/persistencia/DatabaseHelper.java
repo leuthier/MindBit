@@ -38,6 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String EVENTO_DATA_FIM = "data_fim_evento";
     //tá correto?
     public static final String EVENTO_NIVEL_PRIORIDADE_ENUM = "nivel_prioridade_enum";
+    public static final String PESSOA_CRIADORA_ID = "id_pessoa_criadora";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
