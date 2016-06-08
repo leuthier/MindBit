@@ -36,17 +36,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String EVENTO_HORA_FIM = "hora_fim_evento";
     public static final String EVENTO_DATA_INICIO = "data_inicio_evento";
     public static final String EVENTO_DATA_FIM = "data_fim_evento";
+    //tá correto?
+    public static final String EVENTO_NIVEL_PRIORIDADE_ENUM = "nivel_prioridade_enum";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(ScriptTableSQL.getTabelaPessoa());
         db.execSQL(ScriptTableSQL.getTabelaUsuario());
-        //db.execSQL(ScriptTableSQL.getTabelaEvento());
+        db.execSQL(ScriptTableSQL.getTabelaEvento());
 
         PopularTabela.inserirUsuarios(db);
         PopularTabela.inserirPessoas(db);
-        //PopularTabela.inserirEventos(db);
+        PopularTabela.inserirEventos(db);
 
     }
 
@@ -54,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists " + TABELA_USUARIO);
         db.execSQL("drop table if exists " + TABELA_PESSOA);
-        //db.execSQL("drop table if exists" + TABELA_EVENTO);
+        db.execSQL("drop table if exists" + TABELA_EVENTO);
         onCreate(db);
     }
 

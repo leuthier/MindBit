@@ -7,8 +7,10 @@ import java.util.Date;
  * Created by Ariana on 06/06/2016.
  */
 public class Evento {
+    private int id;
     private String nome;
-    private StringBuilder descricao;
+    //usar stringbuilder?? n consegui conciliar no EventoDao na hr de setar qdo pega a String do db
+    private String descricao;
     private Time horaInicio;
     private Time horaFim;
     private Date dataInicio;
@@ -25,11 +27,14 @@ public class Evento {
         this.nivelPrioridadeEnum=null;
     }
 
+    public int getId() {return  id;}
+    public void setId(int id) {this.id = id;}
+
     public String getNome() {return nome;}
     public void setNome(String nome) {this.nome = nome;}
 
-    public StringBuilder getDescricao() {return descricao;}
-    public void setDescricao(StringBuilder descricao) {this.descricao = descricao;}
+    public String getDescricao() {return descricao;}
+    public void setDescricao(String descricao) {this.descricao = descricao;}
 
     public Time getHoraInicio() {return horaInicio;}
     public void setHoraInicio(Time horaInicio) {this.horaInicio = horaInicio;}

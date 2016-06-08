@@ -26,7 +26,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controleacesso.gui.CalendarActivity" />
         <activity
-            android:name=".controleacesso.gui.PesquisarEventoActivity"
+            android:name=".evento.gui.PesquisarEventoActivity"
             android:label="@string/title_activity_search_evento"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

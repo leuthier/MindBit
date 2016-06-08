@@ -34,6 +34,9 @@ public class ScriptTableSQL {
         eventoBuilder.append("_id_evento   integer primary key autoincrement,   ");
         eventoBuilder.append("login_usuario  text not null unique,  ");
         eventoBuilder.append("senha_usuario  text not null, ");
+        //tá certo?
+        eventoBuilder.append("nivel_prioridade_enum text not null");
+
         eventoBuilder.append("id_pessoa_usuario   integer,  ");
         eventoBuilder.append("foreign key ( id_pessoa_usuario ) references  tabela_pessoa ( _id_pessoa ) );");
         return eventoBuilder.toString();
