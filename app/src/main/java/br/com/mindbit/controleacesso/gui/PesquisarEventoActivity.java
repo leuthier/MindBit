@@ -3,6 +3,7 @@ package br.com.mindbit.controleacesso.gui;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.AdapterView;
@@ -16,7 +17,7 @@ import java.util.Arrays;
 
 import br.com.mindbit.R;
 
-public class PesquisarEventoActivity extends Activity {
+public class PesquisarEventoActivity extends AppCompatActivity {
     String[] items;
     ArrayList<String> listItems;
     ArrayAdapter<String> adapter;

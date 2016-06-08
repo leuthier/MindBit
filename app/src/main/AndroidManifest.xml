@@ -31,7 +31,7 @@
         <!--android:theme="@style/AppTheme.NoActionBar" -->
 
         <activity android:name=".controleacesso.gui.AddEventoActivity"
-            android:label="Criar Evento"></activity>
+            android:label="@string/title_activity_add_evento"></activity>
     </application>
 
 </manifest>

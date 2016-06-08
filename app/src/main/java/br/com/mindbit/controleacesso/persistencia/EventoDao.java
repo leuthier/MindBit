@@ -34,18 +34,21 @@ public class EventoDao {
         db = databaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        long foreing_key_id_evento = db.insert(DatabaseHelper.TABELA_EVENTO, null, values);
+        //long foreing_key_id_evento = db.insert(DatabaseHelper.TABELA_EVENTO, null, values);
+
+
+        values.put(DatabaseHelper.EVENTO_ID, evento.getId());
+        values.put(DatabaseHelper.EVENTO_NOME, evento.getNome());
+
         long foreign_key_id_pessoa = db.insert(DatabaseHelper.TABELA_PESSOA, null, values);
 
-        values.put(DatabaseHelper.EVENTO_ID, foreing_key_id_evento);
-        values.put(DatabaseHelper.EVENTO_NOME, evento.getNome());
+        values = new ContentValues();
         //todos os .toString() podem dar treta em algum lugar
         values.put(DatabaseHelper.EVENTO_DESCRICAO, evento.getDescricao().toString());
         values.put(DatabaseHelper.EVENTO_HORA_INICIO, evento.getHoraInicio().toString());
         values.put(DatabaseHelper.EVENTO_HORA_FIM, evento.getHoraFim().toString());
         values.put(DatabaseHelper.EVENTO_DATA_INICIO, evento.getDataInicio().toString());
         values.put(DatabaseHelper.EVENTO_DATA_FIM, evento.getDataFim().toString());
-        //tá correto?
         values.put(DatabaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM, evento.getNivelPrioridadeEnum().toString());
         values.put(DatabaseHelper.PESSOA_CRIADORA_ID, foreign_key_id_pessoa);
 

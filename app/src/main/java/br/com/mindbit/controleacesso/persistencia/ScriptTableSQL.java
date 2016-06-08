@@ -38,8 +38,8 @@ public class ScriptTableSQL {
         eventoBuilder.append("hora_fim_evento  text not null, ");
         eventoBuilder.append("data_inicio_evento  text not null, ");
         eventoBuilder.append("data_fim_evento  text not null, ");
-        //tá certo?
         eventoBuilder.append("nivel_prioridade_enum text not null, ");
+        eventoBuilder.append("id_pessoa_criadora  integer, ");
         eventoBuilder.append("foreign key ( id_pessoa_criadora ) references  tabela_pessoa ( _id_pessoa ) );");
         return eventoBuilder.toString();
     }

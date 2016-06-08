@@ -36,7 +36,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String EVENTO_HORA_FIM = "hora_fim_evento";
     public static final String EVENTO_DATA_INICIO = "data_inicio_evento";
     public static final String EVENTO_DATA_FIM = "data_fim_evento";
-    //tá correto?
     public static final String EVENTO_NIVEL_PRIORIDADE_ENUM = "nivel_prioridade_enum";
     public static final String PESSOA_CRIADORA_ID = "id_pessoa_criadora";
 
@@ -49,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         PopularTabela.inserirUsuarios(db);
         PopularTabela.inserirPessoas(db);
-        PopularTabela.inserirEventos(db);
+        //PopularTabela.inserirEventos(db);
 
     }
 
