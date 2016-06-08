@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 import br.com.mindbit.infra.gui.GuiUtil;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
+import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
 public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.MenuListener {
     private CalendarView calendar;
@@ -28,8 +30,8 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
         SessaoUsuario sessao = SessaoUsuario.getInstancia();
 
         calendar = (CalendarView) findViewById(R.id.calendarView);
-        MenuItem itemAddEvento = (MenuItem) findViewById(R.id.adicionarEvento);
-        //final MenuItem menuEvento = (MenuItem) findViewById(R.id.adicionarEvento);
+       // MenuItem itemAddEvento = (MenuItem) findViewById(R.id.adicionarEvento);
+
         startPerfilActivty();
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -38,29 +40,28 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
             }
         });
 
-        btn_addEvento.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu first item clicked
-                addEvento();
-            }
-        });
 //        Menu menuActionButton = (Menu)  getMenuInflater().inflate(R.menu.menu, menu);
 //        View view = navigationView.getHeaderView(0);
 //
-//        FabSpeedDial fab = (FabSpeedDial) findViewById(R.id.actionButton);
-//        //FabSpeedDial.MenuListener menuListener = getMenuInflater(R.menu.menu);//blablabla
-//        fab.setMenuListener(menuListener);
+        FabSpeedDial fab = (FabSpeedDial) findViewById(R.id.actionButton);
 
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int id = v.getId();
-//                if (id == menuEvento.getItemId()) {
-//                    GuiUtil.exibirMsg(CalendarActivity.this, "ON CLICK DO FAB");
-//                }
-//                return;
-//            }
-//        });
+
+
+        fab.setMenuListener(new SimpleMenuListenerAdapter() {
+
+            @Override
+            public boolean onPrepareMenu(NavigationMenu navigationMenu) {
+                GuiUtil.exibirMsg(CalendarActivity.this, "CHAMEI O EVENTO");
+
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemSelected(MenuItem menuItem) {
+                GuiUtil.exibirMsg(CalendarActivity.this, "CHAMEI O EVENTO");
+                return false;
+            }
+        });
 
     }
 
