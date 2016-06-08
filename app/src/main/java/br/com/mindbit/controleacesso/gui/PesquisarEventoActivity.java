@@ -1,4 +1,4 @@
-package br.com.mindbit.evento.gui;
+package br.com.mindbit.controleacesso.gui;
 
 import android.app.Activity;
 import android.database.Cursor;

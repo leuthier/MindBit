@@ -39,5 +39,4 @@
         android:layout_alignParentEnd="true"
         android:id="@+id/actionButton"/>
 
-
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package br.com.mindbit.evento.persistencia;
+package br.com.mindbit.controleacesso.persistencia;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,14 +9,9 @@ import java.sql.Date;
 import java.sql.Time;
 
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
-import br.com.mindbit.controleacesso.persistencia.DatabaseHelper;
-import br.com.mindbit.controleacesso.persistencia.UsuarioDao;
-import br.com.mindbit.evento.dominio.Evento;
-import br.com.mindbit.evento.dominio.NivelPrioridade;
+import br.com.mindbit.controleacesso.dominio.Evento;
+import br.com.mindbit.controleacesso.dominio.PrioridadeEvento;
 
-/**
- * Created by Ariana on 07/06/2016.
- */
 public class EventoDao {
     private static DatabaseHelper databaseHelper;
     private static Context contexto;
@@ -67,11 +62,11 @@ public class EventoDao {
         evento.setHoraFim(Time.valueOf(cursor.getString(4)));
         evento.setDataInicio(Date.valueOf(cursor.getString(5)));
         evento.setDataFim(Date.valueOf(cursor.getString(6)));
-        evento.setNivelPrioridadeEnum(NivelPrioridade.valueOf(cursor.getString(7)));
+        evento.setNivelPrioridadeEnum(PrioridadeEvento.valueOf(cursor.getString(7)));
         return evento;
     }
 
-    public Evento buscarEvento(String nome) {
+    public Evento buscarEventoNome(String nome) {
         SQLiteDatabase db;
         db = databaseHelper.getReadableDatabase();
 
@@ -79,6 +74,22 @@ public class EventoDao {
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseHelper.TABELA_EVENTO +
                 " WHERE " + DatabaseHelper.EVENTO_NOME + " =?", new String[]{nome});
+        if (cursor.moveToFirst()) {
+            evento = criarEvento(cursor);
+        }
+        db.close();
+        cursor.close();
+        return evento;
+    }
+
+    public Evento buscarEventoDescricao(String descricao) {
+        SQLiteDatabase db;
+        db = databaseHelper.getReadableDatabase();
+
+        Evento evento = null;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseHelper.TABELA_EVENTO +
+                " WHERE " + DatabaseHelper.EVENTO_DESCRICAO + " =?", new String[]{descricao});
         if (cursor.moveToFirst()) {
             evento = criarEvento(cursor);
         }

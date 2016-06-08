@@ -3,7 +3,7 @@ package br.com.mindbit.aluno.dominio;
 import java.util.List;
 
 import br.com.mindbit.controleacesso.dominio.Pessoa;
-import br.com.mindbit.evento.dominio.Evento;
+import br.com.mindbit.controleacesso.dominio.Evento;
 
 /**
  * Created by Ariana on 06/06/2016.

@@ -18,7 +18,6 @@ import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.dominio.Usuario;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
-import br.com.mindbit.evento.gui.PesquisarEventoActivity;
 
 public class PerfilActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

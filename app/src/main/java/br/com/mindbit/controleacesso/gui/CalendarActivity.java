@@ -6,6 +6,7 @@ import android.support.design.internal.NavigationMenu;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CalendarView;
@@ -18,7 +19,7 @@ import io.github.yavski.fabspeeddial.FabSpeedDial;
 
 public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.MenuListener {
     private CalendarView calendar;
-
+    private FabSpeedDial btn_addEvento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,8 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
         SessaoUsuario sessao = SessaoUsuario.getInstancia();
 
         calendar = (CalendarView) findViewById(R.id.calendarView);
-        final MenuItem menuEvento = (MenuItem) findViewById(R.id.adicionarEvento);
+        MenuItem itemAddEvento = (MenuItem) findViewById(R.id.adicionarEvento);
+        //final MenuItem menuEvento = (MenuItem) findViewById(R.id.adicionarEvento);
         startPerfilActivty();
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -36,6 +38,12 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
             }
         });
 
+        btn_addEvento.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //TODO something when floating action menu first item clicked
+                addEvento();
+            }
+        });
 //        Menu menuActionButton = (Menu)  getMenuInflater().inflate(R.menu.menu, menu);
 //        View view = navigationView.getHeaderView(0);
 //
@@ -76,10 +84,19 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
 
     }
 
-//    public boolean onCreateOptionsMenu(R.layout.menu){
-//        return true;
-//    }
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
 
+    public boolean onOptionsItemSelected(MenuItem menuItem){
+        int id = menuItem.getItemId();
+        if (id == R.id.adicionarEvento){
+            addEvento();
+        }
+        return true;
+    }
 
     public void addEvento(){
         GuiUtil.exibirMsg(CalendarActivity.this, "CHAMAR ADD EVENTO");

@@ -1,4 +1,4 @@
-package br.com.mindbit.evento.dominio;
+package br.com.mindbit.controleacesso.dominio;
 
 import java.sql.Time;
 import java.util.Date;
@@ -15,7 +15,7 @@ public class Evento {
     private Time horaFim;
     private Date dataInicio;
     private Date dataFim;
-    private Enum<NivelPrioridade> nivelPrioridadeEnum;
+    private Enum<PrioridadeEvento> nivelPrioridadeEnum;
 
     public Evento(){
         this.nome=null;
@@ -48,8 +48,8 @@ public class Evento {
     public Date getDataFim() {return dataFim;}
     public void setDataFim(Date dataFim) {this.dataFim = dataFim;}
 
-    public Enum<NivelPrioridade> getNivelPrioridadeEnum() {return nivelPrioridadeEnum;}
-    public void setNivelPrioridadeEnum(Enum<NivelPrioridade> nivelPrioridadeEnum) {this.nivelPrioridadeEnum = nivelPrioridadeEnum;}
+    public Enum<PrioridadeEvento> getNivelPrioridadeEnum() {return nivelPrioridadeEnum;}
+    public void setNivelPrioridadeEnum(Enum<PrioridadeEvento> nivelPrioridadeEnum) {this.nivelPrioridadeEnum = nivelPrioridadeEnum;}
 
     public void compartilhar(){
         }
