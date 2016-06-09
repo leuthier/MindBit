@@ -48,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         PopularTabela.inserirUsuarios(db);
         PopularTabela.inserirPessoas(db);
-        //PopularTabela.inserirEventos(db);
+        PopularTabela.inserirEventos(db);
 
     }
 
