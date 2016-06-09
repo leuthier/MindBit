@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/edtEventoNome"
+                <EditText android:id="@+id/input_edtEventoNome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/edtEventoDescricao"
+                <EditText android:id="@+id/input_edtEventoDescricao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords"
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/edtEventoDataInicio"
+                <EditText android:id="@+id/input_edtEventoDataInicio"
                     android:layout_width="match_parent"
                     android:ems="10"
                     android:editable="false"
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/edtEventoDataFim"
+                <EditText android:id="@+id/input_edtEventoDataFim"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/edtEventoHoraInicio"
+                <EditText android:id="@+id/input_edtEventoHoraInicio"
                     android:layout_width="match_parent"
                     android:ems="10"
                     android:layout_height="wrap_content"
@@ -91,13 +91,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/edtEventoHoraFim"
+                <EditText android:id="@+id/input_edtEventoHoraFim"
                     android:layout_width="match_parent"
                     android:ems="10"
                     android:layout_height="wrap_content"
                     android:inputType="time"
                     android:hint="@string/evento_hora_fim"/>
             </android.support.design.widget.TextInputLayout>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/prioridade_spinner"
+                android:layout_gravity="center_horizontal"
+                android:spinnerMode="dropdown" />
 
             <Button
                 android:layout_width="match_parent"
