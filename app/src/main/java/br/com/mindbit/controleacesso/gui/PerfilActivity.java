@@ -22,13 +22,16 @@ import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 public class PerfilActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
-    private Pessoa pessoaLogada = sessaoUsuario.getPessoaLogada();
+    private SessaoUsuario sessaoUsuario;
+    private Pessoa pessoaLogada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+
+        sessaoUsuario = SessaoUsuario.getInstancia();
+        pessoaLogada = sessaoUsuario.getPessoaLogada();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,7 +44,9 @@ public class PerfilActivity extends AppCompatActivity
         TextView email = (TextView) view.findViewById(R.id.txtEmailPerfil);
         ImageView fotoPerfil = (ImageView) view.findViewById(R.id.fotoPerfil);
 
-        fotoPerfil.setImageURI(pessoaLogada.getFoto());
+        if (pessoaLogada.getFoto() != null){
+            fotoPerfil.setImageURI(pessoaLogada.getFoto());
+        }
         nome.setText(pessoaLogada.getNome());
         email.setText(pessoaLogada.getEmail());
 

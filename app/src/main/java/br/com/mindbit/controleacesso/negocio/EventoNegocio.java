@@ -2,6 +2,7 @@ package br.com.mindbit.controleacesso.negocio;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mindbit.controleacesso.dominio.Evento;
@@ -14,15 +15,16 @@ public class EventoNegocio {
     private static UsuarioNegocio usuarioNegocio;
 
     private static EventoNegocio instancia = new EventoNegocio();
+    private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
+
     private EventoNegocio(){}
+
     public static EventoNegocio getInstancia(Context context){
         eventoDao = EventoDao.getInstancia(context);
         return instancia;
     }
 
-    private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
-
-    public List<Evento> consultarRemedioPorNomeParcial(String nome){
+    public List<Evento> consultarEventoPorNomeParcial(String nome){
         return eventoDao.buscarEventoNomeParcial(nome);
     }
 
@@ -39,5 +41,9 @@ public class EventoNegocio {
             throw new MindbitException("Evento já cadastrado");
         }
         eventoDao.cadastrarEvento(evento);
+    }
+
+    public ArrayList<Evento> listarEventoCriador(int idPessoaCriadora){
+        return eventoDao.listarEventos(idPessoaCriadora);
     }
 }

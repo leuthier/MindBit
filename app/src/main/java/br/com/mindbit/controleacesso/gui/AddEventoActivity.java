@@ -24,6 +24,9 @@ import br.com.mindbit.infra.gui.GuiUtil;
 
 public class AddEventoActivity extends AppCompatActivity{
 
+    private SessaoUsuario sessaoUsuario;
+    private EventoNegocio eventoNegocio;
+
     private Resources resources;
     private static Context contexto;
 
@@ -48,6 +51,8 @@ public class AddEventoActivity extends AppCompatActivity{
         setContentView(R.layout.activity_add_evento);
 
         contexto = this;
+        sessaoUsuario = SessaoUsuario.getInstancia();
+        eventoNegocio = EventoNegocio.getInstancia(contexto);
 
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
@@ -211,8 +216,6 @@ public class AddEventoActivity extends AppCompatActivity{
 
     }
 
-    private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
-    private EventoNegocio eventoNegocio = EventoNegocio.getInstancia(contexto);
     private  void cadastrarEvento(){
         if(validateFieldsEvento()){
             int idUsuarioLogado = sessaoUsuario.getUsuarioLogado().getId();
