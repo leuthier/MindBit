@@ -29,6 +29,13 @@
     <string name="cadastro_edt_email">Email</string>
     <string name="cadastro_sucesso">Usuário cadastrado com sucesso</string>
 
+    <string name="addEvento_edt_descricao">Insira a descrição! </string>
+    <string name="addEvento_edt_data_inicial">Insira a data inicial!</string>
+    <string name="addEvento_edt_data_final">Insira a data final!</string>
+    <string name="addEvento_edt_hora_inicial">Insira a hora inicial!</string>
+    <string name="addEvento_edt_hota_final">Insira a hora final!</string>
+
+
     <!-- Button -->
     <string name="login_btn_signIn">Entrar</string>
     <string name="login_btn_signUp">Não é cadastrado ? Cadastre-se</string>
@@ -68,6 +75,7 @@
     <string name="evento_hora_inicio">Hora Início</string>
     <string name="evento_hora_fim">Hora Fim</string>
     <string name="nav_drawer_add_evento">Adicionar Evento</string>
+    <string name="evento_btn_adicionar">Adicionar</string>
 
 
 </resources>

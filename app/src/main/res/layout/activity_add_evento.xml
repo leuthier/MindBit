@@ -9,114 +9,107 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:fitsSystemWindows="true"
-        >
+        android:fitsSystemWindows="true">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:weightSum="1"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true">
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <EditText android:id="@+id/edtEventoNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:hint="@string/evento_nome"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <EditText android:id="@+id/edtEventoDescricao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:hint="@string/evento_descricao"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <EditText android:id="@+id/edtEventoDataInicio"
+                    android:layout_width="match_parent"
+                    android:ems="10"
+                    android:editable="false"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:hint="@string/evento_data_inicio"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <EditText android:id="@+id/edtEventoDataFim"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="date"
+                    android:hint="@string/evento_data_fim"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <EditText android:id="@+id/edtEventoHoraInicio"
+                    android:layout_width="match_parent"
+                    android:ems="10"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:hint="@string/evento_hora_inicio"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <EditText android:id="@+id/edtEventoHoraFim"
+                    android:layout_width="match_parent"
+                    android:ems="10"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:hint="@string/evento_hora_fim"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/evento_btn_adicionar"
+                android:id="@+id/btnAdicionar"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="right" />
+
+        </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="56dp"
-        android:weightSum="1"
-        android:layout_alignParentBottom="true">
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/edtEventoNome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="@string/evento_nome"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/edtEventoDescricao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="@string/evento_descricao"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/edtEventoDataInicio"
-                android:layout_width="match_parent"
-                android:ems="10"
-                android:layout_height="wrap_content"
-                android:inputType="date"
-                android:hint="@string/evento_data_inicio"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <!--<EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/edtHora" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="time"
-            android:ems="10"
-            android:id="@+id/edtData" />-->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/edtEventoDataFim"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="date"
-                android:hint="@string/evento_data_fim"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/edtEventoHoraInicio"
-                android:layout_width="match_parent"
-                android:ems="10"
-                android:layout_height="wrap_content"
-                android:inputType="time"
-                android:hint="@string/evento_hora_inicio"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/edtEventoHoraFim"
-                android:layout_width="match_parent"
-                android:ems="10"
-                android:layout_height="wrap_content"
-                android:inputType="time"
-                android:hint="@string/evento_hora_fim"/>
-        </android.support.design.widget.TextInputLayout>
-
-    </LinearLayout>
 
 
 </RelativeLayout>
