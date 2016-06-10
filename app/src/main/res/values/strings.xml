@@ -35,7 +35,7 @@
     <string name="addEvento_edt_hora_inicial">Insira a hora inicial!</string>
     <string name="addEvento_edt_hota_final">Insira a hora final!</string>
     <string name="addEvento_edt_small_description">A descrição deve ter mais de 4 caracteres!</string>
-    <string name="addEvento_edt_data_hora_erro">Data/Hora não inválidos!</string>
+    <string name="addEvento_edt_data_hora_erro">Data/Hora não válidos!</string>
 
 
     <!-- Button -->
