@@ -8,14 +8,19 @@ import java.util.Date;
  */
 public class Evento {
     private int id;
+    private int idPessoaCriadora;
     private String nome;
-    //usar stringbuilder?? n consegui conciliar no EventoDao na hr de setar qdo pega a String do db
     private String descricao;
     private Time horaInicio;
     private Time horaFim;
     private Date dataInicio;
     private Date dataFim;
     private Enum<PrioridadeEvento> nivelPrioridadeEnum;
+/*    private String horaInicio;
+    private String horaFim;
+    private String dataInicio;
+    private String dataFim;
+    private String nivelPrioridadeEnum;*/
 
     public Evento(){
         this.nome=null;
@@ -49,7 +54,51 @@ public class Evento {
     public void setDataFim(Date dataFim) {this.dataFim = dataFim;}
 
     public Enum<PrioridadeEvento> getNivelPrioridadeEnum() {return nivelPrioridadeEnum;}
-    public void setNivelPrioridadeEnum(Enum<PrioridadeEvento> nivelPrioridadeEnum) {this.nivelPrioridadeEnum = nivelPrioridadeEnum;}
+   public void setNivelPrioridadeEnum(Enum<PrioridadeEvento> nivelPrioridadeEnum) {this.nivelPrioridadeEnum = nivelPrioridadeEnum;}
+
+/*    public String getNivelPrioridadeEnum() {
+        return nivelPrioridadeEnum;
+    }
+
+    public void setNivelPrioridadeEnum(String nivelPrioridadeEnum) {
+        this.nivelPrioridadeEnum = nivelPrioridadeEnum;
+    }
+
+    /*public String getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(String dataFim) {
+        this.dataFim = dataFim;
+    }
+
+    public String getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(String dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public String getHoraFim() {
+        return horaFim;
+    }
+
+    public void setHoraFim(String horaFim) {
+        this.horaFim = horaFim;
+    }
+
+    public String getHoraInicio() {
+
+        return horaInicio;
+    }
+
+    public void setHoraInicio(String horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+*/
+    public int getIdPessoaCriadora() {return  idPessoaCriadora;}
+    public void setIdPessoaCriadora(int idPessoaCriadora) {this.idPessoaCriadora = idPessoaCriadora;}
 
     public void compartilhar(){
         }
