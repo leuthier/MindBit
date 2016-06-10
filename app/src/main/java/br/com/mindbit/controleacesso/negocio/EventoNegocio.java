@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mindbit.controleacesso.dominio.Evento;
+import br.com.mindbit.controleacesso.gui.AddEventoActivity;
 import br.com.mindbit.controleacesso.persistencia.EventoDao;
+import br.com.mindbit.infra.gui.GuiUtil;
 import br.com.mindbit.infra.gui.MindbitException;
 
 public class EventoNegocio {
@@ -46,4 +48,15 @@ public class EventoNegocio {
     public ArrayList<Evento> listarEventoCriador(int idPessoaCriadora){
         return eventoDao.listarEventos(idPessoaCriadora);
     }
+
+    public Evento salvarEvento(Evento evento) throws MindbitException{
+        evento = null;
+        evento = eventoDao.buscarEventoNome(evento.getNome());
+        if (evento!= null) {
+            throw new MindbitException("evento já existe");
+        }
+            eventoDao.cadastrarEvento(evento);
+            return evento;
+    }
 }
+

@@ -60,6 +60,7 @@
     <string name="navigation_user_email">username@host.com</string>
     <string name="action_logout">Logout</string>
     <string name="title_activity_search_evento">Pesquisar Eventos</string>
+    <string name="activity_search_evento_not_found">"Nenhum evento encontrado"</string>
     <string name="title_activity_add_evento">Adicionar Eventos</string>
 
     <string name="nav_drawer_pesquisar_eventos">Pesquisar Eventos</string>

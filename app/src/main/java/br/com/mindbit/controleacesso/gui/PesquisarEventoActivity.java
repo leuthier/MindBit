@@ -17,22 +17,18 @@ import br.com.mindbit.controleacesso.dominio.Evento;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.negocio.EventoNegocio;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
-import br.com.mindbit.infra.gui.GuiUtil;
 
 public class PesquisarEventoActivity extends AppCompatActivity {
     private Resources resources;
 
-    private ArrayList<Evento> items;
+    private ArrayList<Evento> eventosPessoa;
+    private ArrayList<String> nomesEventos = new ArrayList<>();
     private ArrayList<Evento> listItems;
-    private ArrayAdapter<Evento> adapter;
+    private ArrayAdapter<String> nomeAdapter;
 
     private Context context;
-    private String[] eventos;
-    private ArrayList<Evento> listaEventos;
-   // private ArrayAdapter<String> adapter;
     private ListView listView;
     private EditText campoPesquisa;
-    private String nome;
 
     private EventoNegocio eventoNegocio;
     private SessaoUsuario sessao;
@@ -48,9 +44,10 @@ public class PesquisarEventoActivity extends AppCompatActivity {
 
         eventoNegocio = EventoNegocio.getInstancia(context);
         setContentView(R.layout.activity_pesquisar_evento);
-        listView=(ListView)findViewById(R.id.listview);
-        campoPesquisa =(EditText)findViewById(R.id.edtsearch);
+        listView = (ListView)findViewById(R.id.listview);
+        campoPesquisa = (EditText)findViewById(R.id.edtsearch);
         initList();
+
         campoPesquisa.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -62,13 +59,9 @@ public class PesquisarEventoActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int
                     count) {
                 if (s.toString().equals("")) {
-                    // reset listview
                     initList();
                 } else {
-                    nome = campoPesquisa.getText().toString().trim();
-                    nome = nome.toLowerCase();
-                    eventoNegocio.consultarEventoPorNomeParcial(nome);
-                    searchItem(s.toString());
+                    searchItem(s.toString().trim());
                 }
             }
 
@@ -78,34 +71,28 @@ public class PesquisarEventoActivity extends AppCompatActivity {
         });
     }
 
-   /* public void searchItem(String textToSearch){
-        for(String item: eventos){
-            if(!item.contains(textToSearch)){
-                listaEventos.remove(item);
-            }
-        }
-        adapter.notifyDataSetChanged();
-    }*/
-
     public void searchItem(String textToSearch){
-        for(Evento item:items){
-            if(!item.getNome().contains(textToSearch)){
-                listItems.remove(item);
+        eventosPessoa = eventoNegocio.listarEventoCriador(pessoaLogada.getId());
+        for(Evento evento: eventosPessoa){
+            if(!evento.getNome().contains(textToSearch)){
+                nomesEventos.remove(evento.getNome());
             }
+        }if(nomesEventos.isEmpty()){
+            nomesEventos.add(getString(R.string.activity_search_evento_not_found));
         }
-        adapter.notifyDataSetChanged();
+        nomeAdapter.notifyDataSetChanged();
     }
 
     public void initList(){
-        GuiUtil.exibirMsg(this, "CHAMAR O PESQUISAR NOME PARCIAL");
-        items = eventoNegocio.listarEventoCriador(pessoaLogada.getId());
-        adapter=new ArrayAdapter<>(this,
-                R.layout.list_item_pesquisar_evento, R.id.txtitem, items);
-        listView.setAdapter(adapter);
-       /* eventos = eventoNegocio.pesquisarPorNomeParcial(campoPesquisa.getText().toString());
+        eventosPessoa = eventoNegocio.listarEventoCriador(pessoaLogada.getId());
+        if(!nomesEventos.isEmpty()){
+            nomesEventos.remove(0);
+        }
+        for (Evento evento: eventosPessoa){
+            nomesEventos.add(evento.getNome());}
 
-        listaEventos = new ArrayList<Evento>(Arrays.<Evento>asList(eventos));
-        adapter = new ArrayAdapter<String>(this,R.id.listview ,listaEventos);
-        listView.setAdapter(adapter);*/
+        nomeAdapter = new ArrayAdapter<>(this, R.layout.list_item_pesquisar_evento, R.id.txtitem, nomesEventos);
+        listView.setAdapter(nomeAdapter);
+
     }
 }

@@ -3,6 +3,7 @@ package br.com.mindbit.controleacesso.gui;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import br.com.mindbit.controleacesso.dominio.PrioridadeEvento;
 import br.com.mindbit.controleacesso.negocio.EventoNegocio;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 import br.com.mindbit.infra.gui.GuiUtil;
+import br.com.mindbit.infra.gui.MindbitException;
 
 public class AddEventoActivity extends AppCompatActivity{
 
@@ -251,7 +253,7 @@ public class AddEventoActivity extends AppCompatActivity{
         hora = simpleDateFormat.parse(strHora);
         Time timeHoraInicio = new Time(hora.getTime());
         horaAtual = timeHoraInicio;
-        GuiUtil.exibirMsg(this,""+dataAtual);
+        GuiUtil.exibirMsg(this, "" + dataAtual);
 
         return (!isEmptyFields(nomeEvento, descricaoEvento, dataInicio, dataFim, horaInicio, horaFim)
                 && hasSizeValid(nomeEvento, descricaoEvento) && dateValid(format_DataInicio, format_DataFim));
@@ -321,11 +323,11 @@ public class AddEventoActivity extends AppCompatActivity{
         if(validateFieldsEvento()) {
             Toast.makeText(this,"validado",Toast.LENGTH_LONG).show();
         }
-            /*try{
+            try{
 
-                int idUsuarioLogado = sessaoUsuario.getUsuarioLogado().getId();
+                int idPessoaLogada = sessaoUsuario.getPessoaLogada().getId();
                 Evento evento = new Evento();
-                evento.setId(idUsuarioLogado);
+                evento.setId(idPessoaLogada);
                 evento.setNome(nomeEvento);
                 evento.setDescricao(descricaoEvento);
                 evento.setDataInicio(format_DataInicio);
@@ -333,13 +335,15 @@ public class AddEventoActivity extends AppCompatActivity{
                 evento.setHoraInicio(format_HoraInicio);
                 evento.setHoraFim(format_HoraFim);
                 eventoNegocio.validarCadastroEvento(evento);
+                eventoNegocio.salvarEvento(evento);
+                startCalendarActivity();
 
 
             }catch (MindbitException e){
                 GuiUtil.exibirMsg(AddEventoActivity.this, e.getMessage());
 
-            }*/
-            int idUsuarioLogado = sessaoUsuario.getUsuarioLogado().getId();
+            }
+         /*   int idUsuarioLogado = sessaoUsuario.getUsuarioLogado().getId();
             Evento evento = new Evento();
             evento.setId(idUsuarioLogado);
             evento.setNome(nomeEvento);
@@ -348,9 +352,13 @@ public class AddEventoActivity extends AppCompatActivity{
             evento.setDataFim(format_DataFim);
             evento.setHoraInicio(format_HoraInicio);
             evento.setHoraFim(format_HoraFim);
-            //eventoNegocio.validarCadastroEvento(evento);}
+            //eventoNegocio.validarCadastroEvento(evento);}*/
     }
 
+    public void startCalendarActivity() {
+        startActivity(new Intent(this, CalendarActivity.class));
+        finish();
+    }
 
 }
 

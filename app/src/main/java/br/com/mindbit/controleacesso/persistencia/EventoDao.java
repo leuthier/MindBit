@@ -45,7 +45,8 @@ public class EventoDao {
         values.put(DatabaseHelper.EVENTO_HORA_FIM, evento.getHoraFim().toString());
         values.put(DatabaseHelper.EVENTO_DATA_INICIO, evento.getDataInicio().toString());
         values.put(DatabaseHelper.EVENTO_DATA_FIM, evento.getDataFim().toString());
-        values.put(DatabaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM, evento.getNivelPrioridadeEnum().toString());
+        //values.put(DatabaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM, evento.getNivelPrioridadeEnum().toString());
+        values.put(DatabaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM, "VERDE");
         //values.put(DatabaseHelper.PESSOA_CRIADORA_ID, foreign_key_id_pessoa);
         values.put(DatabaseHelper.PESSOA_CRIADORA_ID, evento.getIdPessoaCriadora());
 
