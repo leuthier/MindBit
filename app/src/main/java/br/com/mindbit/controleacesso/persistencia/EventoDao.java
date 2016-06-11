@@ -10,6 +10,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 import br.com.mindbit.controleacesso.dominio.Evento;
 import br.com.mindbit.controleacesso.dominio.PrioridadeEvento;
@@ -37,18 +38,18 @@ public class EventoDao {
         values.put(DatabaseHelper.EVENTO_ID, evento.getId());
         values.put(DatabaseHelper.EVENTO_NOME, evento.getNome());
 
-        //long foreign_key_id_pessoa = db.insert(DatabaseHelper.TABELA_PESSOA, null, values);
+        //long foreing_key_id_pessoa_criadora = db.insert(DatabaseHelper.TABELA_EVENTO, null, values);
 
         values = new ContentValues();
+        values.put(DatabaseHelper.EVENTO_NOME, evento.getNome());
         values.put(DatabaseHelper.EVENTO_DESCRICAO, evento.getDescricao().toString());
         values.put(DatabaseHelper.EVENTO_HORA_INICIO, evento.getHoraInicio().toString());
         values.put(DatabaseHelper.EVENTO_HORA_FIM, evento.getHoraFim().toString());
         values.put(DatabaseHelper.EVENTO_DATA_INICIO, evento.getDataInicio().toString());
         values.put(DatabaseHelper.EVENTO_DATA_FIM, evento.getDataFim().toString());
-        //values.put(DatabaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM, evento.getNivelPrioridadeEnum().toString());
-        values.put(DatabaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM, "VERDE");
-        //values.put(DatabaseHelper.PESSOA_CRIADORA_ID, foreign_key_id_pessoa);
-        values.put(DatabaseHelper.PESSOA_CRIADORA_ID, evento.getIdPessoaCriadora());
+        values.put(DatabaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM, evento.getNivelPrioridadeEnum().ordinal());
+        int idPessoa = SessaoUsuario.getInstancia().getPessoaLogada().getId();
+        values.put(DatabaseHelper.PESSOA_CRIADORA_ID, idPessoa);
 
         db.insert(DatabaseHelper.TABELA_EVENTO, null, values);
         db.close();
@@ -63,14 +64,12 @@ public class EventoDao {
         evento.setHoraFim(Time.valueOf(cursor.getString(4)));
         evento.setDataInicio(Date.valueOf(cursor.getString(5)));
         evento.setDataFim(Date.valueOf(cursor.getString(6)));
-        evento.setNivelPrioridadeEnum(PrioridadeEvento.valueOf(cursor.getString(7)));
+        PrioridadeEvento nivelPrioridade = PrioridadeEvento.values()[cursor.getInt(7)];
+        evento.setNivelPrioridadeEnum(nivelPrioridade);
+        Pessoa pessoa = daoPessoa.getPessoa(cursor.getInt(8));
+        evento.setPessoaCriadora(pessoa);
+        //System.out.println(evento.getIdPessoaCriadora());
 
-        /*evento.setHoraInicio(cursor.getString(3));
-        evento.setHoraFim(cursor.getString(4));
-        evento.setDataInicio(cursor.getString(5));
-        evento.setDataFim(cursor.getString(6));
-        evento.setNivelPrioridadeEnum(cursor.getString(7));
-        */
         return evento;
     }
 

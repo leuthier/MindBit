@@ -47,22 +47,8 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
 
 
 
-        fab.setMenuListener(new SimpleMenuListenerAdapter() {
-
-            @Override
-            public boolean onPrepareMenu(NavigationMenu navigationMenu) {
-                GuiUtil.exibirMsg(CalendarActivity.this, "CHAMEI O EVENTO");
-
-                return true;
-            }
-
-            @Override
-            public boolean onMenuItemSelected(MenuItem menuItem) {
-                GuiUtil.exibirMsg(CalendarActivity.this, "CHAMEI O EVENTO");
-                return false;
-            }
-        });
-
+        fab.setMenuListener(this);
+//fab.onClick(null);
     }
 
 

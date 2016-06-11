@@ -15,7 +15,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.sql.Time;
 import java.text.ParseException;
@@ -151,7 +150,7 @@ public class AddEventoActivity extends AppCompatActivity{
                         int mesCerto = monthOfYear + 1;
 
                         Calendar data = Calendar.getInstance();
-                        data.set(year, mesCerto, dayOfMonth);
+                        data.set(year, monthOfYear, dayOfMonth);
                         format_DataInicio = data.getTime();
 
                         edtEventoDataInicio.setText(dayOfMonth + "/" + mesCerto + "/" + year);
@@ -170,7 +169,7 @@ public class AddEventoActivity extends AppCompatActivity{
                         int mesCerto = monthOfYear + 1;
 
                         Calendar data = Calendar.getInstance();
-                        data.set(year, mesCerto, dayOfMonth);
+                        data.set(year, monthOfYear, dayOfMonth);
                         format_DataFim = data.getTime();
 
                         edtEventoDataFim.setText(dayOfMonth + "/" + mesCerto + "/" + year);
@@ -179,19 +178,6 @@ public class AddEventoActivity extends AppCompatActivity{
                 datepicker.show();
             }
         });
-
-/*        switch (spinner.getSelectedItemPosition()){
-            case 0:
-                GuiUtil.exibirMsg(this, "SETAR prio VERDE");
-                break;
-            case 1:
-                GuiUtil.exibirMsg(this, "SETAR prio AMARELA");
-                break;
-            case 2:
-                GuiUtil.exibirMsg(this, "SETAR prio VERMELHA");
-                break;
-        }*/
-
 
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
 
@@ -245,7 +231,7 @@ public class AddEventoActivity extends AppCompatActivity{
         horaFim = edtEventoDataInicio.getText().toString().trim();
         setActualMoment();
         Calendar data = Calendar.getInstance();
-        data.set(year, month+1, day);
+        data.set(year, month, day);
         dataAtual = data.getTime();
         String strHora = hour+":"+minute;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
@@ -253,7 +239,6 @@ public class AddEventoActivity extends AppCompatActivity{
         hora = simpleDateFormat.parse(strHora);
         Time timeHoraInicio = new Time(hora.getTime());
         horaAtual = timeHoraInicio;
-        GuiUtil.exibirMsg(this, "" + dataAtual);
 
         return (!isEmptyFields(nomeEvento, descricaoEvento, dataInicio, dataFim, horaInicio, horaFim)
                 && hasSizeValid(nomeEvento, descricaoEvento) && dateValid(format_DataInicio, format_DataFim));
@@ -317,14 +302,9 @@ public class AddEventoActivity extends AppCompatActivity{
         return false;
     }
 
-
-
     private  void cadastrarEvento() throws ParseException {
-        if(validateFieldsEvento()) {
-            Toast.makeText(this,"validado",Toast.LENGTH_LONG).show();
-        }
-            try{
-
+        if (validateFieldsEvento()) {
+            try {
                 int idPessoaLogada = sessaoUsuario.getPessoaLogada().getId();
                 Evento evento = new Evento();
                 evento.setId(idPessoaLogada);
@@ -335,26 +315,14 @@ public class AddEventoActivity extends AppCompatActivity{
                 evento.setHoraInicio(format_HoraInicio);
                 evento.setHoraFim(format_HoraFim);
                 eventoNegocio.validarCadastroEvento(evento);
-                eventoNegocio.salvarEvento(evento);
+                GuiUtil.exibirMsg(this, "Evento cadastrado com sucesso");
                 startCalendarActivity();
-
-
-            }catch (MindbitException e){
+            } catch (MindbitException e) {
                 GuiUtil.exibirMsg(AddEventoActivity.this, e.getMessage());
 
             }
-         /*   int idUsuarioLogado = sessaoUsuario.getUsuarioLogado().getId();
-            Evento evento = new Evento();
-            evento.setId(idUsuarioLogado);
-            evento.setNome(nomeEvento);
-            evento.setDescricao(descricaoEvento);
-            evento.setDataInicio(format_DataInicio);
-            evento.setDataFim(format_DataFim);
-            evento.setHoraInicio(format_HoraInicio);
-            evento.setHoraFim(format_HoraFim);
-            //eventoNegocio.validarCadastroEvento(evento);}*/
+        }
     }
-
     public void startCalendarActivity() {
         startActivity(new Intent(this, CalendarActivity.class));
         finish();
