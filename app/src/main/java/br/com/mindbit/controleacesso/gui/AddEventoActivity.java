@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -61,8 +62,9 @@ public class AddEventoActivity extends AppCompatActivity{
     private String horaFim;
     private String dataInicio;
     private String dataFim;
+    private int nivelPrioridadeINT;
+    private PrioridadeEvento prioridade;
 
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private Date dataAtual;
     private Time horaAtual;
     private Date format_DataInicio;
@@ -179,6 +181,19 @@ public class AddEventoActivity extends AppCompatActivity{
             }
         });
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                nivelPrioridadeINT = ((PrioridadeEvento) parent.getAdapter().getItem(position)).getCodigo();//caso pegar int
+                prioridade = ((PrioridadeEvento) parent.getAdapter().getItem(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         btnAdicionar.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -199,7 +214,7 @@ public class AddEventoActivity extends AppCompatActivity{
         calendar = Calendar.getInstance();
         setActualMoment();
 
-        Spinner spinner = (Spinner) findViewById(R.id.prioridade_spinner);
+        spinner = (Spinner) findViewById(R.id.prioridade_spinner);
         spinner.setAdapter(new ArrayAdapter<PrioridadeEvento>(this, android.R.layout.simple_list_item_1, PrioridadeEvento.values()));
         btnAdicionar = (Button) findViewById(R.id.btnAdicionar);
 
@@ -314,6 +329,7 @@ public class AddEventoActivity extends AppCompatActivity{
                 evento.setDataFim(format_DataFim);
                 evento.setHoraInicio(format_HoraInicio);
                 evento.setHoraFim(format_HoraFim);
+                evento.setNivelPrioridadeEnum(prioridade);
                 eventoNegocio.validarCadastroEvento(evento);
                 GuiUtil.exibirMsg(this, "Evento cadastrado com sucesso");
                 startCalendarActivity();
