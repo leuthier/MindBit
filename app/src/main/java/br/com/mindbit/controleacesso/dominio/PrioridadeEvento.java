@@ -1,8 +1,5 @@
 package br.com.mindbit.controleacesso.dominio;
 
-/**
- * Created by Ariana on 06/06/2016.
- */
 public enum PrioridadeEvento {
     VERDE(1, "Verde"),AMARELO(1,"Amarelo"), VERMELHOI(3,"Vermelho");
 

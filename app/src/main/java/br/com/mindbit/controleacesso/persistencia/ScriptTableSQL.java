@@ -34,8 +34,6 @@ public class ScriptTableSQL {
         eventoBuilder.append("_id_evento   integer primary key autoincrement,   ");
         eventoBuilder.append("nome_evento  text not null unique,  ");
         eventoBuilder.append("descricao_evento  text not null, ");
-        eventoBuilder.append("hora_inicio_evento  text not null, ");
-        eventoBuilder.append("hora_fim_evento  text not null, ");
         eventoBuilder.append("data_inicio_evento  text not null, ");
         eventoBuilder.append("data_fim_evento  text not null, ");
         eventoBuilder.append("nivel_prioridade_enum text not null, ");

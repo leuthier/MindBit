@@ -32,8 +32,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String EVENTO_ID = "_id_evento";
     public static final String EVENTO_NOME = "nome_evento";
     public static final String EVENTO_DESCRICAO = "descricao_evento";
-    public static final String EVENTO_HORA_INICIO = "hora_inicio_evento";
-    public static final String EVENTO_HORA_FIM = "hora_fim_evento";
     public static final String EVENTO_DATA_INICIO = "data_inicio_evento";
     public static final String EVENTO_DATA_FIM = "data_fim_evento";
     public static final String EVENTO_NIVEL_PRIORIDADE_ENUM = "nivel_prioridade_enum";

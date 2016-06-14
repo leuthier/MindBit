@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+
 import java.sql.Date;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +46,6 @@ public class EventoDao {
         values = new ContentValues();
         values.put(DatabaseHelper.EVENTO_NOME, evento.getNome());
         values.put(DatabaseHelper.EVENTO_DESCRICAO, evento.getDescricao().toString());
-        values.put(DatabaseHelper.EVENTO_HORA_INICIO, evento.getHoraInicio().toString());
-        values.put(DatabaseHelper.EVENTO_HORA_FIM, evento.getHoraFim().toString());
         values.put(DatabaseHelper.EVENTO_DATA_INICIO, evento.getDataInicio().toString());
         values.put(DatabaseHelper.EVENTO_DATA_FIM, evento.getDataFim().toString());
         values.put(DatabaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM, evento.getNivelPrioridadeEnum().ordinal());
@@ -60,15 +61,25 @@ public class EventoDao {
         evento.setId(cursor.getInt(0));
         evento.setNome(cursor.getString(1));
         evento.setDescricao(cursor.getString(2));
-        evento.setHoraInicio(Time.valueOf(cursor.getString(3)));
-        evento.setHoraFim(Time.valueOf(cursor.getString(4)));
-        evento.setDataInicio(Date.valueOf(cursor.getString(5)));
-        evento.setDataFim(Date.valueOf(cursor.getString(6)));
-        PrioridadeEvento nivelPrioridade = PrioridadeEvento.values()[cursor.getInt(7)];
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        String initialDate = cursor.getString(3);
+        String finalDate = cursor.getString(4);
+
+        try {
+            evento.setDataInicio(simpleDateFormat.parse(initialDate));
+            evento.setDataFim(simpleDateFormat.parse(finalDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        PrioridadeEvento nivelPrioridade = PrioridadeEvento.values()[cursor.getInt(5)];
         evento.setNivelPrioridadeEnum(nivelPrioridade);
-        Pessoa pessoa = daoPessoa.getPessoa(cursor.getInt(8));
-        evento.setPessoaCriadora(pessoa);
+        //Pessoa pessoa = daoPessoa.getPessoa(cursor.getInt(8));
+        //evento.setPessoaCriadora(pessoa);
         //System.out.println(evento.getIdPessoaCriadora());
+
+
 
         return evento;
     }
@@ -99,9 +110,7 @@ public class EventoDao {
                 databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_NOME+", "+
                 databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_DESCRICAO+", "+
                 databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_DATA_INICIO+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_HORA_INICIO+", "+
                 databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_DATA_FIM+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_HORA_FIM+", "+
                 databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM+
                 " FROM " + databaseHelper.TABELA_EVENTO + " WHERE "
                 +databaseHelper.EVENTO_NOME+" LIKE ?", new String[] {"%"+nome+"%"});
@@ -127,9 +136,7 @@ public class EventoDao {
                 databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_NOME+", "+
                 databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_DESCRICAO+", "+
                 databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_DATA_INICIO+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_HORA_INICIO+", "+
                 databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_DATA_FIM+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_HORA_FIM+", "+
                 databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM+", "+
                 " FROM " + databaseHelper.TABELA_EVENTO + " WHERE "
                 +databaseHelper.EVENTO_DESCRICAO+" LIKE ?", new String[] {"%"+descricao+"%"});

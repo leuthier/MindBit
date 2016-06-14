@@ -1,13 +1,10 @@
-package br.com.mindbit.aluno.dominio;
+package br.com.mindbit.controleacesso.dominio;
 
 import java.util.List;
 
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.dominio.Evento;
 
-/**
- * Created by Ariana on 06/06/2016.
- */
 public class Aluno {
     private int anoEntrada;
     private Pessoa pessoa;

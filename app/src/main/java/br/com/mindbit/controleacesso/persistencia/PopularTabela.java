@@ -35,14 +35,14 @@ public class PopularTabela {
 
     public static void inserirEventos(SQLiteDatabase db){
         String[] eventos =
-                {"INSERT INTO `tabela_evento` (_id_evento,nome_evento,descricao_evento,hora_inicio_evento,hora_fim_evento,data_inicio_evento," +
-                        "data_fim_evento,nivel_prioridade_enum,'id_pessoa_criadora') VALUES (1,'evento1','descricao1','02:00:00','03:00:00','07-06-2016','08-06-2016','VERDE',1);",
-                "INSERT INTO `tabela_evento` (_id_evento,nome_evento,descricao_evento,hora_inicio_evento,hora_fim_evento,data_inicio_evento," +
-                        "data_fim_evento,nivel_prioridade_enum,'id_pessoa_criadora') VALUES (2,'MPOO','2VA','08:00:00','10:00:00','10-06-2016','10-06-2016','VERMELHO',3);",
-                "INSERT INTO `tabela_evento` (_id_evento,nome_evento,descricao_evento,hora_inicio_evento,hora_fim_evento,data_inicio_evento," +
-                        "data_fim_evento,nivel_prioridade_enum,'id_pessoa_criadora') VALUES (3,'modelagem prova','1 avaliacao','07:00:00','08:00:00','17-06-2016','24-06-2016','VERMELHO',6);",
-                "INSERT INTO `tabela_evento` (_id_evento,nome_evento,descricao_evento,hora_inicio_evento,hora_fim_evento,data_inicio_evento," +
-                        "data_fim_evento,nivel_prioridade_enum,'id_pessoa_criadora') VALUES (4,'modelagem de programacao prova','final','10:45:00','17:15:00','31-07-2016','31-07-2016','AMARELO',6);"
+                {"INSERT INTO `tabela_evento` (_id_evento,nome_evento,descricao_evento,data_inicio_evento," +
+                        "data_fim_evento,nivel_prioridade_enum,'id_pessoa_criadora') VALUES (1,'evento1','descricao1','10-06-2017 10:00','10-06-2017 10:00','VERDE',1);",
+                "INSERT INTO `tabela_evento` (_id_evento,nome_evento,descricao_evento,data_inicio_evento," +
+                        "data_fim_evento,nivel_prioridade_enum,'id_pessoa_criadora') VALUES (2,'MPOO','2VA','10-07-2016 10:00','10-07-2016 10:00','VERMELHO',3);",
+                "INSERT INTO `tabela_evento` (_id_evento,nome_evento,descricao_evento,data_inicio_evento," +
+                        "data_fim_evento,nivel_prioridade_enum,'id_pessoa_criadora') VALUES (3,'modelagem prova','1 avaliacao','11-06-2016 10:00','11-06-2016 10:00','VERMELHO',5);",
+                "INSERT INTO `tabela_evento` (_id_evento,nome_evento,descricao_evento,data_inicio_evento," +
+                        "data_fim_evento,nivel_prioridade_enum,'id_pessoa_criadora') VALUES (4,'modelagem de programacao prova','final','13-06-2016 10:00','13-06-2016 10:00','AMARELO',5);"
 
                 };
         for (String evento : eventos){
