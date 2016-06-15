@@ -8,11 +8,38 @@
 
     <TextView
 
-        android:id="@+id/txtitem"
-        android:layout_width="match_parent"
+        android:id="@+id/txtitem_data_evento"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/listview_evento_data"
+        android:textSize="12sp"
+        />
 
+    <TextView
+        android:id="@+id/txtitem_nome_evento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="nome do evento"
+        />
+
+    <TextView
+        android:id="@+id/txtitem_descricao_evento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="25dp"
+        android:textSize="14sp"
+        android:text="descrição"
         />
 
 </LinearLayout>

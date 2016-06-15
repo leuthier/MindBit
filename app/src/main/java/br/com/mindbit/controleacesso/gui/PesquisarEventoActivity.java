@@ -23,8 +23,10 @@ public class PesquisarEventoActivity extends AppCompatActivity {
 
     private ArrayList<Evento> eventosPessoa;
     private ArrayList<String> nomesEventos = new ArrayList<>();
+    private ArrayList<String> descricoesEvento = new ArrayList<>();
     private ArrayList<Evento> listItems;
     private ArrayAdapter<String> nomeAdapter;
+    private ArrayAdapter<String> descricaoAdapter;
 
     private Context context;
     private ListView listView;
@@ -44,7 +46,7 @@ public class PesquisarEventoActivity extends AppCompatActivity {
 
         eventoNegocio = EventoNegocio.getInstancia(context);
         setContentView(R.layout.activity_pesquisar_evento);
-        listView = (ListView)findViewById(R.id.listview);
+        listView = (ListView)findViewById(R.id.listview_eventos);
         campoPesquisa = (EditText)findViewById(R.id.edtsearch);
         initList();
 
@@ -89,10 +91,15 @@ public class PesquisarEventoActivity extends AppCompatActivity {
             nomesEventos.remove(0);
         }
         for (Evento evento: eventosPessoa){
-            nomesEventos.add(evento.getNome());}
+            nomesEventos.add(evento.getNome());
+            descricoesEvento.add(evento.getDescricao());
+        }
 
-        nomeAdapter = new ArrayAdapter<>(this, R.layout.list_item_pesquisar_evento, R.id.txtitem, nomesEventos);
+        nomeAdapter = new ArrayAdapter<>(this, R.layout.list_item_pesquisar_evento, R.id.txtitem_nome_evento, nomesEventos);
+       // nomeAdapter = new ArrayAdapter<>(this, R.layout.list_item_pesquisar_evento, R.id.txtitem_descricao_evento, descricoesEvento);
         listView.setAdapter(nomeAdapter);
+//        listView.setAdapter(descricaoAdapter);
+
 
     }
 }

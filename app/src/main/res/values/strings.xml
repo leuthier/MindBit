@@ -50,7 +50,7 @@
     <string name="evento">Evento</string>
 
     <!-- Text -->
-    <string name="contagem_regressiva">Próximos eventos:\n\napresentação MPOO 03/06</string>
+    <string name="contagem_regressiva">Próximos eventos:\n</string>
     <string name="contagem_nula">não há eventos futuros \n\nDescanse ;)</string>
     <string name="title_activity_navigation"></string>
 
@@ -79,6 +79,7 @@
     <string name="evento_hora_fim">Hora Fim</string>
     <string name="nav_drawer_add_evento">Adicionar Evento</string>
     <string name="evento_btn_adicionar">Adicionar</string>
+    <string name="listview_evento_data">Data:</string>
 
 
 </resources>
