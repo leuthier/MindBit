@@ -71,6 +71,7 @@
     <string name="nav_drawer_compartilhar">Compartilhar</string>
     <string name="nav_drawer_sobre">Sobre</string>
 
+    <string name="btn_add_evento">Adicionar</string>
     <string name="evento_nome">Nome</string>
     <string name="evento_descricao">Descrição</string>
     <string name="evento_data_inicio">Data Início</string>
@@ -79,17 +80,16 @@
     <string name="evento_hora_fim">Hora Fim</string>
     <string name="nav_drawer_add_evento">Adicionar Evento</string>
     <string name="nav_drawer_add_disciplina">Adicionar Disciplina</string>
-    <string name="evento_btn_adicionar">Adicionar</string>
     <string name="listview_evento_data">Data:</string>
 
+    <string name="btn_add_disciplina">Adicionar</string>
     <string name="disciplina_nome">Nome da Disciplina</string>
-    <string name="disciplina_codigo">Codigo da Disciplina</string>
-    <string name="addDisciplinaIsEmpty">Nome obrigatório!</string>
-    <string name="addCodigoIsEmpty">Código obrigatório!</string>
-    <string name="addDisciplinaSmall">O nome deve ter mais de 4 caracteres</string>
-    <string name="btn_addDisciplina">Adicionar</string>
-    <string name="addCodigoDisciplinaSmall">O código deve ter mais de 4 caracteres</string>
-    <string name="addDisciplina_edt_nome">Disciplina já cadastrada</string>
-
+    <string name="disciplina_codigo">Código da Disciplina</string>
+    <string name="add_disciplina_nome_is_empty">Nome obrigatório!</string>
+    <string name="add_disciplina_codigo_is_empty">Código obrigatório!</string>
+    <string name="add_disciplina_tamanho_nome_invalido">O nome deve ter mais de 3 caracteres</string>
+    <string name="add_disciplina_tamanho_codigo_invalido">O código deve ter 5 caracteres</string>
+    <string name="add_disciplina_error">Disciplina já cadastrada</string>
+    <string name="add_disciplina_sucess">Disciplina cadastrada com sucesso!</string>
 
 </resources>

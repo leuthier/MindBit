@@ -31,14 +31,15 @@
             android:id="@+id/input_edtDisciplinaCodigo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapWords"
+            android:inputType="number"
+            android:maxLength="5"
             android:hint="@string/disciplina_codigo"/>
     </android.support.design.widget.TextInputLayout>
 
     <Button
         android:layout_width="299dp"
         android:layout_height="wrap_content"
-        android:text="@string/btn_addDisciplina"
+        android:text="@string/btn_add_disciplina"
         android:id="@+id/btnAdicionarDisciplina"
         android:layout_gravity="center_horizontal" />
 

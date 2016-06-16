@@ -10,9 +10,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import java.text.ParseException;
 
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.dominio.Disciplina;
@@ -47,7 +44,7 @@ public class AddDisciplinaActivity extends AppCompatActivity {
         btnAdicionarDisciplina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CadastrarDisciplina();
+                cadastrarDisciplina();
             }
         });
 
@@ -60,8 +57,6 @@ public class AddDisciplinaActivity extends AppCompatActivity {
             disciplinaNegocio = DisciplinaNegocio.getInstancia(contexto);
         }
     }
-
-
 
     private void setCamposAddDisciplina() {
         btnAdicionarDisciplina = (Button) findViewById(R.id.btnAdicionarDisciplina);
@@ -79,37 +74,38 @@ public class AddDisciplinaActivity extends AppCompatActivity {
     private boolean isEmptyFields(String nomeDisciplina, String codigoDisciplina) {
         if (TextUtils.isEmpty(nomeDisciplina)) {
             input_edtDisciplinaNome.requestFocus();
-            input_edtDisciplinaNome.setError(resources.getString(R.string.addDisciplinaIsEmpty));
+            input_edtDisciplinaNome.setError(resources.getString(R.string.add_disciplina_nome_is_empty));
             return true;
         } else if (TextUtils.isEmpty(codigoDisciplina)) {
             input_edtDisciplinaCodigo.requestFocus();
-            input_edtDisciplinaCodigo.setError(resources.getString((R.string.addCodigoIsEmpty)));
+            input_edtDisciplinaCodigo.setError(resources.getString(R.string.add_disciplina_codigo_is_empty));
             return true;
         }
         return false;
     }
 
     private boolean hasSizeValid(String nomeDisciplina, String codigoDisciplina){
-        if (!(nomeDisciplina.length() > 4)){
+        if (!(nomeDisciplina.length() > 3)){
             input_edtDisciplinaNome.requestFocus();
-            input_edtDisciplinaNome.setError(resources.getString(R.string.addDisciplinaSmall));
+            input_edtDisciplinaNome.setError(resources.getString(R.string.add_disciplina_tamanho_nome_invalido));
             return false;
-        } else if (!(codigoDisciplina.length() > 4)){
+        } else if (codigoDisciplina.length() != 5){
             input_edtDisciplinaCodigo.requestFocus();
-            input_edtDisciplinaCodigo.setError(resources.getString(R.string.addCodigoDisciplinaSmall));
+            input_edtDisciplinaCodigo.setError(resources.getString(R.string.add_disciplina_tamanho_codigo_invalido));
             return false;
         }
         return true;
 
     }
-    private void CadastrarDisciplina() {
+    private void cadastrarDisciplina(){
         if (validateFieldsDisciplina()){
 
-            try{ Disciplina disciplina = new Disciplina();
+            try{
+                Disciplina disciplina = new Disciplina();
                 disciplina.setNome(nomeDisciplina);
                 disciplina.setCodigo(codigoDisciplina);
                 disciplinaNegocio.validarCadastroDisciplina(disciplina);
-                GuiUtil.exibirMsg(this, resources.getString(R.string.addDisciplina_edt_nome));
+                GuiUtil.exibirMsg(this, resources.getString(R.string.add_disciplina_sucess));
                 startCalendarActivity();
             } catch (MindbitException e){
                 startActivity(new Intent(this, CalendarActivity.class));
