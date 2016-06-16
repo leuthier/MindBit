@@ -105,7 +105,7 @@ public class PerfilActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_disciplina) {
+        if (id == R.id.nav_add_disciplina) {
             Intent i = new Intent(this, AddDisciplinaActivity.class);
             startActivity(i);
 

@@ -27,7 +27,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/input_edtEventoNome"
+                <EditText
+                    android:id="@+id/input_edtEventoNome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords"
@@ -39,7 +40,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/input_edtEventoDescricao"
+                <EditText
+                    android:id="@+id/input_edtEventoDescricao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords"
@@ -51,7 +53,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/input_edtEventoDataInicio"
+                <EditText
+                    android:id="@+id/input_edtEventoDataInicio"
                     android:layout_width="match_parent"
                     android:ems="10"
                     android:editable="false"
@@ -65,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/input_edtEventoDataFim"
+                <EditText
+                    android:id="@+id/input_edtEventoDataFim"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -78,7 +82,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/input_edtEventoHoraInicio"
+                <EditText
+                    android:id="@+id/input_edtEventoHoraInicio"
                     android:layout_width="match_parent"
                     android:ems="10"
                     android:layout_height="wrap_content"
@@ -91,7 +96,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/input_edtEventoHoraFim"
+                <EditText
+                    android:id="@+id/input_edtEventoHoraFim"
                     android:layout_width="match_parent"
                     android:ems="10"
                     android:layout_height="wrap_content"

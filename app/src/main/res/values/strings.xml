@@ -78,16 +78,18 @@
     <string name="evento_hora_inicio">Hora Início</string>
     <string name="evento_hora_fim">Hora Fim</string>
     <string name="nav_drawer_add_evento">Adicionar Evento</string>
+    <string name="nav_drawer_add_disciplina">Adicionar Disciplina</string>
     <string name="evento_btn_adicionar">Adicionar</string>
     <string name="listview_evento_data">Data:</string>
 
     <string name="disciplina_nome">Nome da Disciplina</string>
     <string name="disciplina_codigo">Codigo da Disciplina</string>
-    <string name="addDisciplinaIsEmpty">Não pode ser nulo</string>
-    <string name="addCodigoIsEmpty">Código não pode ser nulo</string>
-    <string name="addDisciplinaSmall">Nome da disciplina muito curto</string>
+    <string name="addDisciplinaIsEmpty">Nome obrigatório!</string>
+    <string name="addCodigoIsEmpty">Código obrigatório!</string>
+    <string name="addDisciplinaSmall">O nome deve ter mais de 4 caracteres</string>
     <string name="btn_addDisciplina">Adicionar</string>
-    <string name="addCodigoDisciplinaSmall">Código da disciplina muito curto</string>
+    <string name="addCodigoDisciplinaSmall">O código deve ter mais de 4 caracteres</string>
+    <string name="addDisciplina_edt_nome">Disciplina já cadastrada</string>
 
 
 </resources>

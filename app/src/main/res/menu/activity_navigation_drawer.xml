@@ -3,9 +3,10 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_disciplina"
-            android:icon="@drawable/ic_disciplina"
-            android:title="@string/nav_drawer_disciplinas" />
+            android:id="@+id/nav_pesquisar_eventos"
+            android:icon="@drawable/ic_lupa"
+            android:title="@string/nav_drawer_pesquisar_eventos"/>
+
         <item
             android:id="@+id/nav_amigos"
             android:icon="@drawable/ic_amigos"
@@ -18,10 +19,12 @@
             android:id="@+id/nav_add_evento"
             android:icon="@drawable/ic_evento"
             android:title="@string/nav_drawer_add_evento"/>
+
         <item
-            android:id="@+id/nav_pesquisar_eventos"
-            android:icon="@drawable/ic_lupa"
-            android:title="@string/nav_drawer_pesquisar_eventos"/>
+            android:id="@+id/nav_add_disciplina"
+            android:icon="@drawable/ic_disciplina"
+            android:title="@string/nav_drawer_add_disciplina" />
+
     </group>
 
     <item android:title="@string/nav_drawer_comunicacao">
