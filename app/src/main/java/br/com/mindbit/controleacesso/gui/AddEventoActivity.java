@@ -191,7 +191,7 @@ public class AddEventoActivity extends AppCompatActivity{
 
         spinner = (Spinner) findViewById(R.id.prioridade_spinner);
         spinner.setAdapter(new ArrayAdapter<PrioridadeEvento>(this, android.R.layout.simple_list_item_1, PrioridadeEvento.values()));
-        btnAdicionar = (Button) findViewById(R.id.btnAdicionar);
+        btnAdicionar = (Button) findViewById(R.id.btnAdicionarEvento);
 
         edtEventoNome = (EditText) findViewById(R.id.input_edtEventoNome);
         edtEventoDescricao = (EditText) findViewById(R.id.input_edtEventoDescricao);

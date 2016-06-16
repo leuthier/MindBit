@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/evento_btn_adicionar"
-                android:id="@+id/btnAdicionar"
+                android:id="@+id/btnAdicionarEvento"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="right" />

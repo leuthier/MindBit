@@ -3,16 +3,11 @@ package br.com.mindbit.infra.gui;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.Random;
 
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.gui.LoginActivity;
@@ -27,7 +22,7 @@ public class GuiUtil {
 
     public static void exibirSaudacao(Activity activity){
         Context context;
-        context = LoginActivity.getContext();
+        context = LoginActivity.getContexto();
         nomePessoaLogada = SessaoUsuario.getInstancia().getPessoaLogada().getNome();
         Toast.makeText(activity, context.getString(R.string.login_sucess)+" "+nomePessoaLogada+"!", Toast.LENGTH_LONG).show();
     }

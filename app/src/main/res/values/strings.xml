@@ -81,5 +81,13 @@
     <string name="evento_btn_adicionar">Adicionar</string>
     <string name="listview_evento_data">Data:</string>
 
+    <string name="disciplina_nome">Nome da Disciplina</string>
+    <string name="disciplina_codigo">Codigo da Disciplina</string>
+    <string name="addDisciplinaIsEmpty">Não pode ser nulo</string>
+    <string name="addCodigoIsEmpty">Código não pode ser nulo</string>
+    <string name="addDisciplinaSmall">Nome da disciplina muito curto</string>
+    <string name="btn_addDisciplina">Adicionar</string>
+    <string name="addCodigoDisciplinaSmall">Código da disciplina muito curto</string>
+
 
 </resources>

@@ -27,7 +27,7 @@ public class UsuarioNegocio {
         String loginInvalido = "";
 
         if (usuario==null){
-            loginInvalido = LoginActivity.getContext().getString(R.string.login_error);
+            loginInvalido = LoginActivity.getContexto().getString(R.string.login_error);
         }
         if (loginInvalido.length()>0){
             throw new MindbitException(loginInvalido);

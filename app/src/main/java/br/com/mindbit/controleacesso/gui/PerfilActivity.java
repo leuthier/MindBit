@@ -106,6 +106,8 @@ public class PerfilActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_disciplina) {
+            Intent i = new Intent(this, AddDisciplinaActivity.class);
+            startActivity(i);
 
         } else if(id == R.id.nav_pesquisar_eventos) {
             Intent i = new Intent(this, PesquisarEventoActivity.class);

@@ -31,7 +31,7 @@ public class ScriptTableSQL {
 
         StringBuilder eventoBuilder = new StringBuilder();
         eventoBuilder.append("CREATE TABLE  tabela_evento ( ");
-        eventoBuilder.append("_id_evento   integer primary key autoincrement,   ");
+        eventoBuilder.append("_id_evento   integer primary key autoincrement, ");
         eventoBuilder.append("nome_evento  text not null unique,  ");
         eventoBuilder.append("descricao_evento  text not null, ");
         eventoBuilder.append("data_inicio_evento  text not null, ");
@@ -40,6 +40,17 @@ public class ScriptTableSQL {
         eventoBuilder.append("id_pessoa_criadora  integer, ");
         eventoBuilder.append("foreign key ( id_pessoa_criadora ) references  tabela_pessoa ( _id_pessoa ) );");
         return eventoBuilder.toString();
+    }
+
+    public static String getTabelaDisciplina(){
+        StringBuilder disciplinaBuilder = new StringBuilder();
+        disciplinaBuilder.append("CREATE TABLE tabela_disciplina ( ");
+        disciplinaBuilder.append("_id_disciplina   integer primary key autoincrement, ");
+        disciplinaBuilder.append("nome_disciplina text not null unique, ");
+        disciplinaBuilder.append("codigo_disciplina text not null unique, ");
+        disciplinaBuilder.append("id_pessoa_criadora_disciplina  integer, ");
+        disciplinaBuilder.append("foreign key ( id_pessoa_criadora_disciplina ) references  tabela_pessoa ( _id_pessoa ) );");
+        return disciplinaBuilder.toString();
     }
 
 }

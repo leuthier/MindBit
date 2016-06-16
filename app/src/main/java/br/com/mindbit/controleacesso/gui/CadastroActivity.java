@@ -61,7 +61,6 @@ public class CadastroActivity extends Activity {
         setContentView(R.layout.activity_sing_up);
 
         contexto = this;
-        usuarioNegocio = UsuarioNegocio.getInstancia(contexto);
         criptografia = Criptografia.getInstancia();
 
         imgFoto = (ImageView) findViewById(R.id.userPicture);

@@ -32,6 +32,8 @@
 
         <activity android:name=".controleacesso.gui.AddEventoActivity"
             android:label="Adicionar Evento"></activity>
+        <activity android:name=".controleacesso.gui.AddDisciplinaActivity"
+            android:label="Adicionar Disciplina"></activity>
     </application>
 
 </manifest>

@@ -31,7 +31,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private Button btnCadastrar;
 
     private Resources resources;
-    private static Context context;
+    private static Context contexto;
     private Usuario usuario;
     private UsuarioNegocio usuarioNegocio;
     private Criptografia criptografia;
@@ -41,8 +41,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        context = this;
-        usuarioNegocio = UsuarioNegocio.getInstancia(context);
+        contexto = this;
         criptografia = Criptografia.getInstancia();
         icone = (ImageView) findViewById(R.id.fotoPerfil);
 
@@ -56,6 +55,17 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         initViews();
 
+    }
+
+    /**
+     * este metodo eh chamado logo que a janela da activity se faz visivel
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //se eu chamar antes da janela estar visivel (ou seja do  oncreate), o app ainda nao tem contexto e sqlhelper falha em instanciar
+        //aqui forco a criacao do usuarioNegio que vai se atrelar ao contexto do app e nao da activity
+        usuarioNegocio=UsuarioNegocio.getInstancia(getContexto());
     }
 
     private void initViews() {
@@ -172,6 +182,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         finish();
     }
 
-    public static Context getContext(){ return context; }
+    public static Context getContexto(){ return contexto; }
+
+
 
 }

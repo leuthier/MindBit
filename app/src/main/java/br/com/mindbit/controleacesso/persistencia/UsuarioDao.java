@@ -14,6 +14,7 @@ import br.com.mindbit.infra.gui.MindbitException;
 public class UsuarioDao {
 
     private static DatabaseHelper databaseHelper;
+    private static EventoDao eventoDao;
     private static Context contexto;
 
     private static UsuarioDao  instanciaUsuarioDao = new UsuarioDao();
@@ -22,6 +23,7 @@ public class UsuarioDao {
     public static UsuarioDao getInstancia(Context contexto){
         UsuarioDao.contexto = contexto;
         UsuarioDao.databaseHelper = new DatabaseHelper(contexto);
+        UsuarioDao.eventoDao = EventoDao.getInstancia(contexto);
         return instanciaUsuarioDao;
     }
 

@@ -37,12 +37,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String EVENTO_NIVEL_PRIORIDADE_ENUM = "nivel_prioridade_enum";
     public static final String PESSOA_CRIADORA_ID = "id_pessoa_criadora";
 
+    //TABELA DISCIPLINA
+    public static final String TABELA_DISCIPLINA = "tabela_disciplina";
+    public static final String DISCIPLINA_ID = "_id_disciplina";
+    public static final String DISCIPLINA_NOME = "nome_disciplina";
+    public static final String DISCIPLINA_CODIGO = "codigo_disciplina";
+    public static final String PESSOA_CRIADORA_DISCIPLINA_ID = "id_pessoa_criadora_disciplina";
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(ScriptTableSQL.getTabelaPessoa());
         db.execSQL(ScriptTableSQL.getTabelaUsuario());
         db.execSQL(ScriptTableSQL.getTabelaEvento());
+        db.execSQL(ScriptTableSQL.getTabelaDisciplina());
 
         PopularTabela.inserirUsuarios(db);
         PopularTabela.inserirPessoas(db);
@@ -55,6 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists " + TABELA_USUARIO);
         db.execSQL("drop table if exists " + TABELA_PESSOA);
         db.execSQL("drop table if exists " + TABELA_EVENTO);
+        db.execSQL("drop table if exists " + TABELA_DISCIPLINA);
         onCreate(db);
     }
 
