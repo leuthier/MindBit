@@ -21,7 +21,7 @@ import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
 public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.MenuListener {
     private CalendarView calendar;
-    private FabSpeedDial btn_addEvento;
+    private Contador contador = new Contador();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +29,14 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
         setContentView(R.layout.activity_calendar);
         SessaoUsuario sessao = SessaoUsuario.getInstancia();
 
+
         calendar = (CalendarView) findViewById(R.id.calendarView);
        // MenuItem itemAddEvento = (MenuItem) findViewById(R.id.adicionarEvento);
 
         startPerfilActivty();
+        startContador();
+
+
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
@@ -40,15 +44,7 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
             }
         });
 
-//        Menu menuActionButton = (Menu)  getMenuInflater().inflate(R.menu.menu, menu);
-//        View view = navigationView.getHeaderView(0);
-//
-        FabSpeedDial fab = (FabSpeedDial) findViewById(R.id.actionButton);
 
-
-
-        fab.setMenuListener(this);
-//fab.onClick(null);
     }
 
 
@@ -85,11 +81,17 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
         return true;
     }
 
-    public void addEvento(){
+    public void addEvento() {
         GuiUtil.exibirMsg(CalendarActivity.this, "CHAMAR ADD EVENTO");
     }
 
-    public void startPerfilActivty(){
+    public void startPerfilActivty() {
         startActivity(new Intent(this, PerfilActivity.class));
     }
+
+    public void startContador(){
+        startActivity(new Intent(this, Contador.class));
+        //contador.countDownStart();
+    }
+
 }

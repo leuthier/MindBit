@@ -158,7 +158,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                 usuario = usuarioNegocio.logar(login, senhaCriptografada);
                 GuiUtil.exibirSaudacao(this);
-                //startNavigationActivity();
+               // startNavigationActivity();
                 startCalendarActivity();
             }catch (MindbitException e){
                 GuiUtil.exibirMsg(LoginActivity.this, e.getMessage());
