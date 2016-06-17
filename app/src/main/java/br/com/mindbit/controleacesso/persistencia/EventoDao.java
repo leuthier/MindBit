@@ -46,8 +46,8 @@ public class EventoDao {
         values = new ContentValues();
         values.put(DatabaseHelper.EVENTO_NOME, evento.getNome());
         values.put(DatabaseHelper.EVENTO_DESCRICAO, evento.getDescricao().toString());
-        values.put(DatabaseHelper.EVENTO_DATA_INICIO, evento.getDataInicio().toString());
-        values.put(DatabaseHelper.EVENTO_DATA_FIM, evento.getDataFim().toString());
+        values.put(DatabaseHelper.EVENTO_DATA_INICIO, evento.getDataInicio());
+        values.put(DatabaseHelper.EVENTO_DATA_FIM, evento.getDataFim());
         values.put(DatabaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM, evento.getNivelPrioridadeEnum().ordinal());
         int idPessoa = SessaoUsuario.getInstancia().getPessoaLogada().getId();
         values.put(DatabaseHelper.PESSOA_CRIADORA_ID, idPessoa);
@@ -61,16 +61,15 @@ public class EventoDao {
         evento.setId(cursor.getInt(0));
         evento.setNome(cursor.getString(1));
         evento.setDescricao(cursor.getString(2));
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-        String initialDate = cursor.getString(3);
-        String finalDate = cursor.getString(4);
+        long initialDate = cursor.getLong(3);
+        long finalDate = cursor.getLong(4);
 
-        try {
-            evento.setDataInicio(simpleDateFormat.parse(initialDate));
-            evento.setDataFim(simpleDateFormat.parse(finalDate));
-        } catch (ParseException e) {
+        //try {
+            evento.setDataInicio(initialDate);
+            evento.setDataFim(finalDate);
+        /*} catch (ParseException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
         PrioridadeEvento nivelPrioridade = PrioridadeEvento.values()[cursor.getInt(5)];

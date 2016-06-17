@@ -58,18 +58,16 @@ public class AddEventoActivity extends AppCompatActivity{
 
     private String nomeEvento;
     private String descricaoEvento;
-    private String horaInicio;
-    private String horaFim;
-    private String dataInicio;
-    private String dataFim;
+    private long dataInicio;
+    private long dataFim;
     private int nivelPrioridadeINT;
     private PrioridadeEvento prioridade;
 
-    private Date dataAtual;
-    private Date inicio;
-    private Date fim;
-
-
+    private long dataAtual;
+    private long horaInicio;
+    private long horaFim;
+    private long inicio;
+    private long fim;
 
 
     @Override
@@ -86,22 +84,6 @@ public class AddEventoActivity extends AppCompatActivity{
         sessaoUsuario = SessaoUsuario.getInstancia();
         pessoaLogada = sessaoUsuario.getPessoaLogada();
 
-        edtEventoHoraFim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                final TimePickerDialog timepick = new TimePickerDialog(AddEventoActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        edtEventoHoraFim.setText(hourOfDay + ":" + minute);
-
-                    }
-                }, hour, minute, true
-                );
-                timepick.show();
-            }
-        });
-
         edtEventoHoraInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +92,24 @@ public class AddEventoActivity extends AppCompatActivity{
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         edtEventoHoraInicio.setText(hourOfDay + ":" + minute);
+                        horaInicio += (hourOfDay*60 + minute)*60000 ;
+
+                    }
+                }, hour, minute, true
+                );
+                timepick.show();
+            }
+        });
+
+        edtEventoHoraFim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final TimePickerDialog timepick = new TimePickerDialog(AddEventoActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        edtEventoHoraFim.setText(hourOfDay + ":" + minute);
+                        horaFim += (hourOfDay*60 + minute)*60000 ;
                     }
                 }, hour, minute, true
                 );
@@ -126,7 +126,15 @@ public class AddEventoActivity extends AppCompatActivity{
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         int mesCerto = monthOfYear + 1;
                         edtEventoDataInicio.setText(dayOfMonth + "/" + mesCerto + "/" + year);
-                        dataInicio = dayOfMonth + "/" + monthOfYear + "/" + year;
+                        String inicio = dayOfMonth + "/" + monthOfYear + "/" + year;
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        Date dateI = null;
+                        try {
+                            dateI = simpleDateFormat.parse(inicio);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        dataInicio = dateI.getTime();
                     }
                 }, year, month, day);
                 datepicker.show();
@@ -135,13 +143,22 @@ public class AddEventoActivity extends AppCompatActivity{
         edtEventoDataFim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datepicker = new DatePickerDialog(AddEventoActivity.this, new DatePickerDialog.OnDateSetListener() {
+                final DatePickerDialog datepicker = new DatePickerDialog(AddEventoActivity.this, new DatePickerDialog.OnDateSetListener() {
 
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         int mesCerto = monthOfYear + 1;
                         edtEventoDataFim.setText(dayOfMonth + "/" + mesCerto + "/" + year);
-                        dataFim = dayOfMonth + "/" + monthOfYear + "/" + year;
+                        String fim = dayOfMonth + "/" + monthOfYear + "/" + year;
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        Date dateF = null;
+                        try {
+                            dateF = simpleDateFormat.parse(fim);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        dataFim = dateF.getTime();
+
                     }
                 }, year, month, day);
                 datepicker.show();
@@ -215,28 +232,24 @@ public class AddEventoActivity extends AppCompatActivity{
 
         nomeEvento = edtEventoNome.getText().toString().trim();
         descricaoEvento = edtEventoDescricao.getText().toString().trim();
-        horaInicio = edtEventoHoraInicio.getText().toString().trim();
-        horaFim = edtEventoHoraFim.getText().toString().trim();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        inicio = simpleDateFormat.parse(dataInicio + " " + horaInicio );
-        fim = simpleDateFormat.parse(dataFim + " " + horaFim);
+        inicio = dataInicio + horaInicio;
+        fim = dataFim + horaFim;
         setActualMoment();
-        String atual = day +"/"+ month +"/"+year +" "+hour+":"+minute;
-        dataAtual = simpleDateFormat.parse(atual);
+        String atual = day +"/"+ month +"/"+year;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date dateA = null;
+        try {
+            dateA = simpleDateFormat.parse(atual);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        dataAtual = dateA.getTime() + ((hour*60 + minute)*60000);
 
         return (!isEmptyFields(nomeEvento, descricaoEvento, dataInicio, dataFim, horaInicio, horaFim)
                 && hasSizeValid(nomeEvento, descricaoEvento) && dateValid(inicio,fim,dataAtual));
     }
-    private boolean validateStartTime(Date dateI,Date actualD){
-
-        if (actualD.compareTo(dateI) < 1){
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isEmptyFields(String nome, String descricao, String dataInicio,
-                                  String dataFim, String horaInicio, String horaFim) {
+        private boolean isEmptyFields(String nome, String descricao, long dataInicio,
+                                  long dataFim, long horaInicio, long horaFim) {
         if (TextUtils.isEmpty(nome)) {
             edtEventoNome.requestFocus();
             edtEventoNome.setError(resources.getString(R.string.signUp_name_required));
@@ -245,19 +258,19 @@ public class AddEventoActivity extends AppCompatActivity{
             edtEventoDescricao.requestFocus();
             edtEventoDescricao.setError(resources.getString(R.string.addEvento_edt_descricao));
             return true;
-        }else if (TextUtils.isEmpty(dataInicio)) {
+        }else if (dataInicio == 0) {
             edtEventoDataInicio.requestFocus();
             edtEventoDataInicio.setError(resources.getString(R.string.addEvento_edt_data_inicial));
             return true;
-        }else if (TextUtils.isEmpty(dataFim)) {
+        }else if (dataFim == 0) {
             edtEventoDataFim.requestFocus();
             edtEventoDataFim.setError(resources.getString(R.string.addEvento_edt_data_final));
             return true;
-        }else if (TextUtils.isEmpty(horaInicio)) {
+        }else if (horaInicio==0) {
             edtEventoHoraInicio.requestFocus();
             edtEventoHoraInicio.setError(resources.getString(R.string.addEvento_edt_hora_inicial));
             return true;
-        }else if (TextUtils.isEmpty(horaFim)) {
+        }else if (horaFim==0) {
             edtEventoHoraFim.requestFocus();
             edtEventoHoraFim.setError(resources.getString(R.string.addEvento_edt_hota_final));
             return true;
@@ -277,9 +290,9 @@ public class AddEventoActivity extends AppCompatActivity{
         }
         return true;
     }
-    private boolean dateValid(Date initialDate, Date finalDate,Date actualDate) {
+    private boolean dateValid(long initialDate, long finalDate,long actualDate) {
 
-        if(initialDate.compareTo(finalDate) < 1 && validateStartTime(initialDate,actualDate)){
+        if( initialDate<=finalDate  && actualDate<= initialDate){
             return true;
         }
         GuiUtil.exibirMsg(this,resources.getString(R.string.addEvento_edt_data_hora_erro));
