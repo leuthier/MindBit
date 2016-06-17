@@ -66,12 +66,6 @@ public class EventoAdapter extends BaseAdapter {
             ((TextView) view.findViewById(R.id.txtitem_descricao_evento)).setText(item.getDescricao());
             ((TextView) view.findViewById(R.id.txtitem_data_evento)).setText((data));
 
-            /*if (posicao % 2 == 0){
-                view.setBackgroundResource(R.drawable.backgroundlistviewbranco);
-            } else {
-                view.setBackgroundResource(R.drawable.backgroundlistview);
-            }*/
-
             return view;
         }
     }

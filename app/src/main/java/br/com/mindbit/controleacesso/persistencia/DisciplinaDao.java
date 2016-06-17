@@ -14,7 +14,6 @@ import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 public class DisciplinaDao {
 
     private static DatabaseHelper databaseHelper;
-    private SQLiteDatabase db;
     private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
     private static Context context;
 
@@ -29,7 +28,7 @@ public class DisciplinaDao {
     }
 
     public void cadastrarDisciplina(Disciplina disciplina){
-        db = databaseHelper.getWritableDatabase();
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
         //values.put(DatabaseHelper.DISCIPLINA_ID, disciplina.getId());
@@ -71,7 +70,7 @@ public class DisciplinaDao {
     }
 
     public List<Disciplina> buscarDisciplinaNomeParcial(String nome){
-        db = databaseHelper.getReadableDatabase();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
         List<Disciplina> listaDisciplinas = new ArrayList<Disciplina>();
 
         Cursor cursor = db.rawQuery("SELECT "+ databaseHelper.TABELA_DISCIPLINA+"."+ databaseHelper.DISCIPLINA_ID+", "+
@@ -92,7 +91,7 @@ public class DisciplinaDao {
 
     public Disciplina buscarDisciplinaId(int id) {
         Disciplina disciplina = null;
-        db = databaseHelper.getReadableDatabase();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_DISCIPLINA + " WHERE " +
                 databaseHelper.DISCIPLINA_ID + " =?", new String[]{String.valueOf(id)});
         if (cursor.moveToFirst()) {

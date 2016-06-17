@@ -27,11 +27,11 @@ public class UsuarioDao {
         return instanciaUsuarioDao;
     }
 
-    private SQLiteDatabase db;
+
     private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
 
     public void cadastrarPessoa(Pessoa pessoa){
-        db = databaseHelper.getWritableDatabase();
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
         values.put(DatabaseHelper.PESSOA_NOME, pessoa.getNome());
@@ -84,7 +84,7 @@ public class UsuarioDao {
 
     public Pessoa buscarPessoaId(int id){
         Pessoa pessoa = null;
-        db = databaseHelper.getReadableDatabase();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM "+databaseHelper.TABELA_PESSOA+" WHERE "+
                         databaseHelper.PESSOA_ID+" =?", new String[]{String.valueOf(id)});
         if (cursor.moveToFirst()){
@@ -115,7 +115,7 @@ public class UsuarioDao {
 
     public Pessoa buscaPessoaPorEmail(String email) throws MindbitException {
         Pessoa pessoa = null;
-        db = databaseHelper.getReadableDatabase();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseHelper.TABELA_PESSOA +
                 " WHERE " + DatabaseHelper.PESSOA_EMAIL + " = ? ", new String[]{email});
         if (cursor.moveToFirst()) {

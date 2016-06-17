@@ -8,9 +8,6 @@ import br.com.mindbit.controleacesso.dominio.Disciplina;
 import br.com.mindbit.controleacesso.persistencia.DisciplinaDao;
 import br.com.mindbit.infra.gui.MindbitException;
 
-/**
- * Created by Tiago on 15/06/2016.
- */
 public class DisciplinaNegocio {
     private static DisciplinaDao disciplinaDao;
     private static UsuarioNegocio usuarioNegocio;

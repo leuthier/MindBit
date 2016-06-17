@@ -311,7 +311,7 @@ public class AddEventoActivity extends AppCompatActivity{
                 evento.setDataFim(fim);
                 evento.setNivelPrioridadeEnum(prioridade);
                 eventoNegocio.validarCadastroEvento(evento);
-                GuiUtil.exibirMsg(this, "Evento cadastrado com sucesso");
+                GuiUtil.exibirMsg(this, getString(R.string.add_evento_sucesso));
                 startCalendarActivity();
             } catch (MindbitException e) {
                 GuiUtil.exibirMsg(AddEventoActivity.this, e.getMessage());

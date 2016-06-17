@@ -13,8 +13,10 @@ import br.com.mindbit.infra.gui.MindbitException;
 public class UsuarioNegocio {
     private static UsuarioDao usuarioDao;
     private static UsuarioNegocio instanciaUsuarioNegocio = new UsuarioNegocio();
+
     private UsuarioNegocio(){
     }
+
     private Pessoa pessoaEncontrada;
 
     public static UsuarioNegocio getInstancia(Context context){
@@ -57,6 +59,4 @@ public class UsuarioNegocio {
         }
         usuarioDao.cadastrarPessoa(pessoa);
     }
-
-
 }

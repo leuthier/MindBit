@@ -1,8 +1,10 @@
 
 package br.com.mindbit.controleacesso.gui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.design.internal.NavigationMenu;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,13 +31,10 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
         setContentView(R.layout.activity_calendar);
         SessaoUsuario sessao = SessaoUsuario.getInstancia();
 
-
         calendar = (CalendarView) findViewById(R.id.calendarView);
-       // MenuItem itemAddEvento = (MenuItem) findViewById(R.id.adicionarEvento);
 
         startPerfilActivty();
         startContador();
-
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -43,10 +42,7 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
                 Toast.makeText(getApplicationContext(), dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
             }
         });
-
-
     }
-
 
 
     @Override
@@ -91,7 +87,7 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
 
     public void startContador(){
         startActivity(new Intent(this, Contador.class));
-        //contador.countDownStart();
+
     }
 
 }

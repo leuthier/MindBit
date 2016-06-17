@@ -21,7 +21,7 @@ import br.com.mindbit.controleacesso.dominio.PrioridadeEvento;
 public class EventoDao {
 
     private static DatabaseHelper databaseHelper;
-    private SQLiteDatabase db;
+
     private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
     private static Context contexto;
     private static EventoDao instanciaEventoDao = new EventoDao();
@@ -35,7 +35,7 @@ public class EventoDao {
     }
 
     public void cadastrarEvento(Evento evento) {
-        db = databaseHelper.getWritableDatabase();
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
         values.put(DatabaseHelper.EVENTO_ID, evento.getId());
@@ -101,7 +101,7 @@ public class EventoDao {
     }
 
     public ArrayList<Evento> buscarEventoNomeParcial(int id, String nome){
-        db = databaseHelper.getReadableDatabase();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
         ArrayList<Evento> listaEventos = new ArrayList<Evento>();
 
@@ -127,7 +127,7 @@ public class EventoDao {
     }
 
     public List<Evento> buscarEventoDescricaoParcial(String descricao) {
-        db = databaseHelper.getReadableDatabase();
+        SQLiteDatabase  db = databaseHelper.getReadableDatabase();
 
         List<Evento> listaEventos = new ArrayList<Evento>();
 
@@ -153,7 +153,7 @@ public class EventoDao {
 
     public Evento buscarEventoId(int id) {
         Evento evento = null;
-        db = databaseHelper.getReadableDatabase();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " +
                 databaseHelper.EVENTO_ID + " =?", new String[]{String.valueOf(id)});
 
@@ -170,7 +170,7 @@ public class EventoDao {
         Evento evento = null;
         ArrayList<Evento> listaEventos = new ArrayList<Evento>();
 
-        db=databaseHelper.getReadableDatabase();
+        SQLiteDatabase db=databaseHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " +
                 databaseHelper.PESSOA_CRIADORA_ID + " =?", new String[]{String.valueOf(id)});
 

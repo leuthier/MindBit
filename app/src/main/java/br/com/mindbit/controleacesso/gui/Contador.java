@@ -1,6 +1,5 @@
 package br.com.mindbit.controleacesso.gui;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
@@ -10,16 +9,11 @@ import br.com.mindbit.R;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by Ariana on 16/06/2016.
- */
 public class Contador extends ActionBarActivity {
     private TextView txtTimerDay;
     private TextView tvEvent;
     private Handler handler;
     private Runnable runnable;
-    private String dataEvento;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

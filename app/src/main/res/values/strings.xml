@@ -92,5 +92,8 @@
     <string name="add_disciplina_error">Disciplina já cadastrada</string>
     <string name="add_disciplina_sucess">Disciplina cadastrada com sucesso!</string>
     <string name="evento_btn_adicionar">Adicionar</string>
+    <string name="add_evento_sucesso">"Evento cadastrado com sucesso"</string>
+
+    <string name="countdownleft">Nome do Evento</string>
 
 </resources>
