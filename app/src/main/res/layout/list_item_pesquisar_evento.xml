@@ -4,19 +4,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <TextView
 
         android:id="@+id/txtitem_data_evento"
-        android:layout_width="wrap_content"
+        android:layout_width="179dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textColor="@android:color/darker_gray"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
-        android:text="@string/listview_evento_data"
         android:textSize="12sp"
         />
 
@@ -27,10 +27,9 @@
         android:weightSum="1">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/img_evento"
-            android:layout_weight="0.16" />
+            android:layout_width="21dp"
+            android:layout_height="23dp"
+            android:id="@+id/img_evento" />
 
         <TextView
             android:id="@+id/txtitem_nome_evento"
@@ -52,7 +51,6 @@
         android:layout_marginRight="16dp"
         android:layout_marginLeft="28dp"
         android:textSize="14sp"
-        android:text="descrição"
-        />
+        android:layout_weight="0.02" />
 
 </LinearLayout>

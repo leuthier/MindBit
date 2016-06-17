@@ -13,9 +13,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import br.com.mindbit.R;
-import br.com.mindbit.controleacesso.dominio.Adapter;
 import br.com.mindbit.controleacesso.dominio.Evento;
-import br.com.mindbit.controleacesso.dominio.EventoAdapter;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.negocio.EventoNegocio;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;

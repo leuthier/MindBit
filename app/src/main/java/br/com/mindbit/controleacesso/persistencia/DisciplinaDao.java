@@ -11,9 +11,6 @@ import java.util.List;
 import br.com.mindbit.controleacesso.dominio.Disciplina;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 
-/**
- * Created by Tiago on 15/06/2016.
- */
 public class DisciplinaDao {
 
     private static DatabaseHelper databaseHelper;

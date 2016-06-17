@@ -91,5 +91,6 @@
     <string name="add_disciplina_tamanho_codigo_invalido">O código deve ter 5 caracteres</string>
     <string name="add_disciplina_error">Disciplina já cadastrada</string>
     <string name="add_disciplina_sucess">Disciplina cadastrada com sucesso!</string>
+    <string name="evento_btn_adicionar">Adicionar</string>
 
 </resources>
