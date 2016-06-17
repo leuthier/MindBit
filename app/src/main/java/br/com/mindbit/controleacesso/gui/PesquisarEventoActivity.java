@@ -13,20 +13,17 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import br.com.mindbit.R;
+import br.com.mindbit.controleacesso.dominio.Adapter;
 import br.com.mindbit.controleacesso.dominio.Evento;
+import br.com.mindbit.controleacesso.dominio.EventoAdapter;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.negocio.EventoNegocio;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 
 public class PesquisarEventoActivity extends AppCompatActivity {
-    private Resources resources;
-
     private ArrayList<Evento> eventosPessoa;
-    private ArrayList<String> nomesEventos = new ArrayList<>();
-    private ArrayList<String> descricoesEvento = new ArrayList<>();
-    private ArrayList<Evento> listItems;
-    private ArrayAdapter<String> nomeAdapter;
-    private ArrayAdapter<String> descricaoAdapter;
+    private ArrayList<Evento> eventosEncontrados;
+    private ArrayList<Evento> listItems = new ArrayList<>();
 
     private Context context;
     private ListView listView;
@@ -35,6 +32,7 @@ public class PesquisarEventoActivity extends AppCompatActivity {
     private EventoNegocio eventoNegocio;
     private SessaoUsuario sessao;
     private Pessoa pessoaLogada;
+    private EventoAdapter adapter;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +47,7 @@ public class PesquisarEventoActivity extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.listview_eventos);
         campoPesquisa = (EditText)findViewById(R.id.edtsearch);
         initList();
+        adapter = new EventoAdapter(this,listItems);
 
         campoPesquisa.addTextChangedListener(new TextWatcher() {
 
@@ -60,46 +59,33 @@ public class PesquisarEventoActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int
                     count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
                 if (s.toString().equals("")) {
                     initList();
                 } else {
                     searchItem(s.toString().trim());
                 }
             }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
         });
     }
 
     public void searchItem(String textToSearch){
-        eventosPessoa = eventoNegocio.listarEventoCriador(pessoaLogada.getId());
-        for(Evento evento: eventosPessoa){
-            if(!evento.getNome().contains(textToSearch)){
-                nomesEventos.remove(evento.getNome());
-            }
-        }if(nomesEventos.isEmpty()){
-            nomesEventos.add(getString(R.string.activity_search_evento_not_found));
-        }
-        nomeAdapter.notifyDataSetChanged();
+
+        int id = pessoaLogada.getId();
+        eventosEncontrados = (ArrayList<Evento>) eventoNegocio.consultarEventoPorNomeParcial(id, textToSearch);
+
+        adapter = new EventoAdapter(this, eventosEncontrados);
+        listView.setAdapter(adapter);
     }
 
     public void initList(){
         eventosPessoa = eventoNegocio.listarEventoCriador(pessoaLogada.getId());
-        if(!nomesEventos.isEmpty()){
-            nomesEventos.remove(0);
-        }
-        for (Evento evento: eventosPessoa){
-            nomesEventos.add(evento.getNome());
-            descricoesEvento.add(evento.getDescricao());
-        }
+        adapter = new EventoAdapter(this, eventosPessoa);
 
-        nomeAdapter = new ArrayAdapter<>(this, R.layout.list_item_pesquisar_evento, R.id.txtitem_nome_evento, nomesEventos);
-       // nomeAdapter = new ArrayAdapter<>(this, R.layout.list_item_pesquisar_evento, R.id.txtitem_descricao_evento, descricoesEvento);
-        listView.setAdapter(nomeAdapter);
-//        listView.setAdapter(descricaoAdapter);
-
-
+        listView.setAdapter(adapter);
     }
+
 }

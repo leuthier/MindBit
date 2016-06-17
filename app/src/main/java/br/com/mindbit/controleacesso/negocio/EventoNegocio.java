@@ -26,8 +26,8 @@ public class EventoNegocio {
         return instancia;
     }
 
-    public List<Evento> consultarEventoPorNomeParcial(String nome){
-        return eventoDao.buscarEventoNomeParcial(nome);
+    public List<Evento> consultarEventoPorNomeParcial(int id, String nome){
+        return eventoDao.buscarEventoNomeParcial(id, nome);
     }
 
 

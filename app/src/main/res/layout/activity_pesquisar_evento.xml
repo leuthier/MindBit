@@ -14,7 +14,7 @@
         android:id="@+id/edtsearch"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Search"
+        android:hint="Digite o que deseja buscar"
         />
 
     <ListView

@@ -20,16 +20,29 @@
         android:textSize="12sp"
         />
 
-    <TextView
-        android:id="@+id/txtitem_nome_evento"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="nome do evento"
-        />
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/img_evento"
+            android:layout_weight="0.16" />
+
+        <TextView
+            android:id="@+id/txtitem_nome_evento"
+            android:layout_width="181dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="28dp"
+            android:layout_marginLeft="0dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="nome do evento"
+            android:layout_weight="0.41" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/txtitem_descricao_evento"
@@ -37,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginRight="16dp"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="28dp"
         android:textSize="14sp"
         android:text="descrição"
         />

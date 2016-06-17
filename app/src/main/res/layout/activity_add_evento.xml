@@ -115,7 +115,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/btn_add_evento"
+                android:text="@string/evento_btn_adicionar"
                 android:id="@+id/btnAdicionarEvento"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
