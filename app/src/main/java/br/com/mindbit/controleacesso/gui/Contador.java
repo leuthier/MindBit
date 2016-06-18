@@ -6,6 +6,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.TextView;
 import br.com.mindbit.R;
+import br.com.mindbit.infra.gui.GuiUtil;
+import br.com.mindbit.infra.gui.MindbitException;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -52,8 +56,8 @@ public class Contador extends ActionBarActivity {
                         tvEvent.setText("The event started!");
                         textViewGone();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (ParseException e) {
+                    GuiUtil.exibirMsg(Contador.this,e.getMessage());
                 }
             }
         };

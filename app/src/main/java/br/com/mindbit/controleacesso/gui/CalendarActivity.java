@@ -32,9 +32,8 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
         SessaoUsuario sessao = SessaoUsuario.getInstancia();
 
         calendar = (CalendarView) findViewById(R.id.calendarView);
-
         startPerfilActivty();
-        startContador();
+//        startContador();
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -42,6 +41,7 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
                 Toast.makeText(getApplicationContext(), dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
             }
         });
+
     }
 
 

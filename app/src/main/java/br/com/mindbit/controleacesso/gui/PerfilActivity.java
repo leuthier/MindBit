@@ -82,15 +82,15 @@ public class PerfilActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_logout) {
-            deslogar(pessoaLogada.getUsuario());
+            deslogar();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void deslogar(Usuario usuario){
-        sessaoUsuario.invalidarSessao(usuario);
+    public void deslogar(){
+        sessaoUsuario.invalidarSessao();
         startLoginActivity();
     }
 
