@@ -168,7 +168,7 @@ public class AddEventoActivity extends AppCompatActivity{
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                nivelPrioridadeINT = ((PrioridadeEvento) parent.getAdapter().getItem(position)).getCodigo();//caso pegar int
+               // nivelPrioridadeINT = ((PrioridadeEvento) parent.getAdapter().getItem(position));//caso pegar int
                 prioridade = ((PrioridadeEvento) parent.getAdapter().getItem(position));
             }
 

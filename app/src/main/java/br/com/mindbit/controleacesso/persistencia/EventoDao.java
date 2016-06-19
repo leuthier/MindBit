@@ -100,45 +100,13 @@ public class EventoDao {
         return evento;
     }
 
-    public ArrayList<Evento> buscarEventoNomeParcial(int id, String nome){
+    public ArrayList<Evento> buscarNomeDescricaoParcial(int id, String nome){
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
         ArrayList<Evento> listaEventos = new ArrayList<Evento>();
 
-        Cursor cursor = db.rawQuery("SELECT "+databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_ID+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_NOME+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_DESCRICAO+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_DATA_INICIO+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_DATA_FIM+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.PESSOA_CRIADORA_ID+
-                " FROM " + databaseHelper.TABELA_EVENTO + " WHERE "+ databaseHelper.PESSOA_CRIADORA_ID+" = ? AND "
-                +databaseHelper.EVENTO_NOME+" LIKE ?", new String[] {String.valueOf(id),"%"+nome+"%"});
-
-        Evento evento = null;
-        if(cursor.getCount() > 0){
-            while(cursor.moveToNext()){
-                evento = criarEvento(cursor);
-                listaEventos.add(evento);
-            }
-        }
-        cursor.close();
-        return listaEventos;
-    }
-
-    public List<Evento> buscarEventoDescricaoParcial(String descricao) {
-        SQLiteDatabase  db = databaseHelper.getReadableDatabase();
-
-        List<Evento> listaEventos = new ArrayList<Evento>();
-
-        Cursor cursor = db.rawQuery("SELECT "+databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_ID+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_NOME+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_DESCRICAO+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_DATA_INICIO+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_DATA_FIM+", "+
-                databaseHelper.TABELA_EVENTO+"."+databaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM+", "+
-                " FROM " + databaseHelper.TABELA_EVENTO + " WHERE "
-                +databaseHelper.EVENTO_DESCRICAO+" LIKE ?", new String[] {"%"+descricao+"%"});
+        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE "+ databaseHelper.PESSOA_CRIADORA_ID+" = ? AND ("
+                +databaseHelper.EVENTO_NOME+" LIKE ? OR " +databaseHelper.EVENTO_DESCRICAO+ " LIKE ?)", new String[] {String.valueOf(id),"%"+nome+"%","%"+nome+"%"});
 
         Evento evento = null;
         if(cursor.getCount() > 0){

@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mindbit.controleacesso.dominio.Evento;
-import br.com.mindbit.controleacesso.gui.AddEventoActivity;
 import br.com.mindbit.controleacesso.persistencia.EventoDao;
-import br.com.mindbit.infra.gui.GuiUtil;
 import br.com.mindbit.infra.gui.MindbitException;
 
 public class EventoNegocio {
@@ -26,8 +24,8 @@ public class EventoNegocio {
         return instancia;
     }
 
-    public List<Evento> consultarEventoPorNomeParcial(int id, String nome){
-        return eventoDao.buscarEventoNomeParcial(id, nome);
+    public List<Evento> consultarNomeDescricaoParcial(int id, String nome){
+        return eventoDao.buscarNomeDescricaoParcial(id, nome);
     }
 
 

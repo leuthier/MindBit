@@ -85,9 +85,9 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
         startActivity(new Intent(this, PerfilActivity.class));
     }
 
-    public void startContador(){
+  /*  public void startContador(){
         startActivity(new Intent(this, Contador.class));
 
     }
-
+*/
 }

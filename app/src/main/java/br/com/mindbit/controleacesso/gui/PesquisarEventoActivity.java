@@ -71,7 +71,7 @@ public class PesquisarEventoActivity extends AppCompatActivity {
     public void searchItem(String textToSearch){
 
         int id = pessoaLogada.getId();
-        eventosEncontrados = (ArrayList<Evento>) eventoNegocio.consultarEventoPorNomeParcial(id, textToSearch);
+        eventosEncontrados = (ArrayList<Evento>) eventoNegocio.consultarNomeDescricaoParcial(id, textToSearch);
 
         adapter = new EventoAdapter(this, eventosEncontrados);
         listView.setAdapter(adapter);
