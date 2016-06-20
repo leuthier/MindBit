@@ -23,8 +23,8 @@ public class Contador extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        txtTimerDay = (TextView) findViewById(R.id.txtTimerDay);
-        tvEvent = (TextView) findViewById(R.id.tvhappyevent);
+     //   txtTimerDay = (TextView) findViewById(R.id.txtTimerDay);
+       // tvEvent = (TextView) findViewById(R.id.tvhappyevent);
         countDownStart();
     }
     public void countDownStart() {
@@ -64,7 +64,7 @@ public class Contador extends ActionBarActivity {
         handler.postDelayed(runnable, 1 * 1000);
     }
     public void textViewGone() {
-        findViewById(R.id.LinearLayout10).setVisibility(View.GONE);
-        findViewById(R.id.texView_nome_evento).setVisibility(View.GONE);
+        //findViewById(R.id.LinearLayout10).setVisibility(View.GONE);
+        //findViewById(R.id.texView_nome_evento).setVisibility(View.GONE);
     }
 }

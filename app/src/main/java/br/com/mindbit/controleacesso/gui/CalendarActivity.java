@@ -23,7 +23,7 @@ import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
 public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.MenuListener {
     private CalendarView calendar;
-    private Contador contador = new Contador();
+  //  private Contador contador = new Contador();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
