@@ -31,8 +31,8 @@ public class ScriptTableSQL {
         eventoBuilder.append("_id_evento   integer primary key autoincrement, ");
         eventoBuilder.append("nome_evento  text not null unique,  ");
         eventoBuilder.append("descricao_evento  text not null, ");
-        eventoBuilder.append("data_inicio_evento  bigint not null, ");
-        eventoBuilder.append("data_fim_evento  bigint not null, ");
+        eventoBuilder.append("data_inicio_evento  text not null, ");
+        eventoBuilder.append("data_fim_evento  text not null, ");
         eventoBuilder.append("nivel_prioridade_enum text not null, ");
         eventoBuilder.append("id_pessoa_criadora  integer, ");
         eventoBuilder.append("foreign key ( id_pessoa_criadora ) references  tabela_pessoa ( _id_pessoa ) );");

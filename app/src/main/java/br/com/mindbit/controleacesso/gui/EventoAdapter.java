@@ -50,21 +50,10 @@ public class EventoAdapter extends BaseAdapter {
 
             Evento item = itens.get(posicao);
 
-            Calendar c = Calendar.getInstance();
-            //Set time in milliseconds
-            c.setTimeInMillis(item.getDataInicio());
-            int mYear = c.get(Calendar.YEAR);
-            int mMonth = c.get(Calendar.MONTH);
-            int mDay = c.get(Calendar.DAY_OF_MONTH);
-            int hr = c.get(Calendar.HOUR);
-            int min = c.get(Calendar.MINUTE);
-
             view = mInflater.inflate(R.layout.list_item_pesquisar_evento, null);
-            int mesCerto = mMonth +1;
-            String data = mDay + "/" + mesCerto + "/" + mYear + " " + hr + ":" + min;
             ((TextView) view.findViewById(R.id.txtitem_nome_evento)).setText(item.getNome());
             ((TextView) view.findViewById(R.id.txtitem_descricao_evento)).setText(item.getDescricao());
-            ((TextView) view.findViewById(R.id.txtitem_data_evento)).setText((data));
+        //    ((TextView) view.findViewById(R.id.txtitem_data_evento)).setText(item.getDataInicio());
 
             return view;
         }

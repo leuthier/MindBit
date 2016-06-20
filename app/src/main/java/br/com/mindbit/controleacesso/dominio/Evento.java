@@ -8,13 +8,13 @@ public class Evento {
     private int idPessoaCriadora;
     private String nome;
     private String descricao;
-    private long dataInicio;
-    private long dataFim;
+    private Date dataInicio;
+    private Date dataFim;
     private Enum<PrioridadeEvento> nivelPrioridadeEnum;
 
     public Evento(){
-        this.dataInicio=0;
-        this.dataFim=0;
+        this.dataInicio=null;
+        this.dataFim=null;
         this.nome=null;
         this.descricao=null;
         this.nivelPrioridadeEnum=null;
@@ -29,11 +29,11 @@ public class Evento {
     public String getDescricao() {return descricao;}
     public void setDescricao(String descricao) {this.descricao = descricao;}
 
-    public long getDataInicio() {return dataInicio;}
-    public void setDataInicio(long dataInicio) {this.dataInicio = dataInicio;}
+    public Date getDataInicio() {return dataInicio;}
+    public void setDataInicio(Date dataInicio) {this.dataInicio = dataInicio;}
 
-    public long getDataFim() {return dataFim;}
-    public void setDataFim(long dataFim) {this.dataFim = dataFim;}
+    public Date getDataFim() {return dataFim;}
+    public void setDataFim(Date dataFim) {this.dataFim = dataFim;}
 
     public Enum<PrioridadeEvento> getNivelPrioridadeEnum() {return nivelPrioridadeEnum;}
     public void setNivelPrioridadeEnum(Enum<PrioridadeEvento> nivelPrioridadeEnum) {this.nivelPrioridadeEnum = nivelPrioridadeEnum;}
