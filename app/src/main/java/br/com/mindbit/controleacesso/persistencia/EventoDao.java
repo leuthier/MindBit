@@ -4,16 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.nfc.FormatException;
 
-
-import java.sql.Date;
-import java.sql.Time;
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
-import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 import br.com.mindbit.controleacesso.dominio.Evento;
 import br.com.mindbit.controleacesso.dominio.PrioridadeEvento;
@@ -46,11 +44,24 @@ public class EventoDao {
         values = new ContentValues();
         values.put(DatabaseHelper.EVENTO_NOME, evento.getNome());
         values.put(DatabaseHelper.EVENTO_DESCRICAO, evento.getDescricao().toString());
-        values.put(DatabaseHelper.EVENTO_DATA_INICIO, evento.getDataInicio().toString());
-        values.put(DatabaseHelper.EVENTO_DATA_FIM, evento.getDataFim().toString());
         values.put(DatabaseHelper.EVENTO_NIVEL_PRIORIDADE_ENUM, evento.getNivelPrioridadeEnum().ordinal());
         int idPessoa = SessaoUsuario.getInstancia().getPessoaLogada().getId();
         values.put(DatabaseHelper.PESSOA_CRIADORA_ID, idPessoa);
+
+        //apagar dps
+        values.put(DatabaseHelper.EVENTO_DATA_INICIO,evento.getDataInicio().toString());
+        values.put(DatabaseHelper.EVENTO_DATA_FIM,evento.getDataFim().toString());
+
+        //correção gabriel
+       /* SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        String dataInicio = evento.getDataInicio().toString();
+        String dataFim = evento.getDataFim().toString();
+        try{
+            values.put(DatabaseHelper.EVENTO_DATA_INICIO,simpleDateFormat.format(dataInicio));
+            values.put(DatabaseHelper.EVENTO_DATA_FIM,simpleDateFormat.format(dataFim));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
 
         db.insert(DatabaseHelper.TABELA_EVENTO, null, values);
         db.close();
