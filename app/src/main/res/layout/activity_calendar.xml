@@ -19,80 +19,10 @@
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:name="br.com.mindbit.controleacesso.gui.MyFragment"
+        android:name="br.com.mindbit.controleacesso.gui.ContadorFragment"
         android:id="@+id/fragment"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="57dp" />
 
-    <!--   <RelativeLayout
-           android:id="@+id/relativeLayout"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_centerVertical="true"
-           android:layout_centerHorizontal="true">
-           <LinearLayout
-               android:id="@+id/LinearLayout"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:gravity="center"
-               android:orientation="horizontal">
-           <TextView
-               android:id="@+id/tvhappyevent"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:paddingLeft="50dp"
-               android:gravity="center"
-               android:singleLine="true"
-               android:text="Merry Christmas 2015!"
-               android:textColor="#fff"
-               android:textSize="24sp"
-               android:textStyle="bold"
-               android:visibility="gone" />
-
-
-           </LinearLayout>
-       </RelativeLayout>
-       <TextView
-           android:id="@+id/texView_nome_evento"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="@string/countdownleft"
-           android:textSize="35dp"
-           android:textColor="#263238"
-           android:textStyle="bold"
-           android:layout_alignParentBottom="true"
-           android:layout_centerHorizontal="true" />
-
-       <LinearLayout
-           android:id="@+id/LinearLayout10"
-           android:layout_width="wrap_content"
-           android:layout_height="140dp"
-           android:layout_weight="1"
-           android:background="@drawable/counter"
-           android:gravity="center"
-           android:orientation="vertical"
-           android:layout_above="@+id/texView_nome_evento"
-           android:layout_alignParentStart="true">
-           <TextView
-               android:id="@+id/txtTimerDay"
-               android:layout_width="240dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="3"
-               android:gravity="center"
-               android:textAppearance="?android:attr/textAppearanceLarge"
-               android:textColor="#263238"
-               android:textSize="35dp"
-               android:textStyle="bold" />
-           <TextView
-               android:id="@+id/txt_TimerDay"
-               android:layout_width="fill_parent"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:gravity="center_horizontal"
-               android:text="Dias"
-               android:textAppearance="?android:attr/textAppearanceSmall"
-               android:textColor="#263238"
-               android:textStyle="bold" />
-       </LinearLayout>-->
 </RelativeLayout>

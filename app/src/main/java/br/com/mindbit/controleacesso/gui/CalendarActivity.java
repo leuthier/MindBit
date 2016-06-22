@@ -1,17 +1,13 @@
 
 package br.com.mindbit.controleacesso.gui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.design.internal.NavigationMenu;
-import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
@@ -19,11 +15,9 @@ import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 import br.com.mindbit.infra.gui.GuiUtil;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
-import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
 public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.MenuListener {
     private CalendarView calendar;
-  //  private Contador contador = new Contador();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +27,6 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
 
         calendar = (CalendarView) findViewById(R.id.calendarView);
         startPerfilActivty();
-//        startContador();
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -85,9 +78,5 @@ public class CalendarActivity extends AppCompatActivity implements FabSpeedDial.
         startActivity(new Intent(this, PerfilActivity.class));
     }
 
-  /*  public void startContador(){
-        startActivity(new Intent(this, Contador.class));
 
-    }
-*/
 }
