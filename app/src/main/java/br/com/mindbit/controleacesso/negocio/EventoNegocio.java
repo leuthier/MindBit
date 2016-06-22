@@ -43,10 +43,6 @@ public class EventoNegocio {
         eventoDao.cadastrarEvento(evento);
     }
 
-    public ArrayList<Evento> listarEventosDia(int idPessoaCriadora){
-        return eventoDao.listarEventoDia(idPessoaCriadora);
-    }
-
     public ArrayList<Evento> listarEventoCriador(int idPessoaCriadora){
         return eventoDao.listarEventos(idPessoaCriadora);
     }

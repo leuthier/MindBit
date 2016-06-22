@@ -11,11 +11,9 @@ import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import br.com.mindbit.R;
-import br.com.mindbit.controleacesso.dominio.Evento;
 
 public class ContadorFragment extends Fragment {
     private TextView txtTimerDay;
@@ -24,7 +22,6 @@ public class ContadorFragment extends Fragment {
     private Handler handler;
     private Runnable runnable;
     private View view;
-    private ArrayList<Evento> eventosDia;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){

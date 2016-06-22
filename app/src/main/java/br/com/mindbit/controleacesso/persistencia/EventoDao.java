@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.nfc.FormatException;
+import android.util.Log;
 
 import java.text.DateFormat;
 import java.text.Format;
@@ -13,9 +14,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import br.com.mindbit.controleacesso.gui.PesquisarEventoActivity;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 import br.com.mindbit.controleacesso.dominio.Evento;
 import br.com.mindbit.controleacesso.dominio.PrioridadeEvento;
+import br.com.mindbit.infra.gui.GuiUtil;
 
 public class EventoDao {
 
@@ -76,6 +79,7 @@ public class EventoDao {
             evento.setDataInicio(simpleDateFormat.parse(initialDate));
             evento.setDataFim(simpleDateFormat.parse(finalDate));
         } catch (ParseException e) {
+            Log.e("erro","deu merda em!");
             e.printStackTrace();
         }
 
@@ -158,23 +162,5 @@ public class EventoDao {
         db.close();
         cursor.close();
         return listaEventos;
-    }
-
-    public ArrayList<Evento> listarEventoDia(int id){
-        Evento evento = null;
-        ArrayList<Evento> eventosDia = new ArrayList<>();
-
-        SQLiteDatabase db = databaseHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " +
-                databaseHelper.PESSOA_CRIADORA_ID + " =? ORDER BY "+ databaseHelper.EVENTO_DATA_INICIO +" ASC" , new String[]{String.valueOf(id)});
-
-        while (cursor.moveToNext()){
-            evento = criarEvento(cursor);
-            eventosDia.add(evento);
-        }
-
-        db.close();
-        cursor.close();
-        return eventosDia;
     }
 }

@@ -181,19 +181,16 @@ public class CadastroActivity extends Activity {
     }
 
     private boolean noHasSpaceCadastro(String login, String email, String senha) {
-       // int idxLogin = login.indexOf(" ");
-        int idxEmail = email.indexOf(" ");
-        int idxSenha = senha.indexOf(" ");
 
         if (login.indexOf(" ") != -1){
             editUsuarioLogin.requestFocus();
             editUsuarioLogin.setError(resources.getString(R.string.login_user_has_space));
             return true;
-        } else if (idxEmail != -1){
+        } else if (email.indexOf(" ") != -1){
             editPessoaEmail.requestFocus();
             editPessoaEmail.setError(resources.getString(R.string.login_user_has_space));
             return true;
-        }else if (idxSenha != -1){
+        }else if (senha.indexOf(" ") != -1){
             editUsuarioSenha.requestFocus();
             editUsuarioSenha.setError(resources.getString(R.string.signUp_password_invalid));
             return true;

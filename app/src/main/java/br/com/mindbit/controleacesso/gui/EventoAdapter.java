@@ -11,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import br.com.mindbit.R;
@@ -57,11 +59,12 @@ public class EventoAdapter extends BaseAdapter {
         {
 
             Evento item = itens.get(posicao);
-
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
             view = mInflater.inflate(R.layout.list_item_pesquisar_evento, null);
             ((TextView) view.findViewById(R.id.txtitem_nome_evento)).setText(item.getNome());
             ((TextView) view.findViewById(R.id.txtitem_descricao_evento)).setText(item.getDescricao());
-
+            String inicio = simpleDateFormat.format(addOneMonth(item.getDataInicio()));
+            ((TextView) view.findViewById(R.id.txtitem_data_evento)).setText(inicio);
             if (item.getNivelPrioridadeEnum().ordinal() == 0 ) {
                 ((ImageView) view.findViewById(R.id.img_evento)).setImageResource(R.drawable.bola_verde);
                 return view;
@@ -74,4 +77,11 @@ public class EventoAdapter extends BaseAdapter {
             }
             return view;
         }
+    public static Date addOneMonth(Date date)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.MONTH, 1);
+        return cal.getTime();
+    }
     }
