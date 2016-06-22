@@ -17,7 +17,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
-import java.sql.Time;
+
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -67,6 +68,8 @@ public class AddEventoActivity extends AppCompatActivity{
     private Date dataAtual;
     private Date inicio;
     private Date fim;
+    private static final String DATE_FORMAT = "dd-MM-yyyy HH:mm";
+    private static final DateFormat DATE_FORMATTER = new SimpleDateFormat(DATE_FORMAT);
 
 
     @Override
@@ -171,16 +174,7 @@ public class AddEventoActivity extends AppCompatActivity{
             }
         });
     }
-    private void setHora(Date date,Time time){
-        date.setHours(time.getHours());
-        date.setMinutes(time.getMinutes());
-    }
-    private void setDia(Date date,Calendar calendar){
-        date.setDate(calendar.DAY_OF_MONTH);
-        date.setMonth(calendar.MONTH);
-        date.setYear(calendar.YEAR);
-    }
-    private void setCamposAddEvento(){
+        private void setCamposAddEvento(){
 
         calendar = Calendar.getInstance();
         setActualMoment();
@@ -213,7 +207,7 @@ public class AddEventoActivity extends AppCompatActivity{
         descricaoEvento = edtEventoDescricao.getText().toString().trim();
         horaInicio = edtEventoHoraInicio.getText().toString().trim();
         horaFim = edtEventoHoraFim.getText().toString().trim();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        SimpleDateFormat simpleDateFormat = (SimpleDateFormat) DATE_FORMATTER;
         inicio = simpleDateFormat.parse(dataInicio + " " + horaInicio );
         fim = simpleDateFormat.parse(dataFim + " " + horaFim);
         setActualMoment();

@@ -9,7 +9,6 @@ public enum PrioridadeEvento {
         this.descricao = descricao;
     }
 
-
     public String getDescricao(){
         return descricao;
     }

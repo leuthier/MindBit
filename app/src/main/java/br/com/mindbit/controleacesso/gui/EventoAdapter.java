@@ -1,23 +1,31 @@
 package br.com.mindbit.controleacesso.gui;
 
 import android.content.Context;
+import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.List;
 
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.dominio.Evento;
+import br.com.mindbit.controleacesso.dominio.PrioridadeEvento;
+import br.com.mindbit.controleacesso.persistencia.EventoDao;
 import br.com.mindbit.infra.gui.GuiUtil;
 
 public class EventoAdapter extends BaseAdapter {
         private LayoutInflater mInflater;
         private List<Evento> itens;
+        private PrioridadeEvento prioridadeEvento;
+        private EventoDao eventoDao;
+        private Evento evento;
 
         public EventoAdapter(Context context, List<Evento> itens)
         {
@@ -53,8 +61,17 @@ public class EventoAdapter extends BaseAdapter {
             view = mInflater.inflate(R.layout.list_item_pesquisar_evento, null);
             ((TextView) view.findViewById(R.id.txtitem_nome_evento)).setText(item.getNome());
             ((TextView) view.findViewById(R.id.txtitem_descricao_evento)).setText(item.getDescricao());
-        //    ((TextView) view.findViewById(R.id.txtitem_data_evento)).setText(item.getDataInicio());
 
+            if (item.getNivelPrioridadeEnum().ordinal() == 0 ) {
+                ((ImageView) view.findViewById(R.id.img_evento)).setImageResource(R.drawable.bola_verde);
+                return view;
+            }else if (item.getNivelPrioridadeEnum().ordinal() == 1) {
+                ((ImageView) view.findViewById(R.id.img_evento)).setImageResource(R.drawable.bola_amarela);
+                return view;
+            }else if (item.getNivelPrioridadeEnum().ordinal() == 2) {
+                ((ImageView) view.findViewById(R.id.img_evento)).setImageResource(R.drawable.bola_vermelha);
+                return view;
+            }
             return view;
         }
     }
