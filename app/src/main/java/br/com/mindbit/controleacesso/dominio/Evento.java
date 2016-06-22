@@ -3,7 +3,7 @@ package br.com.mindbit.controleacesso.dominio;
 import java.sql.Time;
 import java.util.Date;
 
-public class Evento {
+public class   Evento {
     private int id;
     private int idPessoaCriadora;
     private String nome;

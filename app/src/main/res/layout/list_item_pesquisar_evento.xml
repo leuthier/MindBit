@@ -27,8 +27,8 @@
         android:weightSum="1">
 
         <ImageView
-            android:layout_width="21dp"
-            android:layout_height="23dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:id="@+id/img_evento" />
 
         <TextView
@@ -40,7 +40,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="nome do evento"
-            android:layout_weight="0.41" />
+            android:layout_weight="0.26" />
     </LinearLayout>
 
     <TextView

@@ -57,7 +57,7 @@ public class Contador extends ActionBarActivity {
                         textViewGone();
                     }
                 } catch (ParseException e) {
-                    GuiUtil.exibirMsg(Contador.this,e.getMessage());
+                    //GuiUtil.exibirMsg(Contador.this,e.getMessage());
                 }
             }
         };
