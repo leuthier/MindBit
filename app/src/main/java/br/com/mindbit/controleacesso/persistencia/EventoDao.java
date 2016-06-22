@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.nfc.FormatException;
 
+import java.text.DateFormat;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +20,8 @@ import br.com.mindbit.controleacesso.dominio.PrioridadeEvento;
 public class EventoDao {
 
     private static DatabaseHelper databaseHelper;
+    private static final String DATE_FORMAT = "dd-MM-yyyy HH:mm";
+    private static final DateFormat DATE_FORMATTER = new SimpleDateFormat(DATE_FORMAT);
 
     private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
     private static Context contexto;
@@ -48,20 +51,14 @@ public class EventoDao {
         int idPessoa = SessaoUsuario.getInstancia().getPessoaLogada().getId();
         values.put(DatabaseHelper.PESSOA_CRIADORA_ID, idPessoa);
 
-        //apagar dps
-        values.put(DatabaseHelper.EVENTO_DATA_INICIO,evento.getDataInicio().toString());
-        values.put(DatabaseHelper.EVENTO_DATA_FIM,evento.getDataFim().toString());
+        SimpleDateFormat simpleDateFormat = (SimpleDateFormat) DATE_FORMATTER;
 
-        //correção gabriel
-       /* SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-        String dataInicio = evento.getDataInicio().toString();
-        String dataFim = evento.getDataFim().toString();
         try{
-            values.put(DatabaseHelper.EVENTO_DATA_INICIO,simpleDateFormat.format(dataInicio));
-            values.put(DatabaseHelper.EVENTO_DATA_FIM,simpleDateFormat.format(dataFim));
+            values.put(DatabaseHelper.EVENTO_DATA_INICIO,simpleDateFormat.format(evento.getDataInicio()));
+            values.put(DatabaseHelper.EVENTO_DATA_FIM,simpleDateFormat.format(evento.getDataFim()));
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
 
         db.insert(DatabaseHelper.TABELA_EVENTO, null, values);
         db.close();
