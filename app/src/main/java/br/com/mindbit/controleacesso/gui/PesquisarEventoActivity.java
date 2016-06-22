@@ -78,7 +78,8 @@ public class PesquisarEventoActivity extends AppCompatActivity {
     }
 
     public void initList(){
-        eventosPessoa = eventoNegocio.listarEventoCriador(pessoaLogada.getId());
+        //eventosPessoa = eventoNegocio.listarEventoCriador(pessoaLogada.getId());
+        eventosPessoa = eventoNegocio.listarEventosDia(pessoaLogada.getId());
         adapter = new EventoAdapter(this, eventosPessoa);
 
         listView.setAdapter(adapter);
