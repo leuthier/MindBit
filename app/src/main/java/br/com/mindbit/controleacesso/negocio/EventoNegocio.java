@@ -55,6 +55,10 @@ public class EventoNegocio {
         return eventoDao.listarEventoProximo(idPessoaCriadora);
     }
 
+    public ArrayList<Evento> listarEventosDia(String data, int idPessoaCriadora) throws MindbitException{
+        return eventoDao.listarEventoData(data,idPessoaCriadora);
+    }
+
     public Evento salvarEvento(Evento evento) throws MindbitException{
         evento = null;
         evento = eventoDao.buscarEventoNome(evento.getNome());

@@ -166,7 +166,7 @@ public class EventoDao {
 
     public ArrayList<Evento> listarEventoProximo(int id) throws MindbitException {
         Evento evento = null;
-        ArrayList<Evento> eventosDia = new ArrayList<>();
+        ArrayList<Evento> eventosCriador = new ArrayList<>();
 
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " +
@@ -174,9 +174,26 @@ public class EventoDao {
 
         while (cursor.moveToNext()){
             evento = criarEvento(cursor);
-            eventosDia.add(evento);
+            eventosCriador.add(evento);
         }
 
+        db.close();
+        cursor.close();
+        return eventosCriador;
+    }
+
+    public ArrayList<Evento> listarEventoData(String data, int id)throws MindbitException{
+        Evento evento = null;
+        ArrayList eventosDia = new ArrayList<>();
+
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " +
+                databaseHelper.PESSOA_CRIADORA_ID + " =? AND "+ databaseHelper.EVENTO_DATA_INICIO +" LIKE ?" , new String[]{String.valueOf(id),data+"%"});
+
+    while (cursor.moveToNext()){
+        evento = criarEvento(cursor);
+        eventosDia.add(evento);
+    }
         db.close();
         cursor.close();
         return eventosDia;
