@@ -21,6 +21,7 @@ import br.com.mindbit.controleacesso.negocio.EventoNegocio;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 import br.com.mindbit.infra.gui.MindbitException;
 
+
 public class ContadorFragment extends Fragment {
     private TextView txtTimerDay;
     private TextView txtDias;
@@ -52,7 +53,7 @@ public class ContadorFragment extends Fragment {
         return view;
     }
 
-    public Evento getProximoEvento() throws MindbitException {
+    public Evento getProximoEvento() throws MindbitException{
         eventosProximo = (ArrayList<Evento>) eventoNegocio.listarEventosProximo(pessoaLogada.getId());
         if (eventosProximo.isEmpty()){
             return null;
@@ -66,7 +67,9 @@ public class ContadorFragment extends Fragment {
             }
             return null;
         }
+
     }
+
 
     public void countDownStart() {
         handler = new Handler();
@@ -80,6 +83,7 @@ public class ContadorFragment extends Fragment {
                 } catch (MindbitException e) {
                     Log.e("Contador Fragment","contador error");
                 }
+
                 Date futureDate = null;
                 if (proximoEvento!=null) {
                     try {
@@ -95,19 +99,19 @@ public class ContadorFragment extends Fragment {
                             long seconds = futureDate.getSeconds() - futureDate.getSeconds();
 
                             String timer = "" + days;
-                            if (days!=0) {
-                                txtTimerDay.setText(timer);
+                            if (days!=0){
+                                txtTimerDay.setText("" + (days));
                                 txtDias.setText(R.string.dias);
                                 txtNomeEvento.setText(getProximoEvento().getNome());
-                            }else{
+                            }else {
                                 txtTimerDay.setText(R.string.hoje);
                                 txtDias.setText("");
                                 txtNomeEvento.setText(getProximoEvento().getNome());
+
                             }
                         }
                     } catch (Exception e) {
                         Log.e("Contador Fragment", "contador error ", e);
-                        //GuiUtil.exibirMsg(getParentFragment(), e.getMessage());
                     }
 
 
@@ -118,6 +122,6 @@ public class ContadorFragment extends Fragment {
                 }
             }
         };
-            handler.postDelayed(runnable, 1 * 1000);
+        handler.postDelayed(runnable, 1 * 1000);
     }
 }
