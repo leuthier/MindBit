@@ -290,15 +290,15 @@ public class AddEventoActivity extends AppCompatActivity{
                 evento.setNivelPrioridadeEnum(prioridade);
                 eventoNegocio.validarCadastroEvento(evento);
                 GuiUtil.exibirMsg(this, getString(R.string.add_evento_sucesso));
-                startCalendarActivity();
+                startNavigationActivity();
             } catch (MindbitException e) {
                 GuiUtil.exibirMsg(AddEventoActivity.this, e.getMessage());
 
             }
         }
     }
-    public void startCalendarActivity() {
-        startActivity(new Intent(this, CalendarActivity.class));
+    public void startNavigationActivity() {
+        startActivity(new Intent(this, PerfilActivity.class));
         finish();
     }
 

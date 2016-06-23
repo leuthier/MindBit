@@ -158,8 +158,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                 usuario = usuarioNegocio.logar(login, senhaCriptografada);
                 GuiUtil.exibirSaudacao(this);
-               // startNavigationActivity();
-                startCalendarActivity();
+                startNavigationActivity();
+
             }catch (MindbitException e){
                 GuiUtil.exibirMsg(LoginActivity.this, e.getMessage());
 
@@ -174,11 +174,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     public void startNavigationActivity() {
         startActivity(new Intent(this, PerfilActivity.class));
-        finish();
-    }
-
-    public void startCalendarActivity() {
-        startActivity(new Intent(this, CalendarActivity.class));
         finish();
     }
 

@@ -15,9 +15,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <include layout="@layout/activity_calendar"
+<!--  <include layout="@layout/activity_calendar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" />-->
+
+    <fragment
+        android:id="@+id/calendar_fragment"
+        android:name="br.com.mindbit.controleacesso.gui.CalendarFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></fragment>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"

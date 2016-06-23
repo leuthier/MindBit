@@ -106,15 +106,15 @@ public class AddDisciplinaActivity extends AppCompatActivity {
                 disciplina.setCodigo(codigoDisciplina);
                 disciplinaNegocio.validarCadastroDisciplina(disciplina);
                 GuiUtil.exibirMsg(this, resources.getString(R.string.add_disciplina_sucess));
-                startCalendarActivity();
+                startNavigationActivity();
             } catch (MindbitException e){
                 GuiUtil.exibirMsg(AddDisciplinaActivity.this, e.getMessage());
             }
         }
     }
 
-    public void startCalendarActivity(){
-        startActivity(new Intent(this, CalendarActivity.class)); finish();
+    public void startNavigationActivity(){
+        startActivity(new Intent(this, PerfilActivity.class)); finish();
     }
 }
 
