@@ -21,7 +21,8 @@
         android:id="@+id/listview_eventos"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:dividerHeight="3dp"
+        android:divider="#B0C4DE"
+        android:dividerHeight="1sp"
         >
 
     </ListView>
