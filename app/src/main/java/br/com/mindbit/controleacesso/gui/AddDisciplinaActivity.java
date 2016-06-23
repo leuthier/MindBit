@@ -108,7 +108,7 @@ public class AddDisciplinaActivity extends AppCompatActivity {
                 GuiUtil.exibirMsg(this, resources.getString(R.string.add_disciplina_sucess));
                 startCalendarActivity();
             } catch (MindbitException e){
-                startActivity(new Intent(this, CalendarActivity.class));
+                GuiUtil.exibirMsg(AddDisciplinaActivity.this, e.getMessage());
             }
         }
     }

@@ -28,12 +28,12 @@ public class EventoNegocio {
         return instancia;
     }
 
-    public List<Evento> consultarNomeDescricaoParcial(int id, String nome){
+    public List<Evento> consultarNomeDescricaoParcial(int id, String nome) throws MindbitException {
         return eventoDao.buscarNomeDescricaoParcial(id, nome);
     }
 
 
-    public Evento pesquisarPorNome(String nome){
+    public Evento pesquisarPorNome(String nome) throws MindbitException {
         Evento evento = null;
         evento = eventoDao.buscarEventoNome(nome);
         return evento;
@@ -47,11 +47,11 @@ public class EventoNegocio {
         eventoDao.cadastrarEvento(evento);
     }
 
-    public ArrayList<Evento> listarEventoCriador(int idPessoaCriadora){
+    public ArrayList<Evento> listarEventoCriador(int idPessoaCriadora) throws MindbitException {
         return eventoDao.listarEventos(idPessoaCriadora);
     }
 
-    public ArrayList<Evento> listarEventosProximo(int idPessoaCriadora){
+    public ArrayList<Evento> listarEventosProximo(int idPessoaCriadora) throws MindbitException {
         return eventoDao.listarEventoProximo(idPessoaCriadora);
     }
 

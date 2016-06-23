@@ -19,6 +19,7 @@ import br.com.mindbit.controleacesso.dominio.Evento;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.negocio.EventoNegocio;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
+import br.com.mindbit.infra.gui.MindbitException;
 
 public class ContadorFragment extends Fragment {
     private TextView txtTimerDay;
@@ -51,7 +52,7 @@ public class ContadorFragment extends Fragment {
         return view;
     }
 
-    public Evento getProximoEvento(){
+    public Evento getProximoEvento() throws MindbitException {
         eventosProximo = (ArrayList<Evento>) eventoNegocio.listarEventosProximo(pessoaLogada.getId());
         if (eventosProximo.isEmpty()){
             return null;
@@ -73,7 +74,12 @@ public class ContadorFragment extends Fragment {
             @Override
             public void run() {
                 handler.postDelayed(this, 1000);
-                Evento proximoEvento = getProximoEvento();
+                Evento proximoEvento = null;
+                try {
+                    proximoEvento = getProximoEvento();
+                } catch (MindbitException e) {
+                    Log.e("Contador Fragment","contador error");
+                }
                 Date futureDate = null;
                 if (proximoEvento!=null) {
                     try {
@@ -100,7 +106,7 @@ public class ContadorFragment extends Fragment {
                             }
                         }
                     } catch (Exception e) {
-                        Log.e("KS", "contador error ", e);
+                        Log.e("Contador Fragment", "contador error ", e);
                         //GuiUtil.exibirMsg(getParentFragment(), e.getMessage());
                     }
 

@@ -19,6 +19,7 @@ import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 import br.com.mindbit.controleacesso.dominio.Evento;
 import br.com.mindbit.controleacesso.dominio.PrioridadeEvento;
 import br.com.mindbit.infra.gui.GuiUtil;
+import br.com.mindbit.infra.gui.MindbitException;
 
 public class EventoDao {
 
@@ -38,7 +39,7 @@ public class EventoDao {
         return instanciaEventoDao;
     }
 
-    public void cadastrarEvento(Evento evento) {
+    public void cadastrarEvento(Evento evento) throws MindbitException {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -60,14 +61,14 @@ public class EventoDao {
             values.put(DatabaseHelper.EVENTO_DATA_INICIO,simpleDateFormat.format(evento.getDataInicio()));
             values.put(DatabaseHelper.EVENTO_DATA_FIM,simpleDateFormat.format(evento.getDataFim()));
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new MindbitException(e.getMessage());
         }
 
         db.insert(DatabaseHelper.TABELA_EVENTO, null, values);
         db.close();
     }
 
-    public Evento criarEvento(Cursor cursor) {
+    public Evento criarEvento(Cursor cursor) throws MindbitException {
         Evento evento = new Evento();
         evento.setId(cursor.getInt(0));
         evento.setNome(cursor.getString(1));
@@ -79,8 +80,7 @@ public class EventoDao {
             evento.setDataInicio(simpleDateFormat.parse(initialDate));
             evento.setDataFim(simpleDateFormat.parse(finalDate));
         } catch (ParseException e) {
-            Log.e("erro","deu merda em!");
-            e.printStackTrace();
+            throw new MindbitException(e.getMessage());
         }
 
 
@@ -95,7 +95,7 @@ public class EventoDao {
         return evento;
     }
 
-    public Evento buscarEventoNome(String nome) {
+    public Evento buscarEventoNome(String nome) throws MindbitException {
         SQLiteDatabase db;
         db = databaseHelper.getReadableDatabase();
 
@@ -112,7 +112,7 @@ public class EventoDao {
         return evento;
     }
 
-    public ArrayList<Evento> buscarNomeDescricaoParcial(int id, String nome){
+    public ArrayList<Evento> buscarNomeDescricaoParcial(int id, String nome) throws MindbitException {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
         ArrayList<Evento> listaEventos = new ArrayList<Evento>();
@@ -131,7 +131,7 @@ public class EventoDao {
         return listaEventos;
     }
 
-    public Evento buscarEventoId(int id) {
+    public Evento buscarEventoId(int id) throws MindbitException {
         Evento evento = null;
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " +
@@ -146,7 +146,7 @@ public class EventoDao {
         return evento;
     }
 
-    public ArrayList<Evento> listarEventos(int id){
+    public ArrayList<Evento> listarEventos(int id) throws MindbitException {
         Evento evento = null;
         ArrayList<Evento> listaEventos = new ArrayList<Evento>();
 
@@ -164,7 +164,7 @@ public class EventoDao {
         return listaEventos;
     }
 
-    public ArrayList<Evento> listarEventoProximo(int id){
+    public ArrayList<Evento> listarEventoProximo(int id) throws MindbitException {
         Evento evento = null;
         ArrayList<Evento> eventosDia = new ArrayList<>();
 
