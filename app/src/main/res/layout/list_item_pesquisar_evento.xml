@@ -8,17 +8,14 @@
     android:weightSum="1">
 
     <TextView
-
         android:id="@+id/txtitem_data_evento"
         android:layout_width="179dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textColor="@android:color/darker_gray"
-        android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:textSize="12sp"
-        />
+        android:layout_marginLeft="40dp"
+        android:textSize="12sp" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -29,27 +26,30 @@
         <ImageView
             android:layout_width="26dp"
             android:layout_height="26dp"
-            android:id="@+id/img_evento" />
+            android:id="@+id/img_evento"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp" />
 
         <TextView
             android:id="@+id/txtitem_nome_evento"
             android:layout_width="181dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="28dp"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="nome do evento"
-            android:layout_weight="0.26" />
+            android:layout_weight="0.26"
+            android:layout_marginTop="-6dp" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/txtitem_descricao_evento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="-5dp"
         android:layout_marginRight="16dp"
-        android:layout_marginLeft="28dp"
+        android:layout_marginLeft="46dp"
         android:textSize="14sp"
         android:layout_weight="0.02" />
 
