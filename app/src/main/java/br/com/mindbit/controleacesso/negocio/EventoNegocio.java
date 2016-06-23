@@ -24,6 +24,10 @@ public class EventoNegocio {
         return instancia;
     }
 
+    public static EventoNegocio getInstancia(){
+        return instancia;
+    }
+
     public List<Evento> consultarNomeDescricaoParcial(int id, String nome){
         return eventoDao.buscarNomeDescricaoParcial(id, nome);
     }
@@ -45,6 +49,10 @@ public class EventoNegocio {
 
     public ArrayList<Evento> listarEventoCriador(int idPessoaCriadora){
         return eventoDao.listarEventos(idPessoaCriadora);
+    }
+
+    public ArrayList<Evento> listarEventosProximo(int idPessoaCriadora){
+        return eventoDao.listarEventoProximo(idPessoaCriadora);
     }
 
     public Evento salvarEvento(Evento evento) throws MindbitException{

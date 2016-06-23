@@ -96,6 +96,7 @@
 
     <string name="countdownleft">Nome do Evento</string>
     <string name="sem_evento">Sem eventos próximos</string>
-    <string name="dias">Dias</string>
+    <string name="dias">Dia(s)</string>
+    <string name="hoje">Hoje</string>
 
 </resources>

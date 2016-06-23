@@ -163,4 +163,23 @@ public class EventoDao {
         cursor.close();
         return listaEventos;
     }
+
+    public ArrayList<Evento> listarEventoProximo(int id){
+        Evento evento = null;
+        ArrayList<Evento> eventosDia = new ArrayList<>();
+
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " +
+                databaseHelper.PESSOA_CRIADORA_ID + " =? ORDER BY "+ databaseHelper.EVENTO_DATA_INICIO +" ASC" , new String[]{String.valueOf(id)});
+
+        while (cursor.moveToNext()){
+            evento = criarEvento(cursor);
+            eventosDia.add(evento);
+        }
+
+        db.close();
+        cursor.close();
+        return eventosDia;
+    }
+
 }

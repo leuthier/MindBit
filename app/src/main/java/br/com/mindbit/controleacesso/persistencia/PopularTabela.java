@@ -33,7 +33,7 @@ public class PopularTabela {
         }
     }
 
-    public static void inserirEventos(SQLiteDatabase db){
+   /* public static void inserirEventos(SQLiteDatabase db){
         String[] eventos =
                 {"INSERT INTO `tabela_evento` (_id_evento,nome_evento,descricao_evento,data_inicio_evento," +
                         "data_fim_evento,nivel_prioridade_enum,'id_pessoa_criadora') VALUES (1,'evento1','descricao1','10-06-2017 10:00','10-06-2017 10:00','VERDE',1);",
@@ -48,5 +48,5 @@ public class PopularTabela {
         for (String evento : eventos){
             db.execSQL(evento);
         }
-    }
+    }*/
 }
