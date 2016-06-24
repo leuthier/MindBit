@@ -36,6 +36,8 @@ public class Pop extends Activity{
         sessao = SessaoUsuario.getInstancia();
         pessoaLogada = sessao.getPessoaLogada();
 
+        adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item);
+
         eventoNegocio = EventoNegocio.getInstancia(context);
 
         listViewEvento = (ListView) findViewById(R.id.pop_lista_evento);

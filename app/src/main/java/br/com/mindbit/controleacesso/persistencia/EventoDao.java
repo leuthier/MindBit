@@ -186,7 +186,6 @@ public class EventoDao {
         ArrayList eventosDia = new ArrayList<>();
 
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
-
         Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " + databaseHelper.PESSOA_CRIADORA_ID + " =? AND "
                 + databaseHelper.EVENTO_DATA_INICIO +" LIKE ?" , new String[]{String.valueOf(id),"%"+data+"%"});
 

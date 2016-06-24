@@ -52,7 +52,14 @@ public class CalendarFragment extends Fragment{
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                String data = dayOfMonth + "-" + (month) + "-" + year;
+                String mes;
+                if (month < 10){
+                    mes = "0"+month;
+                }else {
+                    mes = ""+month;
+                }
+
+                String data = dayOfMonth + "-" +mes +"-" + year;
 
 
                 try {
