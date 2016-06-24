@@ -67,7 +67,6 @@ public class EventoDao {
         db.insert(DatabaseHelper.TABELA_EVENTO, null, values);
         db.close();
     }
-
     public Evento criarEvento(Cursor cursor) throws MindbitException {
         Evento evento = new Evento();
         evento.setId(cursor.getInt(0));
@@ -117,8 +116,8 @@ public class EventoDao {
 
         ArrayList<Evento> listaEventos = new ArrayList<Evento>();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE "+ databaseHelper.PESSOA_CRIADORA_ID+" = ? AND ("
-                +databaseHelper.EVENTO_NOME+" LIKE ? OR " +databaseHelper.EVENTO_DESCRICAO+ " LIKE ?)", new String[] {String.valueOf(id),"%"+nome+"%","%"+nome+"%"});
+        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " + databaseHelper.PESSOA_CRIADORA_ID + " = ? AND ("
+                + databaseHelper.EVENTO_NOME + " LIKE ? OR " + databaseHelper.EVENTO_DESCRICAO + " LIKE ?)", new String[]{String.valueOf(id), "%" + nome + "%", "%" + nome + "%"});
 
         Evento evento = null;
         if(cursor.getCount() > 0){
@@ -187,16 +186,16 @@ public class EventoDao {
         ArrayList eventosDia = new ArrayList<>();
 
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " +
-                databaseHelper.PESSOA_CRIADORA_ID + " =? AND "+ databaseHelper.EVENTO_DATA_INICIO +" LIKE ?" , new String[]{String.valueOf(id),data+"%"});
 
-    while (cursor.moveToNext()){
-        evento = criarEvento(cursor);
-        eventosDia.add(evento);
-    }
+        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " + databaseHelper.PESSOA_CRIADORA_ID + " =? AND "
+                + databaseHelper.EVENTO_DATA_INICIO +" LIKE ?" , new String[]{String.valueOf(id),"%"+data+"%"});
+
+        while (cursor.moveToNext()){
+            evento = criarEvento(cursor);
+            eventosDia.add(evento);
+        }
         db.close();
         cursor.close();
         return eventosDia;
     }
-
 }

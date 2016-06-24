@@ -26,8 +26,6 @@
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".controleacesso.gui.CalendarActivity" />
-
         <activity
             android:name=".controleacesso.gui.PesquisarEventoActivity"
             android:label="@string/title_activity_search_evento" />
@@ -37,6 +35,8 @@
             android:label="Adicionar Evento"></activity>
         <activity android:name=".controleacesso.gui.AddDisciplinaActivity"
             android:label="Adicionar Disciplina"></activity>
+        <activity android:name=".controleacesso.gui.Pop"
+            android:theme="@style/AppTheme.Custom"></activity>
 
 
     </application>
