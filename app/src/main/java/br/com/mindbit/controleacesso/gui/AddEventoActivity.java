@@ -89,62 +89,27 @@ public class AddEventoActivity extends AppCompatActivity{
         edtEventoHoraInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                TimePickerDialog timepick = new TimePickerDialog(AddEventoActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        edtEventoHoraInicio.setText(hourOfDay + ":" + minute);
-
-                    }
-                }, hour, minute, true
-                );
-                timepick.show();
+                mostrarTimePicker(edtEventoHoraInicio);
             }
         });
 
         edtEventoHoraFim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                final TimePickerDialog timepick = new TimePickerDialog(AddEventoActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        edtEventoHoraFim.setText(hourOfDay + ":" + minute);
-                    }
-                }, hour, minute, true
-                );
-                timepick.show();
+                mostrarTimePicker(edtEventoHoraFim);
             }
         });
 
         edtEventoDataInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datepicker = new DatePickerDialog(AddEventoActivity.this, new DatePickerDialog.OnDateSetListener() {
-
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        int mesCerto = monthOfYear + 1;
-                        edtEventoDataInicio.setText(dayOfMonth + "/" + mesCerto + "/" + year);
-                        dataInicio = dayOfMonth + "-" + monthOfYear + "-" + year;
-                    }
-                }, year, month, day);
-                datepicker.show();
+                escolherDataInicio();
             }
         });
         edtEventoDataFim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final DatePickerDialog datepicker = new DatePickerDialog(AddEventoActivity.this, new DatePickerDialog.OnDateSetListener() {
-
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        int mesCerto = monthOfYear + 1;
-                        edtEventoDataFim.setText(dayOfMonth + "/" + mesCerto + "/" + year);
-                        dataFim = dayOfMonth + "-" + monthOfYear + "-" + year;
-                    }
-                }, year, month, day);
-                datepicker.show();
+                escolherDataFim();
             }
         });
 
@@ -176,24 +141,24 @@ public class AddEventoActivity extends AppCompatActivity{
     }
         private void setCamposAddEvento(){
 
-        calendar = Calendar.getInstance();
-        setActualMoment();
+            calendar = Calendar.getInstance();
+            setActualMoment();
 
-        spinner = (Spinner) findViewById(R.id.prioridade_spinner);
-        spinner.setAdapter(new ArrayAdapter<PrioridadeEvento>(this, android.R.layout.simple_list_item_1, PrioridadeEvento.values()));
-        btnAdicionar = (Button) findViewById(R.id.btnAdicionarEvento);
+            spinner = (Spinner) findViewById(R.id.prioridade_spinner);
+            spinner.setAdapter(new ArrayAdapter<PrioridadeEvento>(this, android.R.layout.simple_list_item_1, PrioridadeEvento.values()));
+            btnAdicionar = (Button) findViewById(R.id.btnAdicionarEvento);
 
-        edtEventoNome = (EditText) findViewById(R.id.input_edtEventoNome);
-        edtEventoDescricao = (EditText) findViewById(R.id.input_edtEventoDescricao);
-        edtEventoHoraInicio = (EditText) findViewById(R.id.input_edtEventoHoraInicio);
-        edtEventoHoraFim = (EditText) findViewById(R.id.input_edtEventoHoraFim);
-        edtEventoDataInicio = (EditText) findViewById(R.id.input_edtEventoDataInicio);
-        edtEventoDataFim = (EditText) findViewById(R.id.input_edtEventoDataFim);
-        edtEventoDataInicio.setFocusable(false);
-        edtEventoDataFim.setFocusable(false);
-        edtEventoHoraInicio.setFocusable(false);
-        edtEventoHoraFim.setFocusable(false);
-    }
+            edtEventoNome = (EditText) findViewById(R.id.input_edtEventoNome);
+            edtEventoDescricao = (EditText) findViewById(R.id.input_edtEventoDescricao);
+            edtEventoHoraInicio = (EditText) findViewById(R.id.input_edtEventoHoraInicio);
+            edtEventoHoraFim = (EditText) findViewById(R.id.input_edtEventoHoraFim);
+            edtEventoDataInicio = (EditText) findViewById(R.id.input_edtEventoDataInicio);
+            edtEventoDataFim = (EditText) findViewById(R.id.input_edtEventoDataFim);
+            edtEventoDataInicio.setFocusable(false);
+            edtEventoDataFim.setFocusable(false);
+            edtEventoHoraInicio.setFocusable(false);
+            edtEventoHoraFim.setFocusable(false);
+        }
     private void setActualMoment(){
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
@@ -215,7 +180,7 @@ public class AddEventoActivity extends AppCompatActivity{
         dataAtual = simpleDateFormat.parse(atual);
 
         return (!isEmptyFields(nomeEvento, descricaoEvento, dataInicio, dataFim, horaInicio, horaFim)
-                && hasSizeValid(nomeEvento, descricaoEvento) && dateValid(inicio,fim,dataAtual));
+                && hasSizeValid(nomeEvento, descricaoEvento) && dateValid(inicio, fim, dataAtual));
     }
 
     private boolean validateStartTime(Date dateI,Date actualD){
@@ -273,7 +238,7 @@ public class AddEventoActivity extends AppCompatActivity{
         if( initialDate.compareTo(finalDate) < 1 && validateStartTime(initialDate,actualDate)){
             return true;
         }
-        GuiUtil.exibirMsg(this,resources.getString(R.string.addEvento_edt_data_hora_erro));
+        GuiUtil.exibirMsg(this, resources.getString(R.string.addEvento_edt_data_hora_erro));
         return false;
     }
 
@@ -297,6 +262,45 @@ public class AddEventoActivity extends AppCompatActivity{
             }
         }
     }
+
+    public void escolherDataFim(){
+        final DatePickerDialog datepicker = new DatePickerDialog(AddEventoActivity.this, new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                int mesCerto = monthOfYear + 1;
+                edtEventoDataFim.setText(dayOfMonth + "/" + mesCerto + "/" + year);
+                dataFim = dayOfMonth + "-" + monthOfYear + "-" + year;
+            }
+        }, year, month, day);
+        datepicker.show();
+    }
+
+    public void escolherDataInicio(){
+        DatePickerDialog datepicker = new DatePickerDialog(AddEventoActivity.this, new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                int mesCerto = monthOfYear + 1;
+                edtEventoDataInicio.setText(dayOfMonth + "/" + mesCerto + "/" + year);
+                dataInicio = dayOfMonth + "-" + monthOfYear + "-" + year;
+            }
+        }, year, month, day);
+        datepicker.show();
+    }
+
+    public void mostrarTimePicker(final EditText editText){
+        final TimePickerDialog timepick = new TimePickerDialog(AddEventoActivity.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                editText.setText(hourOfDay + ":" + minute);
+
+            }
+        }, hour, minute, true
+        );
+        timepick.show();
+    }
+
     public void startNavigationActivity() {
         startActivity(new Intent(this, PerfilActivity.class));
         finish();
