@@ -81,6 +81,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(" ", "");
+                if (!s.toString().equals(result)){
+                    edtPassword.setText(result);
+                    edtPassword.setSelection(result.length());
+                }
             }
         };
 
@@ -94,7 +99,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     private boolean validateFields(){
         String user = edtUser.getText().toString().trim();
-        String pass = edtPassword.getText().toString().trim();
+        String pass = edtPassword.getText().toString();
         return (!isEmptyFields(user, pass) && hasSizeValid(user, pass) && !noHasSpaceLogin(user));
     }
 

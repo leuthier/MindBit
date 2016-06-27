@@ -88,6 +88,12 @@ public class CadastroActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(" ", "");
+                if (!s.toString().equals(result)) {
+                    editUsuarioSenha.setText(result);
+                    editUsuarioSenha.setSelection(result.length());
+                    // alguma mensagem para o usuario proibindo espaço
+                }
             }
         };
 
@@ -121,8 +127,8 @@ public class CadastroActivity extends Activity {
         nome = editPessoaNome.getText().toString().trim();
         login = editUsuarioLogin.getText().toString().trim();
         email = editPessoaEmail.getText().toString().trim();
-        senha = editUsuarioSenha.getText().toString().trim();
-        senhaConfirma = editUsuarioSenhaConfirma.getText().toString().trim();
+        senha = editUsuarioSenha.getText().toString();
+        senhaConfirma = editUsuarioSenhaConfirma.getText().toString();
 
         return (!isEmptyFieldsCadastro(nome, login, email, senha, senhaConfirma)
                 && hasSizeValidCadastro(login, email, senha, senhaConfirma) &&
