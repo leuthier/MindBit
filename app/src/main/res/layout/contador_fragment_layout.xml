@@ -31,7 +31,6 @@
              android:background="@drawable/counter"
              android:gravity="center"
              android:orientation="vertical"
-
              android:layout_alignParentStart="true">
              <TextView
                  android:id="@+id/txtTimerDay"

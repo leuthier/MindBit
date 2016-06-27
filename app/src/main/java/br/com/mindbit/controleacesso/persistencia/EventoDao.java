@@ -187,7 +187,7 @@ public class EventoDao {
 
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " + databaseHelper.PESSOA_CRIADORA_ID + " =? AND "
-                + databaseHelper.EVENTO_DATA_INICIO +" LIKE ?" , new String[]{String.valueOf(id),"%"+data+"%"});
+                + databaseHelper.EVENTO_DATA_INICIO +" LIKE ? ORDER BY "+databaseHelper.EVENTO_DATA_INICIO + " ASC" , new String[]{String.valueOf(id),"%"+data+"%"});
 
         while (cursor.moveToNext()){
             evento = criarEvento(cursor);

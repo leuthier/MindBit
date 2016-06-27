@@ -1,46 +1,48 @@
 <resources>
-    <string name="app_name">MindBit</string>
-    <string name="img_description">icone do app</string>
+    <string name="app_nome">MindBit</string>
+    <string name="img_descricao">icone do app</string>
 
     <!-- Toast & Notificações -->
-    <string name="signUp_name_required">Nome obrigatório!</string>
-    <string name="signUP_email_required">Email obrigatório!</string>
-    <string name="signUP_password_confirm_required">Confirme a senha!</string>
-    <string name="signUp_email_invalid">Seu email deve ter mais de 4 caracteres!</string>
-    <string name="signUp_email_not_ok">Email inválido!</string>
-    <string name="signUp_password_invalid">Senha inválida</string>
+    <string name="cadastro_nome_vazio">Nome obrigatório!</string>
+    <string name="cadastro_email_vazio">Email obrigatório!</string>
+    <string name="cadastro_senha_confirm_vazia">Confirme a senha!</string>
+    <string name="cadastro_email_curto">Seu email deve ter mais de 4 caracteres!</string>
+    <string name="cadastro_email_invalido">Email inválido!</string>
+    <string name="cadastro_senha_invalida">Senha inválida</string>
+    <string name="cadastro_senhas_diferentes">Senhas diferentes</string>
 
-    <string name="login_user_required">Login obrigatório!</string>
-    <string name="login_user_has_space">Login inválido</string>
-    <string name="login_user_invalid">Seu login deve ter mais de 4 caracteres!</string>
-    <string name="login_password_invalid">Sua senha deve ter mais de 4 caracteres!</string>
-    <string name="login_sucess">Bem-vind@,</string>
-    <string name="login_error">Login e/ou Senha incorretos!</string>
-    <string name="login_password_required">Senha obrigatória!</string>
-    <string name="password_not_mach">Senhas diferentes</string>
-
-    <string name="login_edt_login_hint">Nome de usuário</string>
-    <string name="login_edt_password_hint">Senha</string>
-
-    <string name="cadastro_edt_name">Nome</string>
-    <string name="cadastro_edt_username">Nome de usuário</string>
-    <string name="cadastro_edt_password">Senha</string>
-    <string name="cadastro_edt_password2">Confirmar senha</string>
+    <string name="cadastro_edt_nome">Nome</string>
+    <string name="cadastro_edt_login">Nome de usuário</string>
+    <string name="cadastro_edt_senha">Senha</string>
+    <string name="cadastro_edt_confirmar_senha">Confirmar senha</string>
     <string name="cadastro_edt_email">Email</string>
     <string name="cadastro_sucesso">Usuário cadastrado com sucesso</string>
+
+
+    <string name="login_vazio">Login obrigatório!</string>
+    <string name="login_invalido">Login inválido</string>
+    <string name="login_curto">Seu login deve ter mais de 4 caracteres!</string>
+    <string name="login_senha_curta">Sua senha deve ter mais de 4 caracteres!</string>
+    <string name="login_sucesso">Bem-vind@,</string>
+    <string name="login_erro">Login e/ou Senha incorretos!</string>
+    <string name="login_senha_vazia">Senha obrigatória!</string>
+
+    <string name="login_edt_login_hint">Nome de usuário</string>
+    <string name="login_edt_senha_hint">Senha</string>
+
 
     <string name="addEvento_edt_descricao">Insira a descrição! </string>
     <string name="addEvento_edt_data_inicial">Insira a data inicial!</string>
     <string name="addEvento_edt_data_final">Insira a data final!</string>
     <string name="addEvento_edt_hora_inicial">Insira a hora inicial!</string>
     <string name="addEvento_edt_hota_final">Insira a hora final!</string>
-    <string name="addEvento_edt_small_description">A descrição deve ter mais de 4 caracteres!</string>
+    <string name="addEvento_edt_descricao_curta">A descrição deve ter mais de 4 caracteres!</string>
     <string name="addEvento_edt_data_hora_erro">Data/Hora não válidos!</string>
 
 
     <!-- Button -->
-    <string name="login_btn_signIn">Entrar</string>
-    <string name="login_btn_signUp">Não é cadastrado ? Cadastre-se</string>
+    <string name="login_btn_logar">Entrar</string>
+    <string name="login_btn_cadastrar">Não é cadastrado ? Cadastre-se</string>
     <string name="cadastro_btn">Cadastrar</string>
 
     <!--Float Button -->
@@ -56,11 +58,11 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="navigation_user_name">Username</string>
-    <string name="navigation_user_email">username@host.com</string>
+    <string name="navigation_usuario_nome">Username</string>
+    <string name="navigation_usario_email">username@host.com</string>
     <string name="action_logout">Logout</string>
-    <string name="title_activity_search_evento">Pesquisar Eventos</string>
-    <string name="activity_search_evento_not_found">"Nenhum evento encontrado"</string>
+    <string name="title_activity_pesquisar_evento">Pesquisar Eventos</string>
+    <string name="activity_pesquisar_evento_vazio">"Nenhum evento encontrado"</string>
     <string name="title_activity_add_evento">Adicionar Eventos</string>
 
     <string name="nav_drawer_pesquisar_eventos">Pesquisar Eventos</string>
@@ -85,18 +87,18 @@
     <string name="btn_add_disciplina">Adicionar</string>
     <string name="disciplina_nome">Nome da Disciplina</string>
     <string name="disciplina_codigo">Código da Disciplina</string>
-    <string name="add_disciplina_nome_is_empty">Nome obrigatório!</string>
-    <string name="add_disciplina_codigo_is_empty">Código obrigatório!</string>
+    <string name="add_disciplina_nome_vazio">Nome obrigatório!</string>
+    <string name="add_disciplina_codigo_vazio">Código obrigatório!</string>
     <string name="add_disciplina_tamanho_nome_invalido">O nome deve ter mais de 3 caracteres</string>
     <string name="add_disciplina_tamanho_codigo_invalido">O código deve ter 5 caracteres</string>
-    <string name="add_disciplina_error">Disciplina já cadastrada</string>
-    <string name="add_disciplina_sucess">Disciplina cadastrada com sucesso!</string>
+    <string name="add_disciplina_erro">Disciplina já cadastrada</string>
+    <string name="add_disciplina_sucesso">Disciplina cadastrada com sucesso!</string>
     <string name="evento_btn_adicionar">Adicionar</string>
     <string name="add_evento_sucesso">"Evento cadastrado com sucesso"</string>
 
-    <string name="countdownleft">Nome do Evento</string>
-    <string name="sem_evento">Sem eventos no mês</string>
-    <string name="dias">Dia(s)</string>
-    <string name="hoje">Hoje</string>
+    <string name="contador_nome_evento">Nome do Evento</string>
+    <string name="contador_vazio">Sem eventos no mês</string>
+    <string name="contador_dias">Dia(s)</string>
+    <string name="contador_hoje">Hoje</string>
 
 </resources>

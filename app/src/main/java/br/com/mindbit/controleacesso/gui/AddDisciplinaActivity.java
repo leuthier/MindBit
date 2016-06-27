@@ -74,11 +74,11 @@ public class AddDisciplinaActivity extends AppCompatActivity {
     private boolean isEmptyFields(String nomeDisciplina, String codigoDisciplina) {
         if (TextUtils.isEmpty(nomeDisciplina)) {
             input_edtDisciplinaNome.requestFocus();
-            input_edtDisciplinaNome.setError(resources.getString(R.string.add_disciplina_nome_is_empty));
+            input_edtDisciplinaNome.setError(resources.getString(R.string.add_disciplina_nome_vazio));
             return true;
         } else if (TextUtils.isEmpty(codigoDisciplina)) {
             input_edtDisciplinaCodigo.requestFocus();
-            input_edtDisciplinaCodigo.setError(resources.getString(R.string.add_disciplina_codigo_is_empty));
+            input_edtDisciplinaCodigo.setError(resources.getString(R.string.add_disciplina_codigo_vazio));
             return true;
         }
         return false;
@@ -105,7 +105,7 @@ public class AddDisciplinaActivity extends AppCompatActivity {
                 disciplina.setNome(nomeDisciplina);
                 disciplina.setCodigo(codigoDisciplina);
                 disciplinaNegocio.validarCadastroDisciplina(disciplina);
-                GuiUtil.exibirMsg(this, resources.getString(R.string.add_disciplina_sucess));
+                GuiUtil.exibirMsg(this, resources.getString(R.string.add_disciplina_sucesso));
                 startNavigationActivity();
             } catch (MindbitException e){
                 GuiUtil.exibirMsg(AddDisciplinaActivity.this, e.getMessage());

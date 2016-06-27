@@ -24,7 +24,7 @@ public class GuiUtil {
         Context context;
         context = LoginActivity.getContexto();
         nomePessoaLogada = SessaoUsuario.getInstancia().getPessoaLogada().getNome();
-        Toast.makeText(activity, context.getString(R.string.login_sucess)+" "+nomePessoaLogada+"!", Toast.LENGTH_LONG).show();
+        Toast.makeText(activity, context.getString(R.string.login_sucesso)+" "+nomePessoaLogada+"!", Toast.LENGTH_LONG).show();
     }
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {

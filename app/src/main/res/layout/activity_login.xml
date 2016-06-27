@@ -15,7 +15,7 @@
 
     <ImageView
         android:id="@+id/fotoPerfil"
-        android:contentDescription="@string/img_description"
+        android:contentDescription="@string/img_descricao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -45,12 +45,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint="@string/login_edt_password_hint"/>
+            android:hint="@string/login_edt_senha_hint"/>
     </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/bt_signIn"
-        android:text="@string/login_btn_signIn"
+        android:text="@string/login_btn_logar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/userPassword"
@@ -62,7 +62,7 @@
 
     <Button
         android:id="@+id/bt_signUp"
-        android:text="@string/login_btn_signUp"
+        android:text="@string/login_btn_cadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"

@@ -29,13 +29,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/navigation_user_name"
+        android:text="@string/navigation_usuario_nome"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/txtEmailPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/navigation_user_email" />
+        android:text="@string/navigation_usario_email" />
 
 </LinearLayout>

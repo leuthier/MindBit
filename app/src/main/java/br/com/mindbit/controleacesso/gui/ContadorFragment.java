@@ -101,10 +101,10 @@ public class ContadorFragment extends Fragment {
                             String timer = "" + days;
                             if (days!=0){
                                 txtTimerDay.setText("" + (days));
-                                txtDias.setText(R.string.dias);
+                                txtDias.setText(R.string.contador_dias);
                                 txtNomeEvento.setText(getProximoEvento().getNome());
                             }else {
-                                txtTimerDay.setText(R.string.hoje);
+                                txtTimerDay.setText(R.string.contador_hoje);
                                 txtDias.setText("");
                                 txtNomeEvento.setText(getProximoEvento().getNome());
 
@@ -116,7 +116,7 @@ public class ContadorFragment extends Fragment {
 
 
                 } else {
-                    txtTimerDay.setText(R.string.sem_evento);
+                    txtTimerDay.setText(R.string.contador_vazio);
                     txtDias.setText("");
                     txtNomeEvento.setText("");
                 }

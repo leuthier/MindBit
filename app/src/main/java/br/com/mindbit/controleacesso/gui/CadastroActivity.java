@@ -139,23 +139,23 @@ public class CadastroActivity extends Activity {
     private boolean isEmptyFieldsCadastro(String nome, String login, String email, String senha, String senhaConfirma) {
         if (TextUtils.isEmpty(nome)) {
             editPessoaNome.requestFocus();
-            editPessoaNome.setError(resources.getString(R.string.signUp_name_required));
+            editPessoaNome.setError(resources.getString(R.string.cadastro_nome_vazio));
             return true;
         } else if (TextUtils.isEmpty(login)) {
             editUsuarioLogin.requestFocus();
-            editUsuarioLogin.setError(resources.getString(R.string.login_user_required));
+            editUsuarioLogin.setError(resources.getString(R.string.login_vazio));
             return true;
         } else if (TextUtils.isEmpty(email)) {
             editPessoaEmail.requestFocus();
-            editPessoaEmail.setError(resources.getString(R.string.signUP_email_required));
+            editPessoaEmail.setError(resources.getString(R.string.cadastro_email_vazio));
             return true;
         } else if (TextUtils.isEmpty(senha)) {
             editUsuarioSenha.requestFocus();
-            editUsuarioSenha.setError(resources.getString(R.string.login_password_required));
+            editUsuarioSenha.setError(resources.getString(R.string.login_senha_vazia));
             return true;
         } else if (TextUtils.isEmpty(senhaConfirma)) {
             editUsuarioSenhaConfirma.requestFocus();
-            editUsuarioSenhaConfirma.setError(resources.getString(R.string.signUP_password_confirm_required));
+            editUsuarioSenhaConfirma.setError(resources.getString(R.string.cadastro_senha_confirm_vazia));
             return true;
         }
         return false;
@@ -164,23 +164,23 @@ public class CadastroActivity extends Activity {
     private boolean hasSizeValidCadastro(String user, String email, String pass, String pass2) {
         if (!(user.length() > 4)) {
             editUsuarioLogin.requestFocus();
-            editUsuarioLogin.setError(resources.getString(R.string.login_user_invalid));
+            editUsuarioLogin.setError(resources.getString(R.string.login_curto));
             return false;
         } else if (!(email.length() > 4)) {
             editPessoaEmail.requestFocus();
-            editPessoaEmail.setError(resources.getString(R.string.signUp_email_invalid));
+            editPessoaEmail.setError(resources.getString(R.string.cadastro_email_curto));
             return false;
         }else if (!(pass.length() > 4)) {
             editUsuarioSenha.requestFocus();
-            editUsuarioSenha.setError(resources.getString(R.string.login_password_invalid));
+            editUsuarioSenha.setError(resources.getString(R.string.login_senha_curta));
             return false;
         }  else if (!(pass2.length() > 4)) {
             editUsuarioSenhaConfirma.requestFocus();
-            editUsuarioSenhaConfirma.setError(resources.getString(R.string.login_password_invalid));
+            editUsuarioSenhaConfirma.setError(resources.getString(R.string.login_senha_curta));
             return false;
         } else if (!(pass.equals(pass2))){
             editUsuarioSenhaConfirma.requestFocus();
-            editUsuarioSenhaConfirma.setError(resources.getString(R.string.password_not_mach));
+            editUsuarioSenhaConfirma.setError(resources.getString(R.string.cadastro_senhas_diferentes));
             return false;
         }
         return true;
@@ -190,15 +190,15 @@ public class CadastroActivity extends Activity {
 
         if (login.indexOf(" ") != -1){
             editUsuarioLogin.requestFocus();
-            editUsuarioLogin.setError(resources.getString(R.string.login_user_has_space));
+            editUsuarioLogin.setError(resources.getString(R.string.login_invalido));
             return true;
         } else if (email.indexOf(" ") != -1){
             editPessoaEmail.requestFocus();
-            editPessoaEmail.setError(resources.getString(R.string.login_user_has_space));
+            editPessoaEmail.setError(resources.getString(R.string.login_invalido));
             return true;
         }else if (senha.indexOf(" ") != -1){
             editUsuarioSenha.requestFocus();
-            editUsuarioSenha.setError(resources.getString(R.string.signUp_password_invalid));
+            editUsuarioSenha.setError(resources.getString(R.string.cadastro_senha_invalida));
             return true;
         }return false;
     }
@@ -206,7 +206,7 @@ public class CadastroActivity extends Activity {
     private boolean isValidEmail(CharSequence email) {
         if (!(android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())){
             editPessoaEmail.requestFocus();
-            editPessoaEmail.setError(resources.getString(R.string.signUp_email_not_ok));
+            editPessoaEmail.setError(resources.getString(R.string.cadastro_email_invalido));
             return false;
         }
         return true;

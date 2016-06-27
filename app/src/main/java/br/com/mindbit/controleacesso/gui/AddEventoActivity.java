@@ -195,7 +195,7 @@ public class AddEventoActivity extends AppCompatActivity{
 
         if (TextUtils.isEmpty(nome)) {
             edtEventoNome.requestFocus();
-            edtEventoNome.setError(resources.getString(R.string.signUp_name_required));
+            edtEventoNome.setError(resources.getString(R.string.cadastro_nome_vazio));
             return true;
         } else if (TextUtils.isEmpty(descricao)) {
             edtEventoDescricao.requestFocus();
@@ -224,11 +224,11 @@ public class AddEventoActivity extends AppCompatActivity{
     private boolean hasSizeValid(String nome, String descricao) {
         if (!(nome.length() > 4)) {
             edtEventoNome.requestFocus();
-            edtEventoNome.setError(resources.getString(R.string.login_user_invalid));
+            edtEventoNome.setError(resources.getString(R.string.login_curto));
             return false;
         } else if (!(descricao.length() > 4)) {
             edtEventoDescricao.requestFocus();
-            edtEventoDescricao.setError(resources.getString(R.string.addEvento_edt_small_description));
+            edtEventoDescricao.setError(resources.getString(R.string.addEvento_edt_descricao_curta));
             return false;
         }
         return true;

@@ -106,11 +106,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private boolean isEmptyFields(String user, String pass) {
         if (TextUtils.isEmpty(user)) {
             edtUser.requestFocus();
-            edtUser.setError(resources.getString(R.string.login_user_required));
+            edtUser.setError(resources.getString(R.string.login_vazio));
             return true;
         } else if (TextUtils.isEmpty(pass)) {
             edtPassword.requestFocus();
-            edtPassword.setError(resources.getString(R.string.login_password_required));
+            edtPassword.setError(resources.getString(R.string.login_senha_vazia));
             return true;
         }
         return false;
@@ -119,11 +119,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private boolean hasSizeValid(String user, String pass) {
         if (!(user.length() > 4)) {
             edtUser.requestFocus();
-            edtUser.setError(resources.getString(R.string.login_user_invalid));
+            edtUser.setError(resources.getString(R.string.login_curto));
             return false;
         } else if (!(pass.length() > 4)) {
             edtPassword.requestFocus();
-            edtPassword.setError(resources.getString(R.string.login_password_invalid));
+            edtPassword.setError(resources.getString(R.string.login_senha_curta));
             return false;
         }
         return true;
@@ -133,7 +133,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         int idx = user.indexOf(" ");
         if (idx != -1){
             edtUser.requestFocus();
-            edtUser.setError(resources.getString(R.string.login_user_has_space));
+            edtUser.setError(resources.getString(R.string.login_invalido));
             return true;
         }return false;
     }
