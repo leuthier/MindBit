@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        >
+        <EditText
+            android:id="@+id/input_edtAmigoNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:hint="@string/add_amigo_nome"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    >
+    <EditText
+        android:id="@+id/input_edtAmigoEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapWords"
+        android:hint="@string/add_amigo_email"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:layout_width="299dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_add_disciplina"
+        android:id="@+id/btnAdicionarAmigo"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>

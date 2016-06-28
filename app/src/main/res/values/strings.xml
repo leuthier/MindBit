@@ -67,7 +67,7 @@
 
     <string name="nav_drawer_pesquisar_eventos">Pesquisar Eventos</string>
     <string name="nav_drawer_config">Configurações</string>
-    <string name="nav_drawer_amigos">Amigos</string>
+    <string name="nav_drawer_amigos">Adicionar Amigo</string>
     <string name="nav_drawer_disciplinas">Disciplinas</string>
     <string name="nav_drawer_comunicacao">Comunicação</string>
     <string name="nav_drawer_compartilhar">Compartilhar</string>
@@ -100,5 +100,11 @@
     <string name="contador_vazio">Sem eventos no mês</string>
     <string name="contador_dias">Dia(s)</string>
     <string name="contador_hoje">Hoje</string>
+
+    <string name="add_amigo_email">E-mail do amigo</string>
+    <string name="add_amigo_nome">Nome do amigo</string>
+    <string name="btn_add_amigo">Adicionar</string>
+    <string name="email_vazio">Digite um e-mail</string>
+    <string name="nome_vazio">Insira um nome</string>
 
 </resources>

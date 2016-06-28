@@ -50,4 +50,13 @@ public class ScriptTableSQL {
         return disciplinaBuilder.toString();
     }
 
+    public static String getTabelaAmigo(){
+        StringBuilder amigoBuilder = new StringBuilder();
+        amigoBuilder.append("CREATE TABLE tabela_amigo ( ");
+        amigoBuilder.append("_id_amigo   integer primary key autoincrement, ");
+        amigoBuilder.append("nome_amigo  text not null, ");
+        amigoBuilder.append("email_amigo  text not null );");
+        return amigoBuilder.toString();
+    }
+
 }

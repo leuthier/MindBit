@@ -49,4 +49,15 @@ public class PopularTabela {
             db.execSQL(evento);
         }
     }*/
+
+    /*public static void inserirAmigos(SQLiteDatabase db) {
+
+        String[] amigos =
+                {"INSERT INTO `tabela_amigo` (_id_amigo,id_pessoa,id_amigo_pessoa) VALUES (1,6,1);",};
+
+        for (String amigo : amigos) {
+            db.execSQL(amigo);
+        }
+    }
+*/
 }
