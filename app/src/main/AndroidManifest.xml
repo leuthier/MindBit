@@ -33,7 +33,13 @@
 
         <activity
             android:name=".controleacesso.gui.CompartilharEventoActivity"
-            android:label="Compartilhar Eventos"></activity>
+            android:label="Compartilhar Eventos">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".controleacesso.gui.AddEventoActivity"
             android:label="Adicionar Evento"></activity>
         <activity android:name=".controleacesso.gui.AddDisciplinaActivity"
