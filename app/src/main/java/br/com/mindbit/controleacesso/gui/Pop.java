@@ -20,7 +20,6 @@ import br.com.mindbit.infra.gui.MindbitException;
 
 public class Pop extends Activity{
 
-    private Context context;
     private ArrayList<Evento> listaEventos;
     private ArrayAdapter<String> adapter;
     private ListView listViewEvento;
@@ -32,13 +31,12 @@ public class Pop extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop);
-        context = this;
         sessao = SessaoUsuario.getInstancia();
         pessoaLogada = sessao.getPessoaLogada();
 
         adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item);
 
-        eventoNegocio = EventoNegocio.getInstancia(context);
+        eventoNegocio = EventoNegocio.getInstancia(this);
 
         listViewEvento = (ListView) findViewById(R.id.pop_lista_evento);
 

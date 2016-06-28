@@ -53,14 +53,12 @@ public class CadastroActivity extends Activity {
     private UsuarioNegocio usuarioNegocio;
     private Criptografia criptografia;
     private String senhaCriptografada;
-    private static Context contexto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sing_up);
 
-        contexto = this;
         criptografia = Criptografia.getInstancia();
 
         imgFoto = (ImageView) findViewById(R.id.userPicture);
@@ -119,7 +117,7 @@ public class CadastroActivity extends Activity {
         super.onResume();
 
         if (usuarioNegocio == null) {
-            usuarioNegocio = UsuarioNegocio.getInstancia(contexto);
+            usuarioNegocio = UsuarioNegocio.getInstancia(this);
         }
     }
 
@@ -259,7 +257,7 @@ public class CadastroActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK && requestCode == TIRA_FOTO && ajustarFoto() != null){
-            foto = GuiUtil.getInstancia().getImageUri(CadastroActivity.contexto , ajustarFoto());
+            foto = GuiUtil.getInstancia().getImageUri(CadastroActivity.this , ajustarFoto());
         }else{
             foto = FOTO_PADRAO;
         }

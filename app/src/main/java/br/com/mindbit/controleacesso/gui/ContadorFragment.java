@@ -31,7 +31,6 @@ public class ContadorFragment extends Fragment {
     private Runnable runnable;
     private View view;
 
-    private Context context;
     private ArrayList<Evento> eventosProximo;
     private EventoNegocio eventoNegocio;
     private SessaoUsuario sessao;

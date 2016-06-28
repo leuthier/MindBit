@@ -20,7 +20,6 @@ import br.com.mindbit.infra.gui.MindbitException;
 public class AddDisciplinaActivity extends AppCompatActivity {
 
     private Resources resources;
-    private static Context contexto;
     private static DisciplinaNegocio disciplinaNegocio;
 
     private EditText input_edtDisciplinaNome;
@@ -35,8 +34,6 @@ public class AddDisciplinaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_disciplina);
 
         resources = getResources();
-
-        contexto = this;
 
         this.setCamposAddDisciplina();
 
@@ -54,7 +51,7 @@ public class AddDisciplinaActivity extends AppCompatActivity {
         super.onResume();
 
         if (disciplinaNegocio == null) {
-            disciplinaNegocio = DisciplinaNegocio.getInstancia(contexto);
+            disciplinaNegocio = DisciplinaNegocio.getInstancia(this);
         }
     }
 

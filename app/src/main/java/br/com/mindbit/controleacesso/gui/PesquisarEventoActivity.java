@@ -23,7 +23,6 @@ public class PesquisarEventoActivity extends AppCompatActivity {
     private ArrayList<Evento> eventosEncontrados;
     private ArrayList<Evento> listItems = new ArrayList<>();
 
-    private Context context;
     private ListView listView;
     private EditText campoPesquisa;
 
@@ -36,11 +35,10 @@ public class PesquisarEventoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        context = this;
         sessao = SessaoUsuario.getInstancia();
         pessoaLogada = sessao.getPessoaLogada();
 
-        eventoNegocio = EventoNegocio.getInstancia(context);
+        eventoNegocio = EventoNegocio.getInstancia(this);
         setContentView(R.layout.activity_pesquisar_evento);
         listView = (ListView)findViewById(R.id.listview_eventos);
         campoPesquisa = (EditText)findViewById(R.id.edtsearch);

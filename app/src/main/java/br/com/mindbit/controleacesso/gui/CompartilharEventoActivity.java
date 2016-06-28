@@ -27,7 +27,6 @@ import br.com.mindbit.infra.gui.MindbitException;
 
 public class CompartilharEventoActivity extends AppCompatActivity{
     private Resources resources;
-    private static Context contexto;
 
     private EventoNegocio eventoNegocio;
     private SessaoUsuario sessaoUsuario;
@@ -43,9 +42,8 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         setContentView(R.layout.activity_compartilhar_evento);
 
         resources = getResources();
-        contexto = this;
 
-        eventoNegocio = EventoNegocio.getInstancia(contexto);
+        eventoNegocio = EventoNegocio.getInstancia(this);
         sessaoUsuario = SessaoUsuario.getInstancia();
         pessoaLogada = sessaoUsuario.getPessoaLogada();
 
