@@ -122,7 +122,17 @@ public class PerfilActivity extends AppCompatActivity
         } else if (id == R.id.nav_config) {
 
         } else if (id == R.id.nav_share) {
+           Intent i = new Intent(this,CompartilharEventoActivity.class);
+            startActivity(i);
 
+           /* Intent i = new Intent(Intent.ACTION_SEND);
+            //i.setType("image*//*");
+            i.putExtra(Intent.EXTRA_EMAIL, new String[]{"arianalima3@outlook.com","teste@gmail.com"});
+            i.putExtra(Intent.EXTRA_SUBJECT, "Assunto...");
+            i.putExtra(Intent.EXTRA_TEXT, "Aqui vem o texto da msg by MindBit");
+
+            startActivity(Intent.createChooser(i, "Compartilhar:"));
+*/
         } else if (id == R.id.nav_sobre) {
 
         }

@@ -31,6 +31,9 @@
             android:label="@string/title_activity_pesquisar_evento" />
         <!--android:theme="@style/AppTheme.NoActionBar" -->
 
+        <activity
+            android:name=".controleacesso.gui.CompartilharEventoActivity"
+            android:label="Compartilhar Eventos"></activity>
         <activity android:name=".controleacesso.gui.AddEventoActivity"
             android:label="Adicionar Evento"></activity>
         <activity android:name=".controleacesso.gui.AddDisciplinaActivity"
