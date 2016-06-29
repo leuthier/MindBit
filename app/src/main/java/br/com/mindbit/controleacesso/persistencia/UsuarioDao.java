@@ -25,6 +25,7 @@ public class UsuarioDao {
     private static UsuarioDao  instanciaUsuarioDao = new UsuarioDao();
     private UsuarioDao(){};
 
+    /* singleton */
     public static UsuarioDao getInstancia(Context contexto){
         UsuarioDao.contexto = contexto;
         UsuarioDao.databaseHelper = new DatabaseHelper(contexto);
@@ -35,6 +36,9 @@ public class UsuarioDao {
 
     private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
 
+    /**
+     * @param pessoa pessoa a ser registrada no sistema
+     */
     public void cadastrarPessoa(Pessoa pessoa){
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -56,6 +60,10 @@ public class UsuarioDao {
         db.close();
     }
 
+    /**
+     * @param cursor cursor a ser usado na criacao da pessoa
+     * @return objeto pessoa preenchido
+     */
     private Pessoa criarPessoa(Cursor cursor){
         Pessoa pessoa = new Pessoa();
         pessoa.setId(cursor.getInt(0));
@@ -66,6 +74,10 @@ public class UsuarioDao {
         return pessoa;
     }
 
+    /**
+     * @param cursor cursor a ser usado na criacao do usuario
+     * @return objeto usuario preenchido
+     */
     private Usuario criarUsuario(Cursor cursor){
         Usuario usuario = new Usuario();
         usuario.setId(cursor.getInt(0));
@@ -74,6 +86,11 @@ public class UsuarioDao {
         return usuario;
     }
 
+    /**
+     * @param login login do usuario a ser buscado
+     * @param senha senha do usuario a ser buscado
+     * @return usuario encontrado atraves dos parametros informados
+     */
     public Usuario buscarUsuario(String login, String senha){
         SQLiteDatabase db;
         db = databaseHelper.getReadableDatabase();
@@ -90,6 +107,10 @@ public class UsuarioDao {
         return usuario;
     }
 
+    /**
+     * @param id id da pessoa a ser buscada
+     * @return pessoa encontrada atraves do parametro informado
+     */
     public Pessoa buscarPessoaId(int id){
         Pessoa pessoa = null;
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
@@ -104,6 +125,10 @@ public class UsuarioDao {
         return pessoa;
     }
 
+    /**
+     * @param login login do usuario a ser encontrado
+     * @return usuario encontrado atraves do parametro informado
+     */
     public Usuario buscarUsuarioLogin(String login){
         SQLiteDatabase db;
         Usuario usuario = null;
@@ -120,7 +145,11 @@ public class UsuarioDao {
         return usuario;
 
     }
-
+    /**
+     * @param email email da pessoa a ser encontrada
+     * @return pessoa encontrada atraves do parametro informado
+     * @throws MindbitException
+     */
     public Pessoa buscaPessoaPorEmail(String email) throws MindbitException {
         Pessoa pessoa = null;
         SQLiteDatabase db = databaseHelper.getReadableDatabase();

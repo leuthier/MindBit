@@ -81,11 +81,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String result = s.toString().replaceAll(" ", "");
-                if (!s.toString().equals(result)){
-                    edtPassword.setText(result);
-                    edtPassword.setSelection(result.length());
-                }
             }
         };
 

@@ -9,6 +9,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String NOME_DB = "banco";
     private static final int VERSAO_DB = 2;
 
+    /* singleton */
     public DatabaseHelper (Context context) {
         super(context.getApplicationContext(),NOME_DB,null,VERSAO_DB);
     }

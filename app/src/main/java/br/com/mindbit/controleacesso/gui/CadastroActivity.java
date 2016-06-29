@@ -86,12 +86,6 @@ public class CadastroActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String result = s.toString().replaceAll(" ", "");
-                if (!s.toString().equals(result)) {
-                    editUsuarioSenha.setText(result);
-                    editUsuarioSenha.setSelection(result.length());
-                    // alguma mensagem para o usuario proibindo espaço
-                }
             }
         };
 

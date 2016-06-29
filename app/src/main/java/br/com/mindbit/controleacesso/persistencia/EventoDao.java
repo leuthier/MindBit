@@ -31,14 +31,19 @@ public class EventoDao {
     private static Context contexto;
     private static EventoDao instanciaEventoDao = new EventoDao();
 
-    private EventoDao() {
-    }
+    private EventoDao() {}
 
+    /* singleton */
     public static EventoDao getInstancia(Context contexto) {
         EventoDao.databaseHelper = new DatabaseHelper(contexto);
         return instanciaEventoDao;
     }
 
+
+    /**
+     * @param evento                    evento a ser cadastrado no db
+     * @throws MindbitException         caso o evento nao consiga ser cadastrado
+     */
     public void cadastrarEvento(Evento evento) throws MindbitException {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -67,6 +72,13 @@ public class EventoDao {
         db.insert(DatabaseHelper.TABELA_EVENTO, null, values);
         db.close();
     }
+
+    /**
+     *
+     * @param cursor                        cursor a ser usado na criacao do evento
+     * @return                              objeto evento preenchido
+     * @throws MindbitException             caso o evento nao possa ser criado
+     */
     public Evento criarEvento(Cursor cursor) throws MindbitException {
         Evento evento = new Evento();
         evento.setId(cursor.getInt(0));
@@ -94,6 +106,11 @@ public class EventoDao {
         return evento;
     }
 
+    /**
+     * @param nome                      nome do evento que sera encontrado
+     * @return                          evento com o nome desejado encontrado
+     * @throws MindbitException         caso o evento nao possa ser encontrado
+     */
     public Evento buscarEventoNome(String nome) throws MindbitException {
         SQLiteDatabase db;
         db = databaseHelper.getReadableDatabase();
@@ -111,6 +128,13 @@ public class EventoDao {
         return evento;
     }
 
+
+    /**
+     * @param id                        id dos eventos que serao procurados
+     * @param nome                      nome dos eventos que sao procurados
+     * @return                          lista de eventos contendo partes do nome procurado
+     * @throws MindbitException
+     */
     public ArrayList<Evento> buscarNomeDescricaoParcial(int id, String nome) throws MindbitException {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
@@ -130,6 +154,12 @@ public class EventoDao {
         return listaEventos;
     }
 
+
+    /**
+     * @param id                         id do evento que sera procurado
+     * @return                           evento encontrado
+     * @throws MindbitException
+     */
     public Evento buscarEventoId(int id) throws MindbitException {
         Evento evento = null;
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
@@ -145,6 +175,12 @@ public class EventoDao {
         return evento;
     }
 
+
+    /**
+     * @param id                          id dos eventos que serao mostrados
+     * @return                            lista de eventos com id procurado
+     * @throws MindbitException
+     */
     public ArrayList<Evento> listarEventos(int id) throws MindbitException {
         Evento evento = null;
         ArrayList<Evento> listaEventos = new ArrayList<Evento>();
@@ -163,6 +199,12 @@ public class EventoDao {
         return listaEventos;
     }
 
+
+    /**
+     * @param id                          id dos eventos que serao mostrados
+     * @return                            lista com os eventos
+     * @throws MindbitException
+     */
     public ArrayList<Evento> listarEventoProximo(int id) throws MindbitException {
         Evento evento = null;
         ArrayList<Evento> eventosCriador = new ArrayList<>();
@@ -181,6 +223,13 @@ public class EventoDao {
         return eventosCriador;
     }
 
+    /**
+     *
+     * @param data                         data dos eventos que serao mostrados
+     * @param id                           id dos eventos que serao mostrados
+     * @return                             lista com os eventos encontrados na data informada
+     * @throws MindbitException
+     */
     public ArrayList<Evento> listarEventoData(String data, int id)throws MindbitException{
         Evento evento = null;
         ArrayList eventosDia = new ArrayList<>();
