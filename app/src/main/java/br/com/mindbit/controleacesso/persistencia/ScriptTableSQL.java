@@ -51,13 +51,16 @@ public class ScriptTableSQL {
         return disciplinaBuilder.toString();
     }
 
-//    public static String getTabelaAmigo(){
-//        StringBuilder amigoBuilder = new StringBuilder();
-//        amigoBuilder.append("CREATE TABLE tabela_amigo ( ");
-//        amigoBuilder.append("_id_amigo   integer primary key autoincrement, ");
-//        amigoBuilder.append("nome_amigo  text not null, ");
-//        amigoBuilder.append("email_amigo  text not null );");
-//        return amigoBuilder.toString();
-//    }
+    public static String getTabelaAmigo(){
+        StringBuilder amigoBuilder = new StringBuilder();
+        amigoBuilder.append("CREATE TABLE tabela_amigo ( ");
+        amigoBuilder.append("_id_amigo   integer primary key autoincrement, ");
+        amigoBuilder.append("nome_amigo  text not null, ");
+        amigoBuilder.append("email_amigo  text not null, ");
+        amigoBuilder.append("id_pessoa_usuario  integer, ");
+        amigoBuilder.append("foreign key ( id_pessoa_usuario ) references  tabela_pessoa ( _id_pessoa ) );");
+
+        return amigoBuilder.toString();
+    }
 
 }

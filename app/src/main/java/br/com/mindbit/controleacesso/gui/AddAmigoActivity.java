@@ -20,6 +20,8 @@ import br.com.mindbit.infra.gui.MindbitException;
 
 public class AddAmigoActivity extends AppCompatActivity {
     private Resources resources;
+
+    private SessaoUsuario sessaoUsuario;
     private static AmigoNegocio amigoNegocio;
 
     private EditText input_edtAmigoEmail;
@@ -30,7 +32,11 @@ public class AddAmigoActivity extends AppCompatActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_add_amigo);
+        amigoNegocio = AmigoNegocio.getInstancia(this);
+        sessaoUsuario = SessaoUsuario.getInstancia();
+
 
         resources = getResources();
 
@@ -79,10 +85,11 @@ public class AddAmigoActivity extends AppCompatActivity {
     private void addAmigo(){
         if (validateFieldsAmigo()){
             try{
-                Pessoa amigo = new Pessoa();
+                Amigo amigo = new Amigo();
                 amigo.setNome(nome);
                 amigo.setEmail(email);
                 amigoNegocio.adicionarAmigo(amigo);
+                GuiUtil.exibirMsg(this, "Amig@ adicionad@ com sucesso");
             }catch (MindbitException e){
                 GuiUtil.exibirMsg(AddAmigoActivity.this, e.getMessage());
             }

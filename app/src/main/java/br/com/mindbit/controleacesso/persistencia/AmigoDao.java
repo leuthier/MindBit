@@ -1,10 +1,12 @@
-/*
 package br.com.mindbit.controleacesso.persistencia;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mindbit.controleacesso.dominio.Amigo;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
@@ -35,8 +37,8 @@ public class AmigoDao {
 
         values.put(DatabaseHelper.AMIGO_NOME, amigo.getNome());
         values.put(DatabaseHelper.AMIGO_EMAIL, amigo.getEmail());
-        int idPessoa = SessaoUsuario.getInstancia().getPessoaLogada().getId();
-        values.put(DatabaseHelper.ID_PESSOA_AMIGO, idPessoa);
+        int idPessoaUsuario = SessaoUsuario.getInstancia().getPessoaLogada().getId();
+        values.put(DatabaseHelper.ID_PESSOA_USUARIO, idPessoaUsuario);
 
         db.insert(DatabaseHelper.TABELA_AMIGO, null, values);
         db.close();
@@ -55,8 +57,22 @@ public class AmigoDao {
         return amigo;
     }
 
-    //public List<Amigo> listarAmigos (Pessoa pessoa){
+    public List<Amigo> listarAmigos(int id) throws MindbitException {
+        Amigo amigo = null;
+        List<Amigo> listaAmigos = new ArrayList<Amigo>();
 
-   // }
+        SQLiteDatabase db=databaseHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT "+ databaseHelper.PESSOA_AMIGO +" FROM " +
+                databaseHelper.TABELA_PESSOA + " WHERE " +
+                databaseHelper.PESSOA_ID + " =?", new String[]{String.valueOf(id)});
+
+        while (cursor.moveToNext()){
+            amigo = criarAmigo(cursor);
+            listaAmigos.add(amigo);
+        }
+
+        db.close();
+        cursor.close();
+        return listaAmigos;
+    }
 }
-*/

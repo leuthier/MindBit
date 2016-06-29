@@ -11,7 +11,7 @@ public class Pessoa {
     private String nome;
     private String email;
     private Uri foto;
-    private List<Pessoa> amigos;
+    private List<Amigo> amigos;
 
     public Pessoa() {
         this.nome = null;
@@ -49,11 +49,11 @@ public class Pessoa {
         this.foto = foto;
     }
 
-    public List<Pessoa> getAmigos() {
+    public List<Amigo> getAmigos() {
         return amigos;
     }
 
-    public void setAmigos(List<Pessoa> amigos) {
+    public void setAmigos(List<Amigo> amigos) {
         this.amigos = amigos;
     }
 

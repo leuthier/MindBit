@@ -10,6 +10,7 @@ import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mindbit.controleacesso.dominio.Amigo;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.dominio.Usuario;
@@ -133,26 +134,5 @@ public class UsuarioDao {
         return pessoa;
     }
 
-    public List<Pessoa> listarAmigos(int id) throws MindbitException {
-        Pessoa pessoa = null;
-        List<Pessoa> listaAmigos = new ArrayList<Pessoa>();
 
-        SQLiteDatabase db=databaseHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT "+ databaseHelper.PESSOA_AMIGO +" FROM " +
-                databaseHelper.TABELA_PESSOA + " WHERE " +
-                databaseHelper.PESSOA_ID + " =?", new String[]{String.valueOf(id)});
-
-        while (cursor.moveToNext()){
-            pessoa = criarPessoa(cursor);
-            listaAmigos.add(pessoa);
-        }
-
-        db.close();
-        cursor.close();
-        return listaAmigos;
-    }
-
-    public void adicionarAmigo(Pessoa pessoa){
-
-    }
 }

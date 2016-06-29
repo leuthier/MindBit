@@ -42,6 +42,8 @@
 
         <activity android:name=".controleacesso.gui.AddEventoActivity"
             android:label="Adicionar Evento"></activity>
+        <activity android:name=".controleacesso.gui.AddAmigoActivity"
+            android:label="Adicionar Amigo"></activity>
         <activity android:name=".controleacesso.gui.AddDisciplinaActivity"
             android:label="Adicionar Disciplina"></activity>
         <activity android:name=".controleacesso.gui.Pop"
