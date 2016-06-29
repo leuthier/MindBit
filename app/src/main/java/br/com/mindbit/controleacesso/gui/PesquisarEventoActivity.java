@@ -1,6 +1,5 @@
 package br.com.mindbit.controleacesso.gui;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -87,7 +86,6 @@ public class PesquisarEventoActivity extends AppCompatActivity {
     }
 
     public void initList() throws MindbitException {
-        //eventosPessoa = eventoNegocio.listarEventoCriador(pessoaLogada.getId());
         eventosPessoa = eventoNegocio.listarEventosProximo(pessoaLogada.getId());
 
         adapter = new EventoAdapter(this, eventosPessoa);

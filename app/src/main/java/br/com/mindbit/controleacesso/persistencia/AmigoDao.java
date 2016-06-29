@@ -1,3 +1,4 @@
+/*
 package br.com.mindbit.controleacesso.persistencia;
 
 import android.content.ContentValues;
@@ -58,3 +59,4 @@ public class AmigoDao {
 
    // }
 }
+*/

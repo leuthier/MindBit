@@ -19,6 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String PESSOA_NOME = "nome_pessoa";
     public static final String PESSOA_EMAIL = "email_pessoa";
     public static final String PESSOA_FOTO = "foto_pessoa";
+    public static final String PESSOA_AMIGO = "amigo_pessoa";
 
     //TABELA USUARIO
     public static final String TABELA_USUARIO = "tabela_usuario";
@@ -45,12 +46,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String PESSOA_CRIADORA_DISCIPLINA_ID = "id_pessoa_criadora_disciplina";
 
     //TABELA AMIGO
-    public static final String TABELA_AMIGO = "tabela_amigo";
+    /*public static final String TABELA_AMIGO = "tabela_amigo";
     public static final String AMIGO_ID = "id_amigo";
     public static final String AMIGO_NOME = "nome_amigo";
     public static final String AMIGO_EMAIL = "email_amigo";
     public static final String ID_PESSOA_AMIGO = "pessoa_amigo";
-
+*/
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -59,10 +60,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(ScriptTableSQL.getTabelaUsuario());
         db.execSQL(ScriptTableSQL.getTabelaEvento());
         db.execSQL(ScriptTableSQL.getTabelaDisciplina());
-        db.execSQL(ScriptTableSQL.getTabelaAmigo());
+        //db.execSQL(ScriptTableSQL.getTabelaAmigo());
 
-        PopularTabela.inserirUsuarios(db);
-        PopularTabela.inserirPessoas(db);
+        //PopularTabela.inserirUsuarios(db);
+        //PopularTabela.inserirPessoas(db);
         //PopularTabela.inserirAmigos(db);
         //PopularTabela.inserirEventos(db);
 
@@ -74,7 +75,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists " + TABELA_PESSOA);
         db.execSQL("drop table if exists " + TABELA_EVENTO);
         db.execSQL("drop table if exists " + TABELA_DISCIPLINA);
-        db.execSQL("drop table if exists " + TABELA_AMIGO);
+        //db.execSQL("drop table if exists " + TABELA_AMIGO);
         onCreate(db);
     }
 

@@ -1,6 +1,8 @@
 package br.com.mindbit.controleacesso.dominio;
 import android.net.Uri;
 
+import java.util.List;
+
 import br.com.mindbit.controleacesso.dominio.Usuario;
 
 public class Pessoa {
@@ -9,6 +11,7 @@ public class Pessoa {
     private String nome;
     private String email;
     private Uri foto;
+    private List<Pessoa> amigos;
 
     public Pessoa() {
         this.nome = null;
@@ -45,6 +48,15 @@ public class Pessoa {
     public void setFoto(Uri foto) {
         this.foto = foto;
     }
+
+    public List<Pessoa> getAmigos() {
+        return amigos;
+    }
+
+    public void setAmigos(List<Pessoa> amigos) {
+        this.amigos = amigos;
+    }
+
 
 }
 

@@ -54,7 +54,7 @@ public class EventoAdapter extends BaseAdapter {
             ((TextView) view.findViewById(R.id.txtitem_nome_evento)).setText(evento.getNome());
             ((TextView) view.findViewById(R.id.txtitem_descricao_evento)).setText(evento.getDescricao());
 
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
             String inicio = simpleDateFormat.format(addOneMonth(evento.getDataInicio()));
             ((TextView) view.findViewById(R.id.txtitem_data_evento)).setText(inicio);
 
@@ -63,8 +63,7 @@ public class EventoAdapter extends BaseAdapter {
             return view;
         }
 
-    public static Date addOneMonth(Date date)
-    {
+    public static Date addOneMonth(Date date){
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.MONTH, 1);

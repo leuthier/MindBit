@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
+import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.dominio.Usuario;
@@ -37,6 +41,8 @@ public class UsuarioDao {
         values.put(DatabaseHelper.PESSOA_NOME, pessoa.getNome());
         values.put(DatabaseHelper.PESSOA_EMAIL, pessoa.getEmail());
         values.put(DatabaseHelper.PESSOA_FOTO, pessoa.getFoto().toString());
+        //String.valueOf?? To com sono
+        //values.put(DatabaseHelper.PESSOA_AMIGO, String.valueOf(pessoa.getAmigos()));
 
         long foreing_key_id_pessoa = db.insert(DatabaseHelper.TABELA_PESSOA, null, values);
 
@@ -55,6 +61,7 @@ public class UsuarioDao {
         pessoa.setNome(cursor.getString(1));
         pessoa.setEmail(cursor.getString(2));
         pessoa.setFoto(Uri.parse(cursor.getString(3)));
+        //pessoa.setAmigos(cursor.getString(4));
         return pessoa;
     }
 
@@ -124,5 +131,28 @@ public class UsuarioDao {
         db.close();
         cursor.close();
         return pessoa;
+    }
+
+    public List<Pessoa> listarAmigos(int id) throws MindbitException {
+        Pessoa pessoa = null;
+        List<Pessoa> listaAmigos = new ArrayList<Pessoa>();
+
+        SQLiteDatabase db=databaseHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT "+ databaseHelper.PESSOA_AMIGO +" FROM " +
+                databaseHelper.TABELA_PESSOA + " WHERE " +
+                databaseHelper.PESSOA_ID + " =?", new String[]{String.valueOf(id)});
+
+        while (cursor.moveToNext()){
+            pessoa = criarPessoa(cursor);
+            listaAmigos.add(pessoa);
+        }
+
+        db.close();
+        cursor.close();
+        return listaAmigos;
+    }
+
+    public void adicionarAmigo(Pessoa pessoa){
+
     }
 }

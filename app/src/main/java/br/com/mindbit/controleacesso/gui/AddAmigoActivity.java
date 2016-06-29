@@ -79,10 +79,10 @@ public class AddAmigoActivity extends AppCompatActivity {
     private void addAmigo(){
         if (validateFieldsAmigo()){
             try{
-                Amigo amigo = new Amigo();
+                Pessoa amigo = new Pessoa();
                 amigo.setNome(nome);
                 amigo.setEmail(email);
-                amigoNegocio.validarAmigo(amigo);
+                amigoNegocio.adicionarAmigo(amigo);
             }catch (MindbitException e){
                 GuiUtil.exibirMsg(AddAmigoActivity.this, e.getMessage());
             }

@@ -10,13 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import br.com.mindbit.R;
@@ -33,15 +35,16 @@ public class CompartilharEventoActivity extends AppCompatActivity{
     private EventoNegocio eventoNegocio;
     private SessaoUsuario sessaoUsuario;
     private Pessoa pessoaLogada;
+
     private ArrayList<Evento> eventosPessoa;
+    private ArrayList<String> list = new ArrayList<String>();
+    private ArrayAdapter<String> adapter = null;
     private List<Pessoa> pessoasDestinatarios;
     private List<Evento> eventosMarcardos;
 
     private ListView listaEventos;
+    private CheckBox checkbox;
     private Button btnCompartilhar;
-    private ArrayAdapter<String> adapter = null;
-    ArrayList<String> list = new ArrayList<String>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +59,12 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         pessoaLogada = sessaoUsuario.getPessoaLogada();
 
         listaEventos = (ListView) findViewById(R.id.ListView_compartilhar_evento);
+        checkbox = (CheckBox) findViewById(R.id.chkbx_escolhe_evento);
         btnCompartilhar = (Button) findViewById(R.id.btn_compartilhar_evento);
         btnCompartilhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 compartilhar(v);
-
             }
         });
 
@@ -69,12 +72,12 @@ public class CompartilharEventoActivity extends AppCompatActivity{
        mostrarLista();
     }
 
-
     public void compartilhar(View v){
 
         String[] emailsDestino = new String[]{getDestinariosEmails(pessoasDestinatarios)};
-        StringBuilder conteudoEmail = getEmailConteudo(eventosMarcardos);
-        //ArrayList<String> emailConteudo = getEmailConteudo(eventosMarcardos);
+        //eventosPessoa NÃO está correto - deveria ser eventosMarcados!
+        StringBuilder conteudoEmail = getAppConteudo(eventosPessoa);
+        //ArrayList<String> emailConteudo = getAppConteudo(eventosMarcardos);
         String subject = ("MindBit - Alguém compartilhou eventos com você!");
 
 
@@ -104,20 +107,14 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         return emailsDestino;
     }
 
-    public StringBuilder getEmailConteudo(List<Evento> eventos){
+    public StringBuilder getAppConteudo(List<Evento> eventos){
         StringBuilder infoEventos = new StringBuilder();
 
- /*       for (Evento evento : eventos) {
-            infoEventos += evento.getNome() + " -> " +
-                    "\n" + evento.getDataInicio().getDate() + "/" + evento.getDataInicio().getMonth() + "/" + evento.getDataInicio().getYear() +
-                    " às " + evento.getDataInicio().getHours() + ":" + evento.getDataInicio().getMinutes() +
-                    " até \n" + evento.getDataFim().getDate() + "/" + evento.getDataFim().getMonth() + "/" + evento.getDataFim().getYear() +
-                    " às " + evento.getDataFim().getHours() + ":" + evento.getDataFim().getMinutes());
-        }
-*/
+       for (Evento evento : eventos) {
+           infoEventos.append(getInfoEventoApp(evento));
+       }
 
-        infoEventos.append("Prova economia dia30 hora34\n"+"Apresentaçao mpoo dia30 hora90\n");
-       // infoEventos+= "\nAtenciosamente, " + "\n" + pessoaLogada.getNome()+".";
+        infoEventos.append("\nAtenciosamente, " + "\n" + pessoaLogada.getNome()+".");
         return infoEventos;
     }
 
@@ -159,7 +156,7 @@ public class CompartilharEventoActivity extends AppCompatActivity{
                 }
 
                 Toast.makeText(getApplicationContext(),
-                        responseText, Toast.LENGTH_LONG).show();
+                        responseText, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -168,27 +165,53 @@ public class CompartilharEventoActivity extends AppCompatActivity{
     }
 
     public void mostrarLista(){
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> eventosInformacoes = new ArrayList<String>();
 
         try {
             eventosPessoa = eventoNegocio.listarEventosProximo(pessoaLogada.getId());
             for (Evento evento:eventosPessoa) {
-                list.add(evento.getNome()+" -> " +
-                        "\n"+evento.getDataInicio().getDate()+"/"+evento.getDataInicio().getMonth()+"/"+evento.getDataInicio().getYear()+
-                        " às "+evento.getDataInicio().getHours()+":"+evento.getDataInicio().getMinutes()+
-                        " até \n"+evento.getDataFim().getDate()+"/"+evento.getDataFim().getMonth()+"/"+evento.getDataFim().getYear()+
-                        " às "+evento.getDataFim().getHours()+":"+evento.getDataFim().getMinutes());
-
+                eventosInformacoes.add(mostrarInfoEvento(evento));
             }
         } catch (MindbitException e) {
             GuiUtil.exibirMsg(CompartilharEventoActivity.this, e.getMessage());
         }
 
         if (listaEventos!=null) {
-            ArrayAdapter<String> adapter = new ContactListAdapter(this, list);
+            ArrayAdapter<String> adapter = new ContactListAdapter(this, eventosInformacoes);
             listaEventos.setAdapter(adapter);
         }
     }
+
+    public String mostrarInfoEvento(Evento evento){
+        String nomeEvento = evento.getNome();
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+        String dataInicio = simpleDateFormat.format(addOneMonth(evento.getDataInicio()));
+        String dataFim = simpleDateFormat.format(addOneMonth(evento.getDataFim()));
+
+        String informacoes = nomeEvento + "\n" + dataInicio + " até\n" + dataFim;
+        return informacoes;
+    }
+
+    public String getInfoEventoApp(Evento evento){
+        String nomeEvento = evento.getNome();
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+        String dataInicio = simpleDateFormat.format(addOneMonth(evento.getDataInicio()));
+        String dataFim = simpleDateFormat.format(addOneMonth(evento.getDataFim()));
+
+        String informacoes = "\n" + nomeEvento + "\nData/Hora de início: " + dataInicio +
+                "\nData/Hora de término: " + dataFim + "\n";
+        return informacoes;
+    }
+
+    public static Date addOneMonth(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.MONTH, 1);
+        return cal.getTime();
+    }
+
 }
 
 
