@@ -62,9 +62,8 @@ public class AmigoDao {
         List<Amigo> listaAmigos = new ArrayList<Amigo>();
 
         SQLiteDatabase db=databaseHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT "+ databaseHelper.PESSOA_AMIGO +" FROM " +
-                databaseHelper.TABELA_PESSOA + " WHERE " +
-                databaseHelper.PESSOA_ID + " =?", new String[]{String.valueOf(id)});
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ databaseHelper.TABELA_AMIGO +" WHERE " +
+                databaseHelper.ID_PESSOA_USUARIO+ " =?", new String[]{String.valueOf(id)});
 
         while (cursor.moveToNext()){
             amigo = criarAmigo(cursor);

@@ -28,18 +28,12 @@
 
         <activity
             android:name=".controleacesso.gui.PesquisarEventoActivity"
-            android:label="@string/title_activity_pesquisar_evento" />
-        <!--android:theme="@style/AppTheme.NoActionBar" -->
-
+            android:label="@string/title_activity_pesquisar_evento"></activity>
         <activity
             android:name=".controleacesso.gui.CompartilharEventoActivity"
-            android:label="Compartilhar Eventos">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+            android:label="Compartilhar Eventos"></activity>
+        <activity android:name=".controleacesso.gui.EscolherAmigoActivity"
+            android:label="Compartilhar Eventos"></activity>
         <activity android:name=".controleacesso.gui.AddEventoActivity"
             android:label="Adicionar Evento"></activity>
         <activity android:name=".controleacesso.gui.AddAmigoActivity"
@@ -48,7 +42,6 @@
             android:label="Adicionar Disciplina"></activity>
         <activity android:name=".controleacesso.gui.Pop"
             android:theme="@style/AppTheme.Custom"></activity>
-
 
     </application>
 
