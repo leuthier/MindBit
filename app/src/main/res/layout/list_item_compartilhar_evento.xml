@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/txt_compartilhar_data_evento"
+        android:layout_width="179dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginRight="16dp"
+        android:textSize="12sp"
+        android:layout_marginLeft="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/txt_compartilhar_nome_evento"
+            android:layout_width="181dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="28dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="nome do evento"
+            android:layout_weight="0.26"
+            android:layout_marginTop="-2dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chkBox_evento"
+            android:checked="false"
+            android:layout_marginRight="-170dp"
+            android:layout_marginTop="-5dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_compartilhar_descricao_evento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-5dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="14sp"
+        android:layout_weight="0.02" />
+
+</LinearLayout>
