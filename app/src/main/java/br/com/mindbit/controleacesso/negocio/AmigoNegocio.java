@@ -37,8 +37,7 @@ public class AmigoNegocio {
         }
     }
 
-    public List<Amigo> listarAmigos() throws MindbitException{
-        int idPessoa = sessaoUsuario.getPessoaLogada().getId();
+    public List<Amigo> listarAmigos(int idPessoa) throws MindbitException{
         return amigoDao.listarAmigos(idPessoa);
     }
 
