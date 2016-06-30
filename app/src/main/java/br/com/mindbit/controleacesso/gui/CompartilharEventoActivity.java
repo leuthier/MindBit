@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.mindbit.R;
+import br.com.mindbit.controleacesso.dominio.Amigo;
 import br.com.mindbit.controleacesso.dominio.Evento;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.negocio.EventoNegocio;
@@ -32,6 +34,8 @@ import br.com.mindbit.infra.gui.MindbitException;
 public class CompartilharEventoActivity extends AppCompatActivity{
     private Resources resources;
 
+
+
     private EventoNegocio eventoNegocio;
     private SessaoUsuario sessaoUsuario;
     private Pessoa pessoaLogada;
@@ -39,11 +43,10 @@ public class CompartilharEventoActivity extends AppCompatActivity{
     private ArrayList<Evento> eventosPessoa;
     private ArrayList<String> list = new ArrayList<String>();
     private ArrayAdapter<String> adapter = null;
-    private List<Pessoa> pessoasDestinatarios;
+    private List<Amigo> pessoasDestinatarios;
     private List<Evento> eventosMarcardos;
 
     private ListView listaEventos;
-    private CheckBox checkbox;
     private Button btnCompartilhar;
 
     @Override
@@ -59,7 +62,6 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         pessoaLogada = sessaoUsuario.getPessoaLogada();
 
         listaEventos = (ListView) findViewById(R.id.ListView_compartilhar_evento);
-        checkbox = (CheckBox) findViewById(R.id.chkbx_escolhe_evento);
         btnCompartilhar = (Button) findViewById(R.id.btn_compartilhar_evento);
         btnCompartilhar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,11 +74,74 @@ public class CompartilharEventoActivity extends AppCompatActivity{
        mostrarLista();
     }
 
+    private class MyCustomAdapter extends ArrayAdapter<Evento> {
+        private ArrayList<Evento> eventoList;
+
+        public MyCustomAdapter(Context context, int textViewResourceId,ArrayList<Evento> eventos) {
+            super(context, textViewResourceId, eventos);
+            this.eventoList = new ArrayList<Evento>();
+            this.eventoList.addAll(eventos);
+        }
+
+        private class ViewHolder {
+
+            CheckBox name;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            ViewHolder holder = null;
+            Log.v("ConvertView", String.valueOf(position));
+
+            if (convertView == null) {
+                LayoutInflater vi = (LayoutInflater)getSystemService(
+                        Context.LAYOUT_INFLATER_SERVICE);
+                convertView = vi.inflate(R.layout.eventos_checkbox, null);
+
+                holder = new ViewHolder();
+
+                holder.name = (CheckBox) convertView.findViewById(R.id.txt_nome_evento);
+                convertView.setTag(holder);
+
+                holder.name.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        CheckBox cb = (CheckBox) v;
+                        Evento evento = (Evento) cb.getTag();
+                        Toast.makeText(getApplicationContext(),
+                                "Clicked on Checkbox: " + cb.getText() +
+                                        " is " + cb.isChecked(),
+                                Toast.LENGTH_LONG).show();
+                        //evento.setSelected(cb.isChecked());
+                    }
+                });
+            }
+            else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            Evento evento = eventoList.get(position);
+
+            holder.name.setText(evento.getNome());
+            //holder.name.setChecked(evento.isSelected());
+            holder.name.setTag(evento);
+
+            return convertView;
+
+        }
+
+    }
+
+    public List<Evento> getEventosSelecionados(){
+
+        return eventosMarcardos;
+    }
+
     public void compartilhar(View v){
 
-        String[] emailsDestino = new String[]{getDestinariosEmails(pessoasDestinatarios)};
+        String[] emailsDestino = new String[]{getDestinariosEmails()};
         //eventosPessoa NÃO está correto - deveria ser eventosMarcados!
-        StringBuilder conteudoEmail = getAppConteudo(eventosPessoa);
+        StringBuilder conteudoEmail = getAppConteudo(getEventosSelecionados());
         //ArrayList<String> emailConteudo = getAppConteudo(eventosMarcardos);
         String subject = ("MindBit - Alguém compartilhou eventos com você!");
 
@@ -94,15 +159,17 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         }
     }
 
-    public String getDestinariosEmails(List<Pessoa> destinatarios){
+    public String getDestinariosEmails(){
+        Pessoa pessoa = pessoaLogada;
         String emailsDestino = new String();
 
-/*        for (Pessoa pessoa : destinatarios) {
-            emailsDestino += pessoa.getEmail()+",";
-
-        }*/
-
-        emailsDestino+="ariana@teste.com"+","+"victor.leuthier@ufrpe.br"+",";
+        if (pessoa.getAmigos() != null) {
+            List<Amigo> amigos = pessoa.getAmigos();
+            for (Amigo amigo : amigos) {
+                emailsDestino += amigo.getEmail() + ",";
+            }
+        }
+        //emailsDestino+="ariana@teste.com"+","+"victor.leuthier@ufrpe.br"+",";
 
         return emailsDestino;
     }
@@ -114,7 +181,8 @@ public class CompartilharEventoActivity extends AppCompatActivity{
            infoEventos.append(getInfoEventoApp(evento));
        }
 
-        infoEventos.append("\nAtenciosamente, " + "\n" + pessoaLogada.getNome()+".");
+        infoEventos.append("\nAtenciosamente, " + "\n" + pessoaLogada.getNome()+".\n"+
+        "via MindBit - https://sites.google.com/site/mindbitufrpe/");
         return infoEventos;
     }
 
@@ -122,7 +190,6 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         public ContactListAdapter(Context context, ArrayList<String> s) {
             super(context, 0, s);
         }
-
 
         public View getView(int position, View view, ViewGroup parent) {
             String s = getItem(position);
@@ -133,9 +200,26 @@ public class CompartilharEventoActivity extends AppCompatActivity{
 
             TextView name = (TextView) view.findViewById(R.id.txt_nome_evento);
             name.setText(s);
+            /*((TextView) view.findViewById(R.id.txt_nome_evento)).setText(evento.getNome());
+
+            verificaCheckbox(view);
+            if (verificaCheckbox(view)){
+                //evento eh objeto
+                eventosMarcardos.add(evento);
+            }else{
+                eventosMarcardos.remove(evento);
+            }*/
 
             return view;
         }
+    }
+
+    public boolean verificaCheckbox(View view){
+        CheckBox checkbox = ((CheckBox) view.findViewById(R.id.chkbx_escolhe_evento));
+        if (checkbox.isChecked()){
+            return true;
+        }
+        return false;
     }
 
     private StringBuilder checkButtonClick() {
@@ -145,13 +229,13 @@ public class CompartilharEventoActivity extends AppCompatActivity{
             public void onClick(View v) {
 
                 StringBuffer responseText = new StringBuffer();
-                responseText.append("The following were selected...\n");
+                responseText.append("The following were selected...");
 
                 // ArrayList<String> countryList = adapter.countryList;
                 for (int i = 0; i < list.size(); i++) {
                     String evento = list.get(i);
                     //if(evento.isSelected()){
-                    responseText.append("\n" + evento);
+                    responseText.append(evento);
                     //}
                 }
 
