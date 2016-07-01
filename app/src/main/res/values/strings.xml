@@ -107,4 +107,15 @@
     <string name="email_vazio">Digite um e-mail</string>
     <string name="nome_vazio">Insira um nome</string>
 
+    <string name="activity_sobre">Sobre</string>
+    <string name="sobre_nome">MindBit</string>
+    <string name="sobre_descricao">Projeto para segunda VA de Modelagem e Programação Orientada a Objetos (MPOO) do curso de Sistema de Informação, lecionada pelo professor Gabriel Alves na Universidade Federal Rural de Pernambuco (UFRPE).</string>
+    <string name="sobre_desenvolvedores">Desenvolvedores:</string>
+    <string name="sobre_ariana">Ariana Lima</string>
+    <string name="sobre_bernardo">Bernardo Junior</string>
+    <string name="sobre_bruna">Bruna Vasconcelos</string>
+    <string name="sobre_gabriel">Gabriel Maia</string>
+    <string name="sobre_tiago">Tiago Sitonio</string>
+    <string name="sobre_victor">Victor Leuthier</string>
+
 </resources>

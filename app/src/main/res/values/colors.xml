@@ -5,4 +5,6 @@
     <color name="colorAccent">#df1f1f</color>
     <color name="calendarAddFab">#FFFFFF</color>
     <color name="popColor">#33b5e5</color>
+    <color name="Blue_700">#ff3367d6</color>
+    <color name="kg_multi_user_text_inactive">#ff808080</color>
 </resources>

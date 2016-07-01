@@ -128,6 +128,8 @@ public class PerfilActivity extends AppCompatActivity
             startActivity(i);
 
         } else if (id == R.id.nav_sobre) {
+            Intent i = new Intent(this,SobreActivity.class);
+            startActivity(i);
 
         }
 

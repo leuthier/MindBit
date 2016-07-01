@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/fotoPerfil"
+        android:contentDescription="@string/img_descricao"
+        android:layout_width="61dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/logo"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/sobre_nome"
+        android:textSize="25dp"
+        android:textColor="@android:color/holo_blue_light"
+        android:id="@+id/textView_mindbit"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:textSize="17dp"
+        android:textColor="@android:color/tertiary_text_light"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sobre_descricao"
+        android:id="@+id/sobre_descricao" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sobre_desenvolvedores"
+        android:layout_marginTop="30dp"
+        android:id="@+id/textView_desenvolvedores" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sobre_ariana"
+        android:layout_marginTop="5dp"
+        android:textSize="15dp"
+        android:id="@+id/textView_Ariana" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sobre_bernardo"
+        android:layout_marginTop="2dp"
+        android:textSize="15dp"
+        android:id="@+id/textView_Bernardo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sobre_bruna"
+        android:layout_marginTop="2dp"
+        android:textSize="15dp"
+        android:id="@+id/textView_Bruna" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sobre_gabriel"
+        android:layout_marginTop="2dp"
+        android:textSize="15dp"
+        android:id="@+id/textView_Gabriel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sobre_tiago"
+        android:layout_marginTop="2dp"
+        android:textSize="15dp"
+        android:id="@+id/textView_Tiago" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sobre_victor"
+        android:layout_marginTop="2dp"
+        android:textSize="15dp"
+        android:id="@+id/textView_Victor" />
+
+
+
+
+</LinearLayout>
