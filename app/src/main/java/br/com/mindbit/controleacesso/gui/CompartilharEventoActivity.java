@@ -78,7 +78,7 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         }
     }
 
-    public List<Evento> getEventosSelecionados(){
+    public ArrayList<Evento> getEventosSelecionados(){
         ArrayList<String> nomes = adapterCompartilhar.getNomesEventos();
         eventosMarcardos = new ArrayList<>();
 

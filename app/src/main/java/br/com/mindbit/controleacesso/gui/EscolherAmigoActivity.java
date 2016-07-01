@@ -69,15 +69,15 @@ public class EscolherAmigoActivity extends AppCompatActivity{
         }
 
         public String getEmailsSelecionados(){
-            List<Amigo> amigosSelecionados = adapterEscolher.getAmigosSelecionados();
+            ArrayList<String> amigosSelecionados = adapterEscolher.getEmailsAmigos();
 
             if(amigosSelecionados.size() == 0){
-                GuiUtil.exibirMsg(this,"Selecione algum evento");
+                GuiUtil.exibirMsg(this,"Selecione algum amigoo");
             }else {
-                for (Amigo amigo : amigosSelecionados) {
+                for (String emailAmigo : amigosSelecionados) {
                     try {
                         if (amigoNegocio.listarAmigos(pessoaLogada.getId()) != null) {
-                            //amigo = amigoNegocio.buscarPorEmail(pessoaLogada.getId(), amigo.getEmail());
+                            Amigo amigo = amigoNegocio.buscarPorEmail(emailAmigo);
                             emailsSelecionados += amigo.getEmail() + ",";
                         }
                     } catch (MindbitException e) {
@@ -99,7 +99,7 @@ public class EscolherAmigoActivity extends AppCompatActivity{
 
         public void construirEmail(){
             String[] emailsDestino = new String[]{getEmailsSelecionados()};
-            List<Evento> eventosSelecionados = compartilharEventoActivity.getEventosSelecionados();
+            ArrayList<Evento> eventosSelecionados = compartilharEventoActivity.getEventosSelecionados();
 
             if (getEmailsSelecionados().length()==0){
                 GuiUtil.exibirMsg(this,"Selecione algum amigo");

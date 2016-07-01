@@ -67,13 +67,13 @@ public class AdapterEscolherAmigo extends BaseAdapter {
                 CheckBox amigoCheckbox = (CheckBox) v;
                 if (amigoCheckbox.isChecked()) {
 
-                    nomesAmigos.add(nomeAmigo);
+                    //nomesAmigos.add(nomeAmigo);
                     emailsAmigos.add(emailAmigo);
-                    amigosSelecionados.add(amigo);
+                    //amigosSelecionados.add(amigo);
                 } else {
-                    nomesAmigos.remove(nomeAmigo);
+                    //nomesAmigos.remove(nomeAmigo);
                     emailsAmigos.remove(emailAmigo);
-                    amigosSelecionados.remove(amigo);
+                    //amigosSelecionados.remove(amigo);
                 }
             }
         });

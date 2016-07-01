@@ -15,6 +15,7 @@ import br.com.mindbit.infra.gui.MindbitException;
 public class AmigoDao {
     private static DatabaseHelper databaseHelper;
     private static AmigoDao instanciaAmigoDao = new AmigoDao();
+    private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
 
     private AmigoDao(){}
 
@@ -45,10 +46,11 @@ public class AmigoDao {
     }
 
     public Amigo buscarAmigoPorEmail(String email) throws MindbitException {
+        int idPessoaLogada = sessaoUsuario.getPessoaLogada().getId();
         Amigo amigo = null;
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseHelper.TABELA_AMIGO +
-                " WHERE " + DatabaseHelper.AMIGO_EMAIL + " = ? ", new String[]{email});
+                " WHERE " + DatabaseHelper.AMIGO_EMAIL + " =? AND " + databaseHelper.ID_PESSOA_USUARIO + " =?", new String[]{email, String.valueOf(idPessoaLogada)});
         if (cursor.moveToFirst()) {
             amigo = criarAmigo(cursor);
         }

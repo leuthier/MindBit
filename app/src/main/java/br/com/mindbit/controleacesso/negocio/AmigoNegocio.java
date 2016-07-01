@@ -29,12 +29,11 @@ public class AmigoNegocio {
     }
 
     public void adicionarAmigo(Amigo amigo) throws MindbitException {
-        Pessoa pessoaLogada = sessaoUsuario.getPessoaLogada();
 
         Amigo amigoEncontrado = amigoDao.buscarAmigoPorEmail(amigo.getEmail());
         if (amigoEncontrado == null){
             amigoDao.addAmigo(amigo);
-            pessoaLogada.addAmigo(amigo);
+
         }else{
             throw new MindbitException("Amigo já existe.");
         }
@@ -44,7 +43,7 @@ public class AmigoNegocio {
         return amigoDao.listarAmigos(idPessoa);
     }
 
-    public Amigo buscarPorEmail(int idPessoa, String email) throws MindbitException{
+    public Amigo buscarPorEmail(String email) throws MindbitException{
         return amigoDao.buscarAmigoPorEmail(email);
     }
 }
