@@ -10,19 +10,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.dominio.Evento;
+import br.com.mindbit.controleacesso.negocio.EventoNegocio;
+
 
 public class AdapterCompartilharEvento extends BaseAdapter {
-
     private LayoutInflater layoutInflater;
     private List<Evento> eventosLista;
+    private ArrayList<String> nomesEventos = new ArrayList<>();
     private Evento evento;
-    private boolean selecionado;
     private Context context;
 
     public AdapterCompartilharEvento(Context context, List<Evento> eventosLista){
@@ -57,28 +59,35 @@ public class AdapterCompartilharEvento extends BaseAdapter {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         String inicio = simpleDateFormat.format(addOneMonth(evento.getDataInicio()));
 
+
         view = layoutInflater.inflate(R.layout.list_item_compartilhar_evento, null);
 
         ((TextView) view.findViewById(R.id.txt_compartilhar_data_evento)).setText(inicio);
         ((TextView) view.findViewById(R.id.txt_compartilhar_nome_evento)).setText(evento.getNome());
+         final String nomeEvento = ((TextView) view.findViewById(R.id.txt_compartilhar_nome_evento)).getText().toString();
         ((TextView) view.findViewById(R.id.txt_compartilhar_descricao_evento)).setText(evento.getDescricao());
-        CheckBox checkBox = (CheckBox) view.findViewById(R.id.chkBox_evento);
+        final CheckBox checkBox = (CheckBox) view.findViewById(R.id.chkBox_evento);
 
-        checkBox.setOnClickListener(new View.OnClickListener(){
+
+        checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 CheckBox eventoCheckbox = (CheckBox) v;
-                if (eventoCheckbox.isChecked()){
-                    Toast.makeText(context,"TO SELECIONADO :)",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(context,"TO DESMARCADO :(",Toast.LENGTH_SHORT).show();
+                if (eventoCheckbox.isChecked()) {
+                    nomesEventos.add(nomeEvento);
+                   // Toast.makeText(context, nomeEvento, Toast.LENGTH_SHORT).show();
+                } else {
+                    nomesEventos.remove(nomeEvento);
+                   // Toast.makeText(context, "TO DESMARCADO :(", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         return view;
     }
 
-
+    public ArrayList<String> getNomesEventos(){
+        return nomesEventos;
+    }
 
     public static Date addOneMonth(Date date){
         Calendar cal = Calendar.getInstance();

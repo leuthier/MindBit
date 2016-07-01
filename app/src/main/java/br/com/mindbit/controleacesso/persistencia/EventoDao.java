@@ -117,10 +117,10 @@ public class EventoDao {
 
         Evento evento = null;
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseHelper.TABELA_EVENTO +
-                " WHERE " + DatabaseHelper.EVENTO_NOME + " =?", new String[]{nome});
+        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO +
+                " WHERE " + databaseHelper.EVENTO_NOME + " =?", new String[]{nome});
 
-        while (cursor.moveToNext()){
+        if (cursor.moveToFirst()){
             evento = criarEvento(cursor);
         }
         db.close();
@@ -246,4 +246,5 @@ public class EventoDao {
         cursor.close();
         return eventosDia;
     }
+
 }

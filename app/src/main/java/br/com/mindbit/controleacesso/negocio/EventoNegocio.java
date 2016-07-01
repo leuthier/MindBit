@@ -48,8 +48,7 @@ public class EventoNegocio {
      * @throws MindbitException
      */
     public Evento pesquisarPorNome(String nome) throws MindbitException {
-        Evento evento = null;
-        evento = eventoDao.buscarEventoNome(nome);
+        Evento evento = eventoDao.buscarEventoNome(nome);
         return evento;
     }
 

@@ -34,8 +34,6 @@ import br.com.mindbit.infra.gui.MindbitException;
 public class CompartilharEventoActivity extends AppCompatActivity{
     private Resources resources;
 
-
-
     private EventoNegocio eventoNegocio;
     private SessaoUsuario sessaoUsuario;
     private Pessoa pessoaLogada;
@@ -43,7 +41,6 @@ public class CompartilharEventoActivity extends AppCompatActivity{
     private ArrayList<Evento> eventosPessoa;
     private ArrayList<Evento> eventosMarcardos;
     private ArrayList<Evento> listItems = new ArrayList<>();
-    //private ArrayAdapter<String> adapter = null;
     private List<Amigo> pessoasDestinatarios;
 
     private ListView listaEventos;
@@ -73,73 +70,27 @@ public class CompartilharEventoActivity extends AppCompatActivity{
 
         adapterCompartilhar = new AdapterCompartilharEvento(this, listItems);
 
-        //mostrarLista();
         try {
             iniciarLista();
         } catch (MindbitException e) {
-            Log.d("Compartilhar evento activity", e.getMessage());
+            Log.d("CompartilharEventoActvt", e.getMessage());
         }
     }
 
-    /*private class MyCustomAdapter extends ArrayAdapter<Evento> {
-        private ArrayList<Evento> eventoList;
-
-        public MyCustomAdapter(Context context, int textViewResourceId,ArrayList<Evento> eventos) {
-            super(context, textViewResourceId, eventos);
-            this.eventoList = new ArrayList<Evento>();
-            this.eventoList.addAll(eventos);
-        }
-
-        private class ViewHolder {
-
-            CheckBox name;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            ViewHolder holder = null;
-            Log.v("ConvertView", String.valueOf(position));
-
-            if (convertView == null) {
-                LayoutInflater vi = (LayoutInflater)getSystemService(
-                        Context.LAYOUT_INFLATER_SERVICE);
-                convertView = vi.inflate(R.layout.eventos_checkbox, null);
-
-                holder = new ViewHolder();
-
-                holder.name = (CheckBox) convertView.findViewById(R.id.txt_nome_evento);
-                convertView.setTag(holder);
-
-                holder.name.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        CheckBox cb = (CheckBox) v;
-                        Evento evento = (Evento) cb.getTag();
-                        Toast.makeText(getApplicationContext(),
-                                "Clicked on Checkbox: " + cb.getText() +
-                                        " is " + cb.isChecked(),
-                                Toast.LENGTH_LONG).show();
-                        //evento.setSelected(cb.isChecked());
-                    }
-                });
-            }
-            else {
-                holder = (ViewHolder) convertView.getTag();
-            }
-
-            Evento evento = eventoList.get(position);
-
-            holder.name.setText(evento.getNome());
-            //holder.name.setChecked(evento.isSelected());
-            holder.name.setTag(evento);
-
-            return convertView;
-
-        }
-
-    }
-*/
     public List<Evento> getEventosSelecionados(){
+        ArrayList<String> nomes = adapterCompartilhar.getNomesEventos();
+        eventosMarcardos = new ArrayList<>();
+
+        for (String nome:nomes){
+            try {
+                if (eventoNegocio.pesquisarPorNome(nome)!=null) {
+                    Evento evento = eventoNegocio.pesquisarPorNome(nome);
+                    eventosMarcardos.add(evento);
+                }
+            }catch (MindbitException e){
+                Log.d("CompartilharEventoActvt", e.getMessage());
+            }
+        }
 
         return eventosMarcardos;
     }
@@ -149,27 +100,21 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         switch (id){
             case R.id.btn_compartilhar_evento:
                 String[] emailsDestino = new String[]{getDestinariosEmails()};
-                //eventosPessoa NÃO está correto - deveria ser eventosMarcados!
-                StringBuilder conteudoEmail = getAppConteudo(eventosPessoa);
-                //JEITO CERTO ABAIXO
-                //StringBuilder conteudoEmail = getAppConteudo(getEventosSelecionados());
-                String subject = ("MindBit - Alguém compartilhou eventos com você!");
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("text/plain");
-                i.putExtra(android.content.Intent.EXTRA_EMAIL, emailsDestino);
-                i.putExtra(Intent.EXTRA_SUBJECT, subject);
-                i.putExtra(Intent.EXTRA_TEXT, conteudoEmail.toString());
-                startActivity(Intent.createChooser(i, "Compartilhar para:"));
+
+                StringBuilder conteudoEmail = getAppConteudo(getEventosSelecionados());
+                if (getEventosSelecionados().size()==0){
+                    GuiUtil.exibirMsg(this,"Selecione algum evento");
+                }else {
+                    String subject = ("MindBit - Alguém compartilhou eventos com você!");
+                    Intent i = new Intent(Intent.ACTION_SEND);
+                    i.setType("text/plain");
+                    i.putExtra(android.content.Intent.EXTRA_EMAIL, emailsDestino);
+                    i.putExtra(Intent.EXTRA_SUBJECT, subject);
+                    i.putExtra(Intent.EXTRA_TEXT, conteudoEmail.toString());
+                    startActivity(Intent.createChooser(i, "Compartilhar para:"));
+                }
         }
 
-
-
-        /*checkButtonClick();
-        if (checkButtonClick()!=null) {
-
-        }else{
-            GuiUtil.exibirMsg(this,"Selecione algum evento");
-        }*/
     }
 
     public String getDestinariosEmails(){
@@ -200,94 +145,12 @@ public class CompartilharEventoActivity extends AppCompatActivity{
     }
 
 
-    /*private class ContactListAdapter extends ArrayAdapter<String> {
-        public ContactListAdapter(Context context, ArrayList<String> s) {
-            super(context, 0, s);
-        }
-
-        public View getView(int position, View view, ViewGroup parent) {
-            String s = getItem(position);
-
-            if (view == null) {
-                view = LayoutInflater.from(getContext()).inflate(R.layout.eventos_checkbox, parent, false);
-            }
-
-            TextView name = (TextView) view.findViewById(R.id.txt_nome_evento);
-            name.setText(s);
-            *//*((TextView) view.findViewById(R.id.txt_nome_evento)).setText(evento.getNome());
-
-            verificaCheckbox(view);
-            if (verificaCheckbox(view)){
-                //evento eh objeto
-                eventosMarcardos.add(evento);
-            }else{
-                eventosMarcardos.remove(evento);
-            }*//*
-
-            return view;
-        }
-    }*/
-
-    /*private StringBuilder checkButtonClick() {
-        StringBuilder mensagem = new StringBuilder();
-        btnCompartilhar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                StringBuffer responseText = new StringBuffer();
-                responseText.append("The following were selected...");
-
-                // ArrayList<String> countryList = adapter.countryList;
-                for (int i = 0; i < list.size(); i++) {
-                    String evento = list.get(i);
-                    //if(evento.isSelected()){
-                    responseText.append(evento);
-                    //}
-                }
-
-                Toast.makeText(getApplicationContext(),
-                        responseText, Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-     return mensagem;
-    }*/
-
-    /*public void mostrarLista(){
-        ArrayList<String> eventosInformacoes = new ArrayList<String>();
-
-        try {
-            eventosPessoa = eventoNegocio.listarEventosProximo(pessoaLogada.getId());
-            for (Evento evento:eventosPessoa) {
-                eventosInformacoes.add(mostrarInfoEvento(evento));
-            }
-        } catch (MindbitException e) {
-            GuiUtil.exibirMsg(CompartilharEventoActivity.this, e.getMessage());
-        }
-
-        if (listaEventos!=null) {
-            ArrayAdapter<String> adapter = new ContactListAdapter(this, eventosInformacoes);
-            listaEventos.setAdapter(adapter);
-        }
-    }*/
 
     public void iniciarLista() throws MindbitException{
         eventosPessoa = eventoNegocio.listarEventosProximo(pessoaLogada.getId());
 
         adapterCompartilhar = new AdapterCompartilharEvento(this, eventosPessoa);
         listaEventos.setAdapter(adapterCompartilhar);
-    }
-
-    public String mostrarInfoEvento(Evento evento){
-        String nomeEvento = evento.getNome();
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
-        String dataInicio = simpleDateFormat.format(addOneMonth(evento.getDataInicio()));
-        String dataFim = simpleDateFormat.format(addOneMonth(evento.getDataFim()));
-
-        String informacoes = nomeEvento + "\n" + dataInicio + " até\n" + dataFim;
-        return informacoes;
     }
 
     public String getInfoEventoApp(Evento evento){
