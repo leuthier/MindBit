@@ -38,6 +38,5 @@ public class   Evento {
     public Enum<PrioridadeEvento> getNivelPrioridadeEnum() {return nivelPrioridadeEnum;}
     public void setNivelPrioridadeEnum(Enum<PrioridadeEvento> nivelPrioridadeEnum) {this.nivelPrioridadeEnum = nivelPrioridadeEnum;}
 
-    public int getIdPessoaCriadora(){return idPessoaCriadora;}
     public void setIdPessoaCriadora(int idPessoaCriadora){this.idPessoaCriadora=idPessoaCriadora;}
     }

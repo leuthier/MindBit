@@ -30,8 +30,6 @@ public class EventoDao {
     private static final String DATE_FORMAT = "dd-MM-yyyy HH:mm";
     private static final DateFormat DATE_FORMATTER = new SimpleDateFormat(DATE_FORMAT);
 
-    private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
-    private static Context contexto;
     private static EventoDao instanciaEventoDao = new EventoDao();
 
     private EventoDao() {}
@@ -44,6 +42,8 @@ public class EventoDao {
 
 
     /**
+     * metodo utilizado para fazer o cadastro do evento no banco
+     *
      * @param evento                    evento a ser cadastrado no db
      * @throws MindbitException         caso o evento nao consiga ser cadastrado
      */
@@ -54,7 +54,6 @@ public class EventoDao {
         values.put(DatabaseHelper.EVENTO_ID, evento.getId());
         values.put(DatabaseHelper.EVENTO_NOME, evento.getNome());
 
-        //long foreing_key_id_pessoa_criadora = db.insert(DatabaseHelper.TABELA_EVENTO, null, values);
 
         values = new ContentValues();
         values.put(DatabaseHelper.EVENTO_NOME, evento.getNome());
@@ -77,6 +76,7 @@ public class EventoDao {
     }
 
     /**
+     * metodo utilizado para fazer a criacao do evento no banco
      *
      * @param cursor                        cursor a ser usado na criacao do evento
      * @return                              objeto evento preenchido
@@ -106,6 +106,8 @@ public class EventoDao {
     }
 
     /**
+     * metodo utilizado para fazer a busca dos evento no banco atraves do nome
+     *
      * @param nome                      nome do evento que sera encontrado
      * @return                          evento com o nome desejado encontrado
      * @throws MindbitException         caso o evento nao possa ser encontrado
@@ -129,6 +131,8 @@ public class EventoDao {
 
 
     /**
+     * metodo utilizado para fazer a busca dos evento no banco atraves de pedacos do nome dos eventos
+     *
      * @param id                        id dos eventos que serao procurados
      * @param nome                      nome dos eventos que sao procurados
      * @return                          lista de eventos contendo partes do nome procurado
@@ -154,52 +158,10 @@ public class EventoDao {
     }
 
 
-    /**
-     * @param id                         id do evento que sera procurado
-     * @return                           evento encontrado
-     * @throws MindbitException
-     */
-    public Evento buscarEventoId(int id) throws MindbitException {
-        Evento evento = null;
-        SQLiteDatabase db = databaseHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " +
-                databaseHelper.EVENTO_ID + " =?", new String[]{String.valueOf(id)});
-
-        if (cursor.moveToFirst()) {
-            evento = criarEvento(cursor);
-        }
-
-        db.close();
-        cursor.close();
-        return evento;
-    }
-
 
     /**
-     * @param id                          id dos eventos que serao mostrados
-     * @return                            lista de eventos com id procurado
-     * @throws MindbitException
-     */
-    public ArrayList<Evento> listarEventos(int id) throws MindbitException {
-        Evento evento = null;
-        ArrayList<Evento> listaEventos = new ArrayList<Evento>();
-
-        SQLiteDatabase db=databaseHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " +
-                databaseHelper.PESSOA_CRIADORA_ID + " =?", new String[]{String.valueOf(id)});
-
-        while (cursor.moveToNext()){
-            evento = criarEvento(cursor);
-            listaEventos.add(evento);
-        }
-
-        db.close();
-        cursor.close();
-        return listaEventos;
-    }
-
-
-    /**
+     * metodo utilizado para fazer a listagem dos eventos por ordem crescente de data
+     *
      * @param id                          id dos eventos que serao mostrados
      * @return                            lista com os eventos
      * @throws MindbitException

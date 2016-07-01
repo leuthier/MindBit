@@ -4,6 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * Classe utilizada para gerar as constantes das tabelas do dao
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String NOME_DB = "banco";
@@ -62,11 +65,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(ScriptTableSQL.getTabelaEvento());
         db.execSQL(ScriptTableSQL.getTabelaDisciplina());
         db.execSQL(ScriptTableSQL.getTabelaAmigo());
-
-        //PopularTabela.inserirUsuarios(db);
-        //PopularTabela.inserirPessoas(db);
-        //PopularTabela.inserirAmigos(db);
-        //PopularTabela.inserirEventos(db);
 
     }
 

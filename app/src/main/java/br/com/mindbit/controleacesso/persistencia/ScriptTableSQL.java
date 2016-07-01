@@ -1,5 +1,8 @@
 package br.com.mindbit.controleacesso.persistencia;
 
+/**
+ * Classe auxiliar utilizada na construcao do stringbuilder que é chamada no DatabaseHelper
+ */
 public class ScriptTableSQL {
     public static String getTabelaPessoa() {
 

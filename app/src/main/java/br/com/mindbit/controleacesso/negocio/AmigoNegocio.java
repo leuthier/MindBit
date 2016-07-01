@@ -26,7 +26,6 @@ public class AmigoNegocio {
         amigoDao = AmigoDao.getInstancia(context);
         return instancia;
     }
-
     public static AmigoNegocio getInstancia() {
         return instancia;
     }

@@ -31,6 +31,8 @@ public class DisciplinaDao {
     }
 
     /**
+     * metodo utilizado para cadastrar a disciplina no banco
+     *
      * @param disciplina disciplina a ser cadastrada no banco
      */
     public void cadastrarDisciplina(Disciplina disciplina) {
@@ -49,6 +51,8 @@ public class DisciplinaDao {
 
 
     /**
+     * metodo utilizado para criar a disciplina na tabela
+     *
      * @param cursor cursor a ser usado na criacao da disciplina
      * @return objeto disciplina preenchido
      */
@@ -62,6 +66,8 @@ public class DisciplinaDao {
     }
 
     /**
+     * metodo utilizado para fazer a busca da disciplina no banco
+     *
      * @param nome nome da disciplina a ser localizada
      * @return retorna a disciplina com o nome procurado
      */

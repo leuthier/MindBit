@@ -51,8 +51,6 @@ public class UsuarioDao {
         values.put(DatabaseHelper.PESSOA_NOME, pessoa.getNome());
         values.put(DatabaseHelper.PESSOA_EMAIL, pessoa.getEmail());
         values.put(DatabaseHelper.PESSOA_FOTO, pessoa.getFoto().toString());
-        //String.valueOf?? To com sono
-        //values.put(DatabaseHelper.PESSOA_AMIGO, String.valueOf(pessoa.getAmigos()));
 
         long foreing_key_id_pessoa = db.insert(DatabaseHelper.TABELA_PESSOA, null, values);
 

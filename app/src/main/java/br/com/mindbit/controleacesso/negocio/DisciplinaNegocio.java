@@ -13,10 +13,8 @@ import br.com.mindbit.infra.gui.MindbitException;
  */
 public class DisciplinaNegocio {
     private static DisciplinaDao disciplinaDao;
-    private static UsuarioNegocio usuarioNegocio;
 
     private static DisciplinaNegocio instancia = new DisciplinaNegocio();
-    private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
 
     private DisciplinaNegocio(){}
 

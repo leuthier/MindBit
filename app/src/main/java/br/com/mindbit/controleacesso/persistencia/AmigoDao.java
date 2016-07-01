@@ -28,6 +28,7 @@ public class AmigoDao {
     }
 
     /**
+     * metodo utilizado para criar o objeto amigo
      *
      * @param cursor cursor a ser usado na criacao do objeto amigo
      * @return  objeto amigo preenchido
@@ -41,7 +42,7 @@ public class AmigoDao {
     }
 
     /**
-     *metodo utilizado para adicionar amigo ao banco
+     * metodo utilizado para adicionar o objeto amigo ao banco
      *
      * @param amigo amigo que sera adicionado
      */
@@ -60,6 +61,7 @@ public class AmigoDao {
 
 
     /**
+     * metodo utilizado para fazer a busca do objeto amigo no banco
      *
      * @param email email que sera utilizado na busca
      * @return      amigo encontrado quanto ao email fornecido
@@ -80,6 +82,7 @@ public class AmigoDao {
     }
 
     /**
+     * metodo utilizado para pegar o id do usuario em sessao e listar os amigos desse usuario
      *
      * @param id    id do usuario que tera os amigos listados
      * @return      lista com os amigos do usuario

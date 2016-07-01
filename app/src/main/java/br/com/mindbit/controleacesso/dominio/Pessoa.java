@@ -53,13 +53,6 @@ public class Pessoa {
         return amigos;
     }
 
-    public void setAmigos(List<Amigo> amigos) {
-        this.amigos = amigos;
-    }
-
-    public void addAmigo(Amigo amigo){
-        amigos.add(amigo);
-    }
 
 }
 
