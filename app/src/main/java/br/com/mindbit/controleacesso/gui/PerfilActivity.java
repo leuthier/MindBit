@@ -121,8 +121,6 @@ public class PerfilActivity extends AppCompatActivity
             Intent i = new Intent(this, AddAmigoActivity.class);
             startActivity(i);
 
-        } else if (id == R.id.nav_config) {
-
         } else if (id == R.id.nav_share) {
            Intent i = new Intent(this,CompartilharEventoActivity.class);
             startActivity(i);

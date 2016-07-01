@@ -30,11 +30,12 @@ public class EscolherAmigoActivity extends AppCompatActivity{
         private Pessoa pessoaLogada;
 
         private List<Amigo> amigosPessoa;
-        private String emailsSelecionados;
+        private String emailsSelecionados="";
         private ArrayList<Amigo> listItems = new ArrayList<>();
 
         private ListView listaAmigos;
         private Button btnEnviar;
+        private String emailConteudo;
         private AdapterCompartilharEvento adapterCompartilhar;
         private CompartilharEventoActivity compartilharEventoActivity = new CompartilharEventoActivity();
 
@@ -44,6 +45,10 @@ public class EscolherAmigoActivity extends AppCompatActivity{
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_escolher_amigo);
+
+
+            Bundle bundle = getIntent().getExtras();
+            emailConteudo = bundle.getString("message");
 
             resources = getResources();
 
@@ -71,9 +76,6 @@ public class EscolherAmigoActivity extends AppCompatActivity{
         public String getEmailsSelecionados(){
             ArrayList<String> amigosSelecionados = adapterEscolher.getEmailsAmigos();
 
-            if(amigosSelecionados.size() == 0){
-                GuiUtil.exibirMsg(this,"Selecione algum amigoo");
-            }else {
                 for (String emailAmigo : amigosSelecionados) {
                     try {
                         if (amigoNegocio.listarAmigos(pessoaLogada.getId()) != null) {
@@ -84,7 +86,7 @@ public class EscolherAmigoActivity extends AppCompatActivity{
                         Log.d("EscolherAmigoActvt", e.getMessage());
                     }
                 }
-            }
+
             return emailsSelecionados;
         }
 
@@ -92,28 +94,28 @@ public class EscolherAmigoActivity extends AppCompatActivity{
             int id = v.getId();
             switch (id) {
                 case R.id.btn_enviarEmail:
-                    construirEmail();
+                    if (getEmailsSelecionados().length()==0){
+                        GuiUtil.exibirMsg(this,"Escolha algum amigo");
+                    }else{
+                        construirEmail();
 
+                    }
             }
         }
 
-        public void construirEmail(){
-            String[] emailsDestino = new String[]{getEmailsSelecionados()};
-            ArrayList<Evento> eventosSelecionados = compartilharEventoActivity.getEventosSelecionados();
+        public void construirEmail() {
+                String[] emailsDestino = new String[]{getEmailsSelecionados()};
 
-            if (getEmailsSelecionados().length()==0){
-                GuiUtil.exibirMsg(this,"Selecione algum amigo");
-            }else {
-                StringBuilder conteudoEmail = getAppConteudo(eventosSelecionados);
                 String subject = ("MindBit - Alguém compartilhou eventos com você!");
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("text/plain");
                 i.putExtra(android.content.Intent.EXTRA_EMAIL, emailsDestino);
                 i.putExtra(Intent.EXTRA_SUBJECT, subject);
-                i.putExtra(Intent.EXTRA_TEXT, conteudoEmail.toString());
+                i.putExtra(Intent.EXTRA_TEXT, emailConteudo);
                 startActivity(Intent.createChooser(i, "Compartilhar para:"));
-            }
+
         }
+
 
         public StringBuilder getAppConteudo(List<Evento> eventos){
             StringBuilder infoEventos = new StringBuilder();

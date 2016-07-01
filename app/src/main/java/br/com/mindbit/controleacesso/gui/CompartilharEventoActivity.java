@@ -78,7 +78,7 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         }
     }
 
-    public ArrayList<Evento> getEventosSelecionados(){
+    public List<Evento> getEventosSelecionados(){
         ArrayList<String> nomes = adapterCompartilhar.getNomesEventos();
         eventosMarcardos = new ArrayList<>();
 
@@ -99,10 +99,14 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         int id = v.getId();
         switch (id) {
             case R.id.btn_escolher_amigos:
-                StringBuilder conteudoEmail = getAppConteudo(getEventosSelecionados());
-                Intent i = new Intent(this,EscolherAmigoActivity.class);
-                i.putExtra("message",conteudoEmail.toString());
-                startActivity(i);
+                if (getEventosSelecionados().size()!=0) {
+                    StringBuilder conteudoEmail = getAppConteudo(getEventosSelecionados());
+                    Intent i = new Intent(this, EscolherAmigoActivity.class);
+                    i.putExtra("message", conteudoEmail.toString());
+                    startActivity(i);
+                }else{
+                    GuiUtil.exibirMsg(this,"Escolha algum evento");
+                }
         }
     }
     public void compartilhar(View v){
@@ -117,7 +121,7 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         StringBuilder conteudoEmail = getAppConteudo(getEventosSelecionados());
 
         if (getEventosSelecionados().size()==0){
-            GuiUtil.exibirMsg(this,"Selecione algum evento");
+            GuiUtil.exibirMsg(this,"Escolha algum evento");
         }else {
             String subject = ("MindBit - Alguém compartilhou eventos com você!");
             Intent i = new Intent(Intent.ACTION_SEND);
@@ -147,7 +151,7 @@ public class CompartilharEventoActivity extends AppCompatActivity{
            infoEventos.append(getInfoEventoApp(evento));
        }
 
-        infoEventos.append("\nAtenciosamente, " + "\n" + pessoaLogada.getNome() + "." +"\n"+
+        infoEventos.append("\nAtenciosamente, " + "\n" + pessoaLogada.getNome() + "." + "\n" +
                 "\nvia MindBit - https://sites.google.com/site/mindbitufrpe/");
         return infoEventos;
     }

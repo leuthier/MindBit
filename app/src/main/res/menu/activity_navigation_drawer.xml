@@ -11,10 +11,7 @@
             android:id="@+id/nav_amigos"
             android:icon="@drawable/ic_amigos"
             android:title="@string/nav_drawer_amigos" />
-        <item
-            android:id="@+id/nav_config"
-            android:icon="@drawable/ic_config"
-            android:title="@string/nav_drawer_config" />
+
         <item
             android:id="@+id/nav_add_evento"
             android:icon="@drawable/ic_evento"
