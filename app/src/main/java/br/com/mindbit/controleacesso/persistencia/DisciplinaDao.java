@@ -11,6 +11,9 @@ import java.util.List;
 import br.com.mindbit.controleacesso.dominio.Disciplina;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 
+/**
+ * Classe do banco de disciplina
+ */
 public class DisciplinaDao {
 
     private static DatabaseHelper databaseHelper;
@@ -24,22 +27,18 @@ public class DisciplinaDao {
     /* singleton */
     public static DisciplinaDao getInstancia(Context context) {
         DisciplinaDao.databaseHelper = new DatabaseHelper(context);
-        //DisciplinaDao.context = context;
         return instanciaDisciplinaDao;
     }
 
     /**
-     * @param disciplina disciplina a ser cadastrada no db
+     * @param disciplina disciplina a ser cadastrada no banco
      */
     public void cadastrarDisciplina(Disciplina disciplina) {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        //values.put(DatabaseHelper.DISCIPLINA_ID, disciplina.getId());
         values.put(DatabaseHelper.DISCIPLINA_NOME, disciplina.getNome());
         values.put(DatabaseHelper.DISCIPLINA_CODIGO, disciplina.getCodigo());
-
-        //long foreing_key_id_pessoa_disciplina = db.insert(DatabaseHelper.TABELA_DISCIPLINA, null, values);
 
         int idPessoa = SessaoUsuario.getInstancia().getPessoaLogada().getId();
         values.put(DatabaseHelper.PESSOA_CRIADORA_DISCIPLINA_ID, idPessoa);
@@ -83,60 +82,7 @@ public class DisciplinaDao {
         return disciplina;
     }
 
-    /**
-     * @param nome parte do nome da disciplina a ser encontrada
-     * @return lista de disciplinas contendo partes do nome procurado
-     */
-    public List<Disciplina> buscarDisciplinaNomeParcial(String nome) {
-        SQLiteDatabase db = databaseHelper.getReadableDatabase();
-        List<Disciplina> listaDisciplinas = new ArrayList<Disciplina>();
 
-        Cursor cursor = db.rawQuery("SELECT " + databaseHelper.TABELA_DISCIPLINA + "." + databaseHelper.DISCIPLINA_ID + ", " +
-                databaseHelper.TABELA_DISCIPLINA + "." + databaseHelper.DISCIPLINA_NOME + ", " +
-                databaseHelper.TABELA_DISCIPLINA + "." + databaseHelper.DISCIPLINA_CODIGO + ", " +
-                " FROM " + databaseHelper.TABELA_DISCIPLINA + " WHERE " +
-                databaseHelper.DISCIPLINA_NOME + " LIKE ?", new String[]{"%" + nome + "%"});
-        Disciplina disciplina = null;
-        if (cursor.getCount() > 0) {
-            while (cursor.moveToNext()) {
-                disciplina = criarDisciplina(cursor);
-                listaDisciplinas.add(disciplina);
-            }
-        }
-        cursor.close();
-        return listaDisciplinas;
-    }
 
-    /**
-     * @param id id da disciplina a ser encontrada
-     * @return disciplina encontrada com o id informado
-     */
-    public Disciplina buscarDisciplinaId(int id) {
-        Disciplina disciplina = null;
-        SQLiteDatabase db = databaseHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_DISCIPLINA + " WHERE " +
-                databaseHelper.DISCIPLINA_ID + " =?", new String[]{String.valueOf(id)});
-        if (cursor.moveToFirst()) {
-            disciplina = criarDisciplina(cursor);
-        }
-        db.close();
-        cursor.close();
-        return disciplina;
-    }
+
 }
-// public ArrayList<Disciplina> listarDisciplina(int id){
-// Disciplina disciplina = null;
-// ArrayList<Disciplina> listaDisciplina = new ArrayList<Disciplina>();
-//
-// db=databaseHelper.getReadableDatabase();
-// Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_EVENTO + " WHERE " +
-// databaseHelper.PESSOA_CRIADORA_ID + " =?", new String[]{String.valueOf(id)});
-// // while (cursor.moveToNext()){
-// disciplina = criarDisciplina(cursor);
-// listaDisciplina.add(disciplina);
-// }
-//
-// db.close();
-// cursor.close();
-// return listaDisciplina;
-// } }

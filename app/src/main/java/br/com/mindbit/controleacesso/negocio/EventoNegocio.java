@@ -9,13 +9,14 @@ import br.com.mindbit.controleacesso.dominio.Evento;
 import br.com.mindbit.controleacesso.persistencia.EventoDao;
 import br.com.mindbit.infra.gui.MindbitException;
 
+/**
+ * Classe utilizada para fazer validacao e pesquisas atraves do banco quanto ao evento
+ */
 public class EventoNegocio {
 
     private static EventoDao eventoDao;
-    private static UsuarioNegocio usuarioNegocio;
 
     private static EventoNegocio instancia = new EventoNegocio();
-    private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
 
     private EventoNegocio(){}
 
@@ -30,6 +31,9 @@ public class EventoNegocio {
 
 
     /**
+     * metodo utilizado para criar uma lista com os eventos que estao sendo pesquisados, a partir
+     * de parte do que esta sendo escrito
+     *
      * @param id        id dos eventos que serao mostrados na lista
      * @param nome      nome dos eventos que serao mostrados na lista
      * @return          lista com os eventos encontrados
@@ -69,16 +73,8 @@ public class EventoNegocio {
     }
 
     /**
+     * metodo utilizado para listar eventos pelo id da pessoa por ordem de data
      *
-     * @param idPessoaCriadora      id do usuario que criou os eventos
-     * @return                      lista de eventos criados pelo usuario chamado
-     * @throws MindbitException
-     */
-    public ArrayList<Evento> listarEventoCriador(int idPessoaCriadora) throws MindbitException {
-        return eventoDao.listarEventos(idPessoaCriadora);
-    }
-
-    /**
      * @param idPessoaCriadora     id do usuario que criou os eventos
      * @return                     lista de eventos criados pelo usuario
      * @throws MindbitException
@@ -88,6 +84,8 @@ public class EventoNegocio {
     }
 
     /**
+     * metodo utilizado para listar os eventos do dia
+     *
      * @param data                 dia dos eventos que serao procurados
      * @param idPessoaCriadora     id do usuario que criou os eventos
      * @return                     lista de eventos
@@ -95,22 +93,5 @@ public class EventoNegocio {
      */
     public ArrayList<Evento> listarEventosDia(String data, int idPessoaCriadora) throws MindbitException{
         return eventoDao.listarEventoData(data,idPessoaCriadora);
-    }
-
-    /**
-     * metodo utilizado para registrar o evento no EventoDao
-     *
-     * @param evento               evento que sera registrado no EventoDao
-     * @return                     retorna o evento informado
-     * @throws MindbitException    caso o evento que esteja sendo salvo ja esteja registrado
-     */
-    public Evento salvarEvento(Evento evento) throws MindbitException{
-        evento = null;
-        evento = eventoDao.buscarEventoNome(evento.getNome());
-        if (evento!= null) {
-            throw new MindbitException("evento já existe");
-        }
-        eventoDao.cadastrarEvento(evento);
-        return evento;
     }
 }

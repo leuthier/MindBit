@@ -12,18 +12,26 @@ import br.com.mindbit.controleacesso.dominio.Amigo;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 import br.com.mindbit.infra.gui.MindbitException;
 
+/**
+ * Classe do banco de amigo
+ */
 public class AmigoDao {
     private static DatabaseHelper databaseHelper;
     private static AmigoDao instanciaAmigoDao = new AmigoDao();
     private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
 
     private AmigoDao(){}
-
+    /* singleton */
     public static AmigoDao getInstancia(Context contexto) {
         AmigoDao.databaseHelper = new DatabaseHelper(contexto);
         return instanciaAmigoDao;
     }
 
+    /**
+     *
+     * @param cursor cursor a ser usado na criacao do objeto amigo
+     * @return  objeto amigo preenchido
+     */
     private Amigo criarAmigo(Cursor cursor){
         Amigo amigo = new Amigo();
         amigo.setId(cursor.getInt(0));
@@ -32,6 +40,11 @@ public class AmigoDao {
         return amigo;
     }
 
+    /**
+     *metodo utilizado para adicionar amigo ao banco
+     *
+     * @param amigo amigo que sera adicionado
+     */
     public void addAmigo(Amigo amigo){
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -45,6 +58,13 @@ public class AmigoDao {
         db.close();
     }
 
+
+    /**
+     *
+     * @param email email que sera utilizado na busca
+     * @return      amigo encontrado quanto ao email fornecido
+     * @throws MindbitException
+     */
     public Amigo buscarAmigoPorEmail(String email) throws MindbitException {
         int idPessoaLogada = sessaoUsuario.getPessoaLogada().getId();
         Amigo amigo = null;
@@ -59,6 +79,12 @@ public class AmigoDao {
         return amigo;
     }
 
+    /**
+     *
+     * @param id    id do usuario que tera os amigos listados
+     * @return      lista com os amigos do usuario
+     * @throws MindbitException
+     */
     public List<Amigo> listarAmigos(int id) throws MindbitException {
         Amigo amigo = null;
         List<Amigo> listaAmigos = new ArrayList<Amigo>();

@@ -2,6 +2,9 @@ package br.com.mindbit.controleacesso.negocio;
 
 import java.util.HashMap;
 
+/**
+ * Classe utilizada para fazer a criptografia das senhas que serao guardadas no banco
+ */
 public class Criptografia{
 
     private char[] alfa = new char[52];

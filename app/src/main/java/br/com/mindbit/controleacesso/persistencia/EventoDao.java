@@ -21,6 +21,9 @@ import br.com.mindbit.controleacesso.dominio.PrioridadeEvento;
 import br.com.mindbit.infra.gui.GuiUtil;
 import br.com.mindbit.infra.gui.MindbitException;
 
+/**
+ * Classe do banco de eventos
+ */
 public class EventoDao {
 
     private static DatabaseHelper databaseHelper;
@@ -97,10 +100,6 @@ public class EventoDao {
 
         PrioridadeEvento nivelPrioridade = PrioridadeEvento.values()[cursor.getInt(5)];
         evento.setNivelPrioridadeEnum(nivelPrioridade);
-        //Pessoa pessoa = daoPessoa.getPessoa(cursor.getInt(8));
-        //evento.setPessoaCriadora(pessoa);
-        //System.out.println(evento.getIdPessoaCriadora());
-
 
 
         return evento;

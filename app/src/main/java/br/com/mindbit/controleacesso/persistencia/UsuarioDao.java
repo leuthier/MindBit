@@ -16,6 +16,9 @@ import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.dominio.Usuario;
 import br.com.mindbit.infra.gui.MindbitException;
 
+/**
+ * Classe do banco de usuarios
+ */
 public class UsuarioDao {
 
     private static DatabaseHelper databaseHelper;
@@ -37,6 +40,8 @@ public class UsuarioDao {
     private SessaoUsuario sessaoUsuario = SessaoUsuario.getInstancia();
 
     /**
+     * metodo utilizado para registrar o objeto pessoa no sistema
+     *
      * @param pessoa pessoa a ser registrada no sistema
      */
     public void cadastrarPessoa(Pessoa pessoa){
@@ -61,6 +66,8 @@ public class UsuarioDao {
     }
 
     /**
+     * metodo utilizado para criacao do objeto pessoa
+     *
      * @param cursor cursor a ser usado na criacao da pessoa
      * @return objeto pessoa preenchido
      */
@@ -75,6 +82,8 @@ public class UsuarioDao {
     }
 
     /**
+     * metodo utilizado para criacao do objeto usuario
+     *
      * @param cursor cursor a ser usado na criacao do usuario
      * @return objeto usuario preenchido
      */
@@ -87,6 +96,8 @@ public class UsuarioDao {
     }
 
     /**
+     * metodo utilizado para encontrar o usuario a partir do login e senha informados
+     *
      * @param login login do usuario a ser buscado
      * @param senha senha do usuario a ser buscado
      * @return usuario encontrado atraves dos parametros informados
@@ -108,6 +119,8 @@ public class UsuarioDao {
     }
 
     /**
+     * metodo utilizado para encontrar o objeto pessoa atraves do id informado
+     *
      * @param id id da pessoa a ser buscada
      * @return pessoa encontrada atraves do parametro informado
      */
@@ -126,6 +139,8 @@ public class UsuarioDao {
     }
 
     /**
+     * metodo utilizado para encontrar o objeto usuario a partir do nome de usuario informado
+     *
      * @param login login do usuario a ser encontrado
      * @return usuario encontrado atraves do parametro informado
      */
@@ -145,7 +160,10 @@ public class UsuarioDao {
         return usuario;
 
     }
+
     /**
+     * metodo utilizado para procurar o objeto Pessoa atraves do email registrado
+     *
      * @param email email da pessoa a ser encontrada
      * @return pessoa encontrada atraves do parametro informado
      * @throws MindbitException

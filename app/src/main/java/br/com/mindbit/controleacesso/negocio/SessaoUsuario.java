@@ -3,6 +3,9 @@ package br.com.mindbit.controleacesso.negocio;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.dominio.Usuario;
 
+/**
+ * Classe utilizada para manter o status do usuario
+ */
 public class SessaoUsuario {
 
         /* singleton */
@@ -23,10 +26,6 @@ public class SessaoUsuario {
 
         public void setUsuarioLogado(Usuario usuario) {
             this.usuarioLogado = usuario;
-        }
-
-        public Usuario getUsuarioLogado(){
-            return usuarioLogado;
         }
 
         public void invalidarSessao(){

@@ -10,12 +10,14 @@ import br.com.mindbit.controleacesso.gui.LoginActivity;
 import br.com.mindbit.controleacesso.persistencia.UsuarioDao;
 import br.com.mindbit.infra.gui.MindbitException;
 
+/**
+ * Classe utilizada para fazer validacao e pesquisas através do banco quanto ao usuario
+ */
 public class UsuarioNegocio {
     private static UsuarioDao usuarioDao;
     private static UsuarioNegocio instanciaUsuarioNegocio = new UsuarioNegocio();
 
-    private UsuarioNegocio() {
-    }
+    private UsuarioNegocio() {}
 
     private Pessoa pessoaEncontrada;
 
@@ -26,6 +28,8 @@ public class UsuarioNegocio {
     }
 
     /**
+     * método utilizado para logar o usuario no sistema
+     *
      * @param login campo com nome de usuario que sera validado
      * @param senha campo com a senha do usuario que sera validado
      * @return caso login e/ou senha sejam invalidos
@@ -50,6 +54,8 @@ public class UsuarioNegocio {
     }
 
     /**
+     * método utilizado para fazer a pesquisa do objeto pessoa no banco
+     *
      * @param id id da pessoa que desejamos encontrar
      * @return pessoa que foi encontrada com o id informado
      */
@@ -61,7 +67,9 @@ public class UsuarioNegocio {
 
 
     /**
-     * @param pessoa pessoa que sera registrada no sistema
+     * método utilizado para fazer a validação do cadastro que será inserido no sistema
+     *
+     * @param pessoa pessoa que sera cadastrada no sistema
      * @throws MindbitException caso o usuario informe um nome ou email ja cadastrados no sistema
      */
     public void validarCadastro(Pessoa pessoa) throws MindbitException {
