@@ -2,7 +2,6 @@ package br.com.mindbit.controleacesso.gui;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.widget.ArrayAdapter;
@@ -34,7 +33,7 @@ public class Pop extends Activity{
         sessao = SessaoUsuario.getInstancia();
         pessoaLogada = sessao.getPessoaLogada();
 
-        adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item);
+        adapter = new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item);
 
         eventoNegocio = EventoNegocio.getInstancia(this);
 
@@ -66,7 +65,6 @@ public class Pop extends Activity{
 
         }
         listViewEvento.setAdapter(adapter);
-
 
     }
 }

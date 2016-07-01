@@ -14,7 +14,6 @@ import java.util.List;
 
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.dominio.Amigo;
-import br.com.mindbit.controleacesso.dominio.Evento;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.negocio.AmigoNegocio;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
@@ -36,8 +35,6 @@ public class EscolherAmigoActivity extends AppCompatActivity{
         private ListView listaAmigos;
         private Button btnEnviar;
         private String emailConteudo;
-        private AdapterCompartilharEvento adapterCompartilhar;
-        private CompartilharEventoActivity compartilharEventoActivity = new CompartilharEventoActivity();
 
         private AdapterEscolherAmigo adapterEscolher;
 
@@ -95,7 +92,7 @@ public class EscolherAmigoActivity extends AppCompatActivity{
             switch (id) {
                 case R.id.btn_enviarEmail:
                     if (getEmailsSelecionados().length()==0){
-                        GuiUtil.exibirMsg(this,"Escolha algum amigo");
+                        GuiUtil.exibirMsg(this,resources.getString(R.string.checkbox_amigo_vazio));
                     }else{
                         construirEmail();
 
@@ -106,27 +103,14 @@ public class EscolherAmigoActivity extends AppCompatActivity{
         public void construirEmail() {
                 String[] emailsDestino = new String[]{getEmailsSelecionados()};
 
-                String subject = ("MindBit - Alguém compartilhou eventos com você!");
+                String subject = (resources.getString(R.string.compartilhar_email_assunto));
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("text/plain");
                 i.putExtra(android.content.Intent.EXTRA_EMAIL, emailsDestino);
                 i.putExtra(Intent.EXTRA_SUBJECT, subject);
                 i.putExtra(Intent.EXTRA_TEXT, emailConteudo);
-                startActivity(Intent.createChooser(i, "Compartilhar para:"));
+                startActivity(Intent.createChooser(i, resources.getString(R.string.compartilhar)));
 
-        }
-
-
-        public StringBuilder getAppConteudo(List<Evento> eventos){
-            StringBuilder infoEventos = new StringBuilder();
-
-            for (Evento evento : eventos) {
-                String infoEvento = compartilharEventoActivity.getInfoEventoApp(evento);
-                infoEventos.append(infoEvento);
-            }
-            infoEventos.append("\nAtenciosamente, " + "\n" + pessoaLogada.getNome()+".\n"+
-                    "via MindBit - https://sites.google.com/site/mindbitufrpe/");
-            return infoEventos;
         }
 
         public void iniciarLista() throws MindbitException{

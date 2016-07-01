@@ -1,7 +1,6 @@
 package br.com.mindbit.controleacesso.gui;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -53,7 +52,7 @@ public class ContadorFragment extends Fragment {
     }
 
     public Evento getProximoEvento() throws MindbitException{
-        eventosProximo = (ArrayList<Evento>) eventoNegocio.listarEventosProximo(pessoaLogada.getId());
+        eventosProximo = eventoNegocio.listarEventosProximo(pessoaLogada.getId());
         if (eventosProximo.isEmpty()){
             return null;
 

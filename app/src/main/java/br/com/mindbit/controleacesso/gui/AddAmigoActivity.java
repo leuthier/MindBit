@@ -11,10 +11,8 @@ import android.widget.EditText;
 
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.dominio.Amigo;
-import br.com.mindbit.controleacesso.dominio.Pessoa;
 import br.com.mindbit.controleacesso.negocio.AmigoNegocio;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
-import br.com.mindbit.controleacesso.negocio.UsuarioNegocio;
 import br.com.mindbit.infra.gui.GuiUtil;
 import br.com.mindbit.infra.gui.MindbitException;
 
@@ -90,7 +88,7 @@ public class AddAmigoActivity extends AppCompatActivity {
                 amigo.setNome(nome);
                 amigo.setEmail(email);
                 amigoNegocio.adicionarAmigo(amigo);
-                GuiUtil.exibirMsg(this, "Amig@ adicionad@ com sucesso");
+                GuiUtil.exibirMsg(this, resources.getString(R.string.add_amigo_sucesso));
                 iniciarPerfilActivity();
             }catch (MindbitException e){
                 GuiUtil.exibirMsg(AddAmigoActivity.this, e.getMessage());

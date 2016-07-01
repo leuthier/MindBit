@@ -65,6 +65,8 @@
     <string name="activity_pesquisar_evento_vazio">"Nenhum evento encontrado"</string>
     <string name="title_activity_add_evento">Adicionar Eventos</string>
 
+    <string name="add_amigo_sucesso">Amig@ adicionad@ com sucesso</string>
+
     <string name="nav_drawer_pesquisar_eventos">Pesquisar Eventos</string>
     <string name="nav_drawer_config">Configurações</string>
     <string name="nav_drawer_amigos">Adicionar Amigo</string>
@@ -100,12 +102,22 @@
     <string name="contador_vazio">Sem eventos no mês</string>
     <string name="contador_dias">Dia(s)</string>
     <string name="contador_hoje">Hoje</string>
+    <string name="data_inicio_evento">\nData/Hora de início: </string>
+    <string name="data_fim_evento">\nData/Hora de término: </string>
 
     <string name="add_amigo_email">E-mail do amigo</string>
     <string name="add_amigo_nome">Nome do amigo</string>
     <string name="btn_add_amigo">Adicionar</string>
     <string name="email_vazio">Digite um e-mail</string>
     <string name="nome_vazio">Insira um nome</string>
+
+    <string name="compartilhar">Compartilhar para:</string>
+    <string name="assinatura_email">\nAtenciosamente, \n</string>
+    <string name="rodape_email">\nvia MindBit - https://sites.google.com/site/mindbitufrpe/</string>
+    <string name="checkbox_evento_vazio">Escolha algum evento</string>
+    <string name="checkbox_amigo_vazio">Escolha algum amigo</string>
+    <string name="compartilhar_email_assunto">MindBit - Alguém compartilhou eventos com você!</string>
+
 
     <string name="activity_sobre">Sobre</string>
     <string name="sobre_nome">MindBit</string>
@@ -117,5 +129,6 @@
     <string name="sobre_gabriel">Gabriel Maia</string>
     <string name="sobre_tiago">Tiago Sitonio</string>
     <string name="sobre_victor">Victor Leuthier</string>
+
 
 </resources>

@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import br.com.mindbit.R;
 import br.com.mindbit.controleacesso.dominio.Pessoa;
-import br.com.mindbit.controleacesso.dominio.Usuario;
 import br.com.mindbit.controleacesso.negocio.SessaoUsuario;
 
 public class PerfilActivity extends AppCompatActivity

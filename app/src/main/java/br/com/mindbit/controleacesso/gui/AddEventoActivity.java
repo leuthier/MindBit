@@ -36,7 +36,6 @@ import br.com.mindbit.infra.gui.MindbitException;
 public class AddEventoActivity extends AppCompatActivity{
 
     private Resources resources;
-    //private static Context contexto;
     private EventoNegocio eventoNegocio;
     private SessaoUsuario sessaoUsuario;
     private Pessoa pessoaLogada;
@@ -78,8 +77,6 @@ public class AddEventoActivity extends AppCompatActivity{
         setContentView(R.layout.activity_add_evento);
 
         resources = getResources();
-
-        //contexto = this;
 
         this.setCamposAddEvento();
         eventoNegocio = EventoNegocio.getInstancia(this);

@@ -63,8 +63,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-        //se eu chamar antes da janela estar visivel (ou seja do  oncreate), o app ainda nao tem contexto e sqlhelper falha em instanciar
-        //aqui forco a criacao do usuarioNegocio que vai se atrelar ao contexto do app e nao da activity
         usuarioNegocio=UsuarioNegocio.getInstancia(this);
     }
 
@@ -178,7 +176,5 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
    public static Context getContexto(){ return contexto; }
-
-
 
 }

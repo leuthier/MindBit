@@ -105,7 +105,7 @@ public class CompartilharEventoActivity extends AppCompatActivity{
                     i.putExtra("message", conteudoEmail.toString());
                     startActivity(i);
                 }else{
-                    GuiUtil.exibirMsg(this,"Escolha algum evento");
+                    GuiUtil.exibirMsg(this, resources.getString(R.string.checkbox_evento_vazio));
                 }
         }
     }
@@ -121,15 +121,15 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         StringBuilder conteudoEmail = getAppConteudo(getEventosSelecionados());
 
         if (getEventosSelecionados().size()==0){
-            GuiUtil.exibirMsg(this,"Escolha algum evento");
+            GuiUtil.exibirMsg(this,resources.getString(R.string.checkbox_evento_vazio));
         }else {
-            String subject = ("MindBit - Alguém compartilhou eventos com você!");
+            String subject = (resources.getString(R.string.compartilhar_email_assunto));
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
             i.putExtra(android.content.Intent.EXTRA_EMAIL, emailsDestino);
             i.putExtra(Intent.EXTRA_SUBJECT, subject);
             i.putExtra(Intent.EXTRA_TEXT, conteudoEmail.toString());
-            startActivity(Intent.createChooser(i, "Compartilhar para:"));
+            startActivity(Intent.createChooser(i, resources.getString(R.string.compartilhar)));
         }
     }
 
@@ -151,8 +151,8 @@ public class CompartilharEventoActivity extends AppCompatActivity{
            infoEventos.append(getInfoEventoApp(evento));
        }
 
-        infoEventos.append("\nAtenciosamente, " + "\n" + pessoaLogada.getNome() + "." + "\n" +
-                "\nvia MindBit - https://sites.google.com/site/mindbitufrpe/");
+        infoEventos.append(resources.getString(R.string.assinatura_email) + pessoaLogada.getNome() + "." + "\n" +
+                resources.getString(R.string.rodape_email));
         return infoEventos;
     }
 
@@ -170,8 +170,8 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         String dataInicio = simpleDateFormat.format(addOneMonth(evento.getDataInicio()));
         String dataFim = simpleDateFormat.format(addOneMonth(evento.getDataFim()));
 
-        String informacoes = "\n" + nomeEvento + "\nData/Hora de início: " + dataInicio +
-                "\nData/Hora de término: " + dataFim + "\n";
+        String informacoes = "\n" + nomeEvento + resources.getString(R.string.data_inicio_evento) + dataInicio +
+                resources.getString(R.string.data_fim_evento) + dataFim + "\n";
         return informacoes;
     }
 

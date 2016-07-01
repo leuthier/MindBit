@@ -17,8 +17,6 @@ import br.com.mindbit.controleacesso.dominio.Amigo;
 public class AdapterEscolherAmigo extends BaseAdapter {
     private LayoutInflater layoutInflater;
     private List<Amigo> amigosLista;
-    private List<Amigo> amigosSelecionados;
-    private ArrayList<String> nomesAmigos = new ArrayList<>();
     private ArrayList<String> emailsAmigos = new ArrayList<>();
     private Amigo amigo;
     private Context context;
@@ -56,7 +54,6 @@ public class AdapterEscolherAmigo extends BaseAdapter {
 
         ((TextView) view.findViewById(R.id.txt_compartilhar_nome_amigo)).setText(amigo.getNome());
         ((TextView) view.findViewById(R.id.txt_compartilhar_email_amigo)).setText(amigo.getEmail());
-        final String nomeAmigo = ((TextView) view.findViewById(R.id.txt_compartilhar_nome_amigo)).getText().toString();
         final String emailAmigo = ((TextView) view.findViewById(R.id.txt_compartilhar_email_amigo)).getText().toString();
         final CheckBox checkBox = (CheckBox) view.findViewById(R.id.chkBox_amigo);
 
@@ -66,27 +63,18 @@ public class AdapterEscolherAmigo extends BaseAdapter {
             public void onClick(View v) {
                 CheckBox amigoCheckbox = (CheckBox) v;
                 if (amigoCheckbox.isChecked()) {
-
-                    //nomesAmigos.add(nomeAmigo);
                     emailsAmigos.add(emailAmigo);
-                    //amigosSelecionados.add(amigo);
                 } else {
-                    //nomesAmigos.remove(nomeAmigo);
+
                     emailsAmigos.remove(emailAmigo);
-                    //amigosSelecionados.remove(amigo);
                 }
             }
         });
         return view;
     }
 
-    public ArrayList<String> getNomesAmigos(){
-        return nomesAmigos;
-    }
-
     public ArrayList<String> getEmailsAmigos(){
         return emailsAmigos;
     }
 
-    public List<Amigo> getAmigosSelecionados(){return amigosSelecionados;}
 }
