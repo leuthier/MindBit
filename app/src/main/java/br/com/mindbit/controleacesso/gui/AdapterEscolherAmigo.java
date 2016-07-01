@@ -17,6 +17,7 @@ import br.com.mindbit.controleacesso.dominio.Amigo;
 public class AdapterEscolherAmigo extends BaseAdapter {
     private LayoutInflater layoutInflater;
     private List<Amigo> amigosLista;
+    private List<Amigo> amigosSelecionados;
     private ArrayList<String> nomesAmigos = new ArrayList<>();
     private ArrayList<String> emailsAmigos = new ArrayList<>();
     private Amigo amigo;
@@ -49,7 +50,7 @@ public class AdapterEscolherAmigo extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-       amigo = amigosLista.get(position);
+        amigo = amigosLista.get(position);
 
         view = layoutInflater.inflate(R.layout.list_item_escolher_amigo, null);
 
@@ -65,11 +66,14 @@ public class AdapterEscolherAmigo extends BaseAdapter {
             public void onClick(View v) {
                 CheckBox amigoCheckbox = (CheckBox) v;
                 if (amigoCheckbox.isChecked()) {
+
                     nomesAmigos.add(nomeAmigo);
                     emailsAmigos.add(emailAmigo);
+                    amigosSelecionados.add(amigo);
                 } else {
                     nomesAmigos.remove(nomeAmigo);
                     emailsAmigos.remove(emailAmigo);
+                    amigosSelecionados.remove(amigo);
                 }
             }
         });
@@ -84,4 +88,5 @@ public class AdapterEscolherAmigo extends BaseAdapter {
         return emailsAmigos;
     }
 
+    public List<Amigo> getAmigosSelecionados(){return amigosSelecionados;}
 }

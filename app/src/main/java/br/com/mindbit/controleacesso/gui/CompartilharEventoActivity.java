@@ -1,20 +1,13 @@
 package br.com.mindbit.controleacesso.gui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,7 +34,7 @@ public class CompartilharEventoActivity extends AppCompatActivity{
     private ArrayList<Evento> eventosPessoa;
     private ArrayList<Evento> eventosMarcardos;
     private ArrayList<Evento> listItems = new ArrayList<>();
-    private List<Amigo> pessoasDestinatarios;
+    private String todosEmails;
 
     private ListView listaEventos;
     private Button btnCompartilhar;
@@ -52,7 +45,6 @@ public class CompartilharEventoActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compartilhar_evento);
-        //Bundle bundle = getIntent().getExtras();
 
         resources = getResources();
 
@@ -100,7 +92,6 @@ public class CompartilharEventoActivity extends AppCompatActivity{
                 Log.d("CompartilharEventoActvt", e.getMessage());
             }
         }
-
         return eventosMarcardos;
     }
 
@@ -118,37 +109,35 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         int id = v.getId();
         switch (id){
             case R.id.btn_compartilhar_evento:
-                String[] emailsDestino = new String[]{getDestinariosEmails()};
-
-                StringBuilder conteudoEmail = getAppConteudo(getEventosSelecionados());
-                if (getEventosSelecionados().size()==0){
-                    GuiUtil.exibirMsg(this,"Selecione algum evento");
-                }else {
-                    String subject = ("MindBit - Alguém compartilhou eventos com você!");
-                    Intent i = new Intent(Intent.ACTION_SEND);
-                    i.setType("text/plain");
-                    i.putExtra(android.content.Intent.EXTRA_EMAIL, emailsDestino);
-                    i.putExtra(Intent.EXTRA_SUBJECT, subject);
-                    i.putExtra(Intent.EXTRA_TEXT, conteudoEmail.toString());
-                    startActivity(Intent.createChooser(i, "Compartilhar para:"));
-                }
+                construirMensagemCompartilhada();
         }
+    }
+    public void construirMensagemCompartilhada(){
+        String[] emailsDestino = new String[]{getAmigosEmails()};
+        StringBuilder conteudoEmail = getAppConteudo(getEventosSelecionados());
 
+        if (getEventosSelecionados().size()==0){
+            GuiUtil.exibirMsg(this,"Selecione algum evento");
+        }else {
+            String subject = ("MindBit - Alguém compartilhou eventos com você!");
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(android.content.Intent.EXTRA_EMAIL, emailsDestino);
+            i.putExtra(Intent.EXTRA_SUBJECT, subject);
+            i.putExtra(Intent.EXTRA_TEXT, conteudoEmail.toString());
+            startActivity(Intent.createChooser(i, "Compartilhar para:"));
+        }
     }
 
-    public String getDestinariosEmails(){
-        Pessoa pessoa = pessoaLogada;
-        String emailsDestino = new String();
+    public String getAmigosEmails(){
+        List<Amigo> todosAmigos = pessoaLogada.getAmigos();
 
-//        if (pessoa.getAmigos() != null) {
-//            List<Amigo> amigos = pessoa.getAmigos();
-//            for (Amigo amigo : amigos) {
-//                emailsDestino += amigo.getEmail() + ",";
-//            }
-//        }
-        emailsDestino+="ariana@teste.com"+","+"victor.leuthier@ufrpe.br"+",";
-
-        return emailsDestino;
+        if(todosAmigos != null){
+            for (Amigo amigo: todosAmigos){
+                        todosEmails += amigo.getEmail()+",";
+                    }
+            }
+        return todosEmails;
     }
 
     public StringBuilder getAppConteudo(List<Evento> eventos){
@@ -158,8 +147,8 @@ public class CompartilharEventoActivity extends AppCompatActivity{
            infoEventos.append(getInfoEventoApp(evento));
        }
 
-        infoEventos.append("\nAtenciosamente, " + "\n" + pessoaLogada.getNome() + ".\n" +
-                "\n\nvia MindBit - https://sites.google.com/site/mindbitufrpe/");
+        infoEventos.append("\nAtenciosamente, " + "\n" + pessoaLogada.getNome() + "." +"\n"+
+                "\nvia MindBit - https://sites.google.com/site/mindbitufrpe/");
         return infoEventos;
     }
 

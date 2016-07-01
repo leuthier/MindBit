@@ -75,10 +75,8 @@ public class AdapterCompartilharEvento extends BaseAdapter {
                 CheckBox eventoCheckbox = (CheckBox) v;
                 if (eventoCheckbox.isChecked()) {
                     nomesEventos.add(nomeEvento);
-                   // Toast.makeText(context, nomeEvento, Toast.LENGTH_SHORT).show();
                 } else {
                     nomesEventos.remove(nomeEvento);
-                   // Toast.makeText(context, "TO DESMARCADO :(", Toast.LENGTH_SHORT).show();
                 }
             }
         });

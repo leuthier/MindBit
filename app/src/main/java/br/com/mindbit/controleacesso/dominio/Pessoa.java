@@ -57,6 +57,9 @@ public class Pessoa {
         this.amigos = amigos;
     }
 
+    public void addAmigo(Amigo amigo){
+        amigos.add(amigo);
+    }
 
 }
 
