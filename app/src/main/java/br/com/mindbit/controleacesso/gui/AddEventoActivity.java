@@ -247,7 +247,7 @@ public class AddEventoActivity extends AppCompatActivity{
             try {
                 int idPessoaLogada = sessaoUsuario.getPessoaLogada().getId();
                 Evento evento = new Evento();
-                evento.setId(idPessoaLogada);
+                evento.setIdPessoaCriadora(idPessoaLogada);
                 evento.setNome(nomeEvento);
                 evento.setDescricao(descricaoEvento);
                 evento.setDataInicio(inicio);

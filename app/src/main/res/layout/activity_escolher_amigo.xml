@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="450dp"
-        android:layout_marginLeft="125dp"
+        android:layout_marginLeft="135dp"
         android:text="Enviar Email"
         android:onClick="enviarEmail"/>
 </android.support.design.widget.CoordinatorLayout>

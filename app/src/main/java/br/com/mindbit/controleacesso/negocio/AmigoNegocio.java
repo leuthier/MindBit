@@ -15,9 +15,9 @@ import br.com.mindbit.infra.gui.MindbitException;
 public class AmigoNegocio {
     private static AmigoDao amigoDao;
     private static AmigoNegocio instancia = new AmigoNegocio();
-    private SessaoUsuario sessaoUsuario;
     private AmigoNegocio() {
     }
+    private SessaoUsuario sessaoUsuario;
 
     public static AmigoNegocio getInstancia(Context context) {
         amigoDao = AmigoDao.getInstancia(context);
@@ -29,6 +29,8 @@ public class AmigoNegocio {
     }
 
     public void adicionarAmigo(Amigo amigo) throws MindbitException {
+//        Pessoa pessoaLogada = sessaoUsuario.getPessoaLogada();
+//        int id = pessoaLogada.getId();
         Amigo amigoEncontrado = amigoDao.buscarAmigoPorEmail(amigo.getEmail());
         if (amigoEncontrado == null){
             amigoDao.addAmigo(amigo);
@@ -41,4 +43,7 @@ public class AmigoNegocio {
         return amigoDao.listarAmigos(idPessoa);
     }
 
+    public Amigo buscarPorEmail(int idPessoa, String email) throws MindbitException{
+        return amigoDao.buscarAmigoPorEmail(email);
+    }
 }

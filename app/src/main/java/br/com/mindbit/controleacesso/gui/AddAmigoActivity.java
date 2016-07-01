@@ -1,5 +1,6 @@
 package br.com.mindbit.controleacesso.gui;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -90,10 +91,16 @@ public class AddAmigoActivity extends AppCompatActivity {
                 amigo.setEmail(email);
                 amigoNegocio.adicionarAmigo(amigo);
                 GuiUtil.exibirMsg(this, "Amig@ adicionad@ com sucesso");
+                iniciarPerfilActivity();
             }catch (MindbitException e){
                 GuiUtil.exibirMsg(AddAmigoActivity.this, e.getMessage());
             }
         }
 
+    }
+
+    public void iniciarPerfilActivity(){
+        startActivity(new Intent(this, PerfilActivity.class));
+        finish();
     }
 }

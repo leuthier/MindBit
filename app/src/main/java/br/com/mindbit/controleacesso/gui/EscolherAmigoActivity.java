@@ -2,8 +2,10 @@ package br.com.mindbit.controleacesso.gui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,105 +27,121 @@ import br.com.mindbit.infra.gui.GuiUtil;
 import br.com.mindbit.infra.gui.MindbitException;
 
 public class EscolherAmigoActivity extends AppCompatActivity{
-    private AmigoNegocio amigoNegocio;
-    private SessaoUsuario sessaoUsuario;
-    private Pessoa pessoaLogada;
 
-    private List<Amigo> amigosPessoa;
-    private ArrayList<String> nomesAmigos = new ArrayList<>();
-    private ArrayList<String> emailsDestinatarios = new ArrayList<>();
+        private Resources resources;
 
-    private ListView listaAmigos;
-    private CheckBox checkbox;
-    private Button btnCompartilhar;
-    private String message;
+        private AmigoNegocio amigoNegocio;
+        private SessaoUsuario sessaoUsuario;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_escolher_amigo);
+        private Pessoa pessoaLogada;
 
-        amigoNegocio = AmigoNegocio.getInstancia(this);
-        sessaoUsuario = SessaoUsuario.getInstancia();
-        pessoaLogada = sessaoUsuario.getPessoaLogada();
+        private List<Amigo> amigosPessoa;
+        private String emailsSelecionados;
+        private ArrayList<Amigo> listItems = new ArrayList<>();
+        private List<Amigo> pessoasDestinatarios;
 
-        Bundle bundle = getIntent().getExtras();
-        message = bundle.getString("message");
+        private ListView listaAmigos;
+        private Button btnEnviar;
 
-        listaAmigos = (ListView) findViewById(R.id.ListView_escolher_amigo);
-        checkbox = (CheckBox) findViewById(R.id.chkbx_escolhe_amigo);
-        btnCompartilhar = (Button) findViewById(R.id.btn_enviarEmail);
-        btnCompartilhar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                enviarEmail(v);
+        private AdapterEscolherAmigo adapterEscolher;
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_escolher_amigo);
+
+            resources = getResources();
+
+            amigoNegocio = AmigoNegocio.getInstancia(this);
+            sessaoUsuario = SessaoUsuario.getInstancia();
+            pessoaLogada = sessaoUsuario.getPessoaLogada();
+
+            listaAmigos = (ListView) findViewById(R.id.ListView_escolher_amigo);
+            btnEnviar = (Button) findViewById(R.id.btn_enviarEmail);
+            btnEnviar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    enviar(v);
+                }
+            });
+
+            adapterEscolher = new AdapterEscolherAmigo(this, listItems);
+            try{
+                iniciarLista();
+            }catch(MindbitException e){
+                Log.d("EscolherAmigoActvt", e.getMessage());
             }
-        });
+        }
 
-        mostrarLista();
-    }
+        public String getEmailsSelecionados(){
+            ArrayList<String> emailsAmigos = adapterEscolher.getNomesAmigos();
 
-    public String getDestinariosEmails(List<Amigo> destinatarios){
-        String emailsDestino = new String();
+            for (String email: emailsAmigos){
+                try {
+                    if (amigoNegocio.listarAmigos(pessoaLogada.getId())!=null) {
+                        Amigo amigo = amigoNegocio.buscarPorEmail(pessoaLogada.getId(), email);
+                        emailsSelecionados += amigo.getEmail();
+                    }
+                }catch (MindbitException e){
+                    Log.d("EscolherAmigoActvt", e.getMessage());
+                }
+            }
+            return emailsSelecionados;
+        }
 
-/*        for (Pessoa pessoa : destinatarios) {
-            emailsDestino += pessoa.getEmail()+",";
+        public void enviar(View v){
+            int id = v.getId();
+            switch (id){
+                case R.id.btn_enviarEmail:
+                    String[] emailsDestino = new String[]{getEmailsSelecionados()};
 
-        }*/
+                    //StringBuilder conteudoEmail = getAppConteudo(getEventosSelecionados());
+                    //if (getEventosSelecionados().size()==0){
+                        GuiUtil.exibirMsg(this,"Selecione algum evento");
+                    //}else {
+                        String subject = ("MindBit - Alguém compartilhou eventos com você!");
+                        Intent i = new Intent(Intent.ACTION_SEND);
+                        i.setType("text/plain");
+                        i.putExtra(android.content.Intent.EXTRA_EMAIL, emailsDestino);
+                        i.putExtra(Intent.EXTRA_SUBJECT, subject);
+                        //i.putExtra(Intent.EXTRA_TEXT, conteudoEmail.toString());
+                        startActivity(Intent.createChooser(i, "Compartilhar para:"));
+                    //}
+            }
 
-        emailsDestino+="ariana@teste.com"+","+"victor.leuthier@ufrpe.br"+",";
+        }
 
-        return emailsDestino;
-    }
+//        public String getDestinariosEmails(){
+//            Pessoa pessoa = pessoaLogada;
+//            String emailsDestino = new String();
+//
+//            if (pessoa.getAmigos() != null) {
+//                List<Amigo> amigos = pessoa.getAmigos();
+////                for (Amigo amigo : amigos) {
+////                    emailsDestino += amigo.getEmail() + ",";
+////                }
+//            }
+//            emailsDestino+="ariana@teste.com"+","+"victor.leuthier@ufrpe.br"+",";
+//
+//            return emailsDestino;
+//        }
 
-    public void mostrarLista(){
-        ArrayList<String> nomeAmigos = new ArrayList<>();
+//        public StringBuilder getAppConteudo(List<Evento> eventos){
+//            StringBuilder infoEventos = new StringBuilder();
+//
+//            for (Evento evento : eventos) {
+//                infoEventos.append(getInfoEventoApp(evento));
+//            }
+//            infoEventos.append("\nAtenciosamente, " + "\n" + pessoaLogada.getNome()+".\n"+
+//                    "via MindBit - https://sites.google.com/site/mindbitufrpe/");
+//            return infoEventos;
+//        }
 
-        try{
+        public void iniciarLista() throws MindbitException{
             amigosPessoa = amigoNegocio.listarAmigos(pessoaLogada.getId());
-            for (Amigo amigo:amigosPessoa){
-                nomeAmigos.add(amigo.getNome());
-                //precisa de emailsDestinatarios?
-                emailsDestinatarios.add(amigo.getEmail());
-            }
-        }catch(MindbitException e){
-            GuiUtil.exibirMsg(this, e.getMessage());
+
+            adapterEscolher = new AdapterEscolherAmigo(this, amigosPessoa);
+            listaAmigos.setAdapter(adapterEscolher);
         }
 
-        if (listaAmigos!=null){
-            ArrayAdapter<String> adapter = new ContactListAdapter(this,nomeAmigos);
-            listaAmigos.setAdapter(adapter);
-        }
-    }
-
-    private class ContactListAdapter extends ArrayAdapter<String> {
-        public ContactListAdapter(Context context, ArrayList<String> s) {
-            super(context, 0, s);
-        }
-
-
-        public View getView(int position, View view, ViewGroup parent) {
-            String s = getItem(position);
-
-            if (view == null) {
-                view = LayoutInflater.from(getContext()).inflate(R.layout.amigos_checkbox, parent, false);
-            }
-
-            TextView name = (TextView) view.findViewById(R.id.txt_nome_amigo);
-            name.setText(s);
-
-            return view;
-        }
-    }
-
-    public void enviarEmail(View v){
-        String[] emailsDestino = new String[]{getDestinariosEmails(amigosPessoa)};
-
-        Intent i = new Intent(Intent.ACTION_SEND);
-        i.setType("text/plain");
-        i.putExtra(android.content.Intent.EXTRA_EMAIL, emailsDestino);
-        //i.putExtra(Intent.EXTRA_SUBJECT, subject);
-        i.putExtra(Intent.EXTRA_TEXT, message);
-        startActivity(Intent.createChooser(i, "Compartilhar para:"));
-    }
 }

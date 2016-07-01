@@ -21,8 +21,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="450dp"
-        android:layout_marginLeft="125dp"
+        android:layout_marginLeft="40dp"
         android:text="Compartilhar"
         android:onClick="compartilhar"/>
+
+    <Button
+        android:id="@+id/btn_escolher_amigos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp"
+        android:layout_marginLeft="200dp"
+        android:text="Escolher Amigos"
+        android:onClick="abrirEscolherAmigo"/>
 
 </android.support.design.widget.CoordinatorLayout>

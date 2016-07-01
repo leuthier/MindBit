@@ -45,6 +45,7 @@ public class CompartilharEventoActivity extends AppCompatActivity{
 
     private ListView listaEventos;
     private Button btnCompartilhar;
+    private Button btnEscolher;
     private AdapterCompartilharEvento adapterCompartilhar;
 
     @Override
@@ -61,10 +62,18 @@ public class CompartilharEventoActivity extends AppCompatActivity{
 
         listaEventos = (ListView) findViewById(R.id.ListView_compartilhar_evento);
         btnCompartilhar = (Button) findViewById(R.id.btn_compartilhar_evento);
+        btnEscolher = (Button) findViewById(R.id.btn_escolher_amigos);
         btnCompartilhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 compartilhar(v);
+            }
+        });
+
+        btnEscolher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirEscolherAmigo(v);
             }
         });
 
@@ -95,6 +104,16 @@ public class CompartilharEventoActivity extends AppCompatActivity{
         return eventosMarcardos;
     }
 
+    public void abrirEscolherAmigo(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.btn_escolher_amigos:
+                StringBuilder conteudoEmail = getAppConteudo(getEventosSelecionados());
+                Intent i = new Intent(this,EscolherAmigoActivity.class);
+                i.putExtra("message",conteudoEmail.toString());
+                startActivity(i);
+        }
+    }
     public void compartilhar(View v){
         int id = v.getId();
         switch (id){
@@ -139,12 +158,10 @@ public class CompartilharEventoActivity extends AppCompatActivity{
            infoEventos.append(getInfoEventoApp(evento));
        }
 
-        infoEventos.append("\nAtenciosamente, " + "\n" + pessoaLogada.getNome()+".\n"+
-        "via MindBit - https://sites.google.com/site/mindbitufrpe/");
+        infoEventos.append("\nAtenciosamente, " + "\n" + pessoaLogada.getNome() + ".\n" +
+                "\n\nvia MindBit - https://sites.google.com/site/mindbitufrpe/");
         return infoEventos;
     }
-
-
 
     public void iniciarLista() throws MindbitException{
         eventosPessoa = eventoNegocio.listarEventosProximo(pessoaLogada.getId());
